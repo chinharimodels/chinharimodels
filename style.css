@@ -187,35 +187,31 @@ body{
   background:#0b0b0b;
   color:#ffffff;
 }
-/* ===== Floating Social Buttons (FINAL FIX) ===== */
+/* ===== FIXED FLOATING SOCIAL BAR ===== */
 
-.whatsapp-float,
-.instagram-float {
+.social-float {
   position: fixed;
   right: 20px;
-  z-index: 999;
-}
-
-.whatsapp-float {
   bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 9999;
 }
 
-.instagram-float {
-  bottom: 90px;
-}
-
-.whatsapp-float img,
-.instagram-float img {
+.social-float a img {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   background: #000;
   padding: 8px;
-  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
 }
 
-.whatsapp-float img:hover,
-.instagram-float img:hover {
+.social-float a img:hover {
   transform: scale(1.12);
 }
+
+
+
