@@ -1,212 +1,200 @@
-body {
+/* =========================
+   BRAND RESET
+   ========================= */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-}
-
-header {
-  background: black;
-  color: white;
-  padding: 30px;
-  text-align: center;
-}
-
-nav {
-  background: #444;
-  padding: 10px;
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-section {
-  background: white;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 5px;
-}
-.gallery {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  width: 250px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  text-align: center;
-  overflow: hidden;
-}
-
-.card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-.card h3 {
-  padding: 10px;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* =========================
-   MOBILE RESPONSIVE DESIGN
+   BRAND COLORS & FONTS
    ========================= */
-
-@media (max-width: 768px) {
-
-  header {
-    padding: 30px 15px;
-  }
-
-  header h1 {
-    font-size: 26px;
-    letter-spacing: 1px;
-  }
-
-  header p {
-    font-size: 14px;
-  }
-
-  nav {
-    display: flex;
-    flex-direction: column;
-  }
-
-  nav a {
-    padding: 12px;
-    border-bottom: 1px solid #555;
-  }
-
-  section {
-    margin: 10px;
-    padding: 15px;
-  }
-
-  .gallery {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 95%;
-    margin-bottom: 20px;
-  }
-
-  .card img {
-    height: 260px;
-  }
-
-  footer {
-    font-size: 13px;
-    padding: 15px;
-  }
-
-/* =========================
-   WHATSAPP FLOATING BUTTON
-   ========================= */
-
-.whatsapp-float {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 70px;
-  height: 70px;
-  background-color: #25D366;
-  color: white;
-  font-size: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  text-decoration: none;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-  z-index: 9999;
-  animation: whatsapp-pulse 1.8s infinite;
-}
-
-/* Hover effect */
-.whatsapp-float:hover {
-  background-color: #1ebe5d;
-  transform: scale(1.1);
-}
-
-/* Pulse animation */
-@keyframes whatsapp-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
-}
-/* =========================
-   ULTRA LUXURY FASHION LOOK
-   ========================= */
-
-/* Global luxury feel */
 body {
-  background: radial-gradient(circle at top, #111 0%, #000 60%);
-  color: #e6e6e6;
-  letter-spacing: 0.3px;
+  font-family: 'Poppins', sans-serif;
+  background: #0b0b0b;
+  color: #eaeaea;
+  line-height: 1.6;
 }
 
-/* Header – premium hero look */
+/* =========================
+   HEADER (LUXURY HERO)
+   ========================= */
 header {
-  background: linear-gradient(180deg, #000 0%, #0f0f0f 100%);
-  padding: 80px 20px;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  padding: 90px 20px;
+  text-align: center;
   border-bottom: 1px solid #222;
 }
 
 header h1 {
   font-size: 48px;
   letter-spacing: 4px;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
 header p {
+  margin-top: 15px;
   font-size: 15px;
-  color: #999;
+  color: #aaa;
   letter-spacing: 2px;
 }
 
-/* Navigation – minimal luxury */
+/* =========================
+   NAVBAR (MINIMAL)
+   ========================= */
 nav {
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(6px);
+  background: #000;
+  padding: 15px 0;
+  text-align: center;
   border-bottom: 1px solid #222;
 }
 
 nav a {
-  color: #ddd;
-  letter-spacing: 1.5px;
+  color: #bbb;
+  margin: 0 18px;
+  text-decoration: none;
   font-size: 13px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 nav a:hover {
-  color: #d4af37; /* GOLD */
+  color: #d4af37; /* Gold */
 }
 
-/* Section styling */
+/* =========================
+   SECTIONS
+   ========================= */
 section {
-  background: linear-gradient(180deg, #111, #0b0b0b);
-  border: 1px solid #1f1f1f;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
-/* Section headings */
 section h2 {
   font-size: 28px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  bo
+  margin-bottom: 30px;
+  color: #fff;
+  border-left: 4px solid #d4af37;
+  padding-left: 15px;
+}
 
+section p {
+  color: #ccc;
+  font-size: 15px;
+  max-width: 800px;
+}
+
+/* =========================
+   MODELS GRID (BRANDED)
+   ========================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  margin-top: 40px;
+}
+
+.card {
+  background: #111;
+  border: 1px solid #222;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+}
+
+.card img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.card:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.card h3 {
+  text-align: center;
+  padding: 18px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #000;
+  color: #fff;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 25px;
+  color: #888;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border-top: 1px solid #222;
+}
+
+/* =========================
+   WHATSAPP BUTTON (LUXURY)
+   ========================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  z-index: 9999;
+  animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+  70% { box-shadow: 0 0 0 25px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* =========================
+   MOBILE POLISH
+   ========================= */
+@media (max-width: 768px) {
+
+  header {
+    padding: 60px 20px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .card img {
+    height: 300px;
+  }
+}
