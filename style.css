@@ -149,4 +149,64 @@ section {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
 }
+/* =========================
+   ULTRA LUXURY FASHION LOOK
+   ========================= */
+
+/* Global luxury feel */
+body {
+  background: radial-gradient(circle at top, #111 0%, #000 60%);
+  color: #e6e6e6;
+  letter-spacing: 0.3px;
+}
+
+/* Header – premium hero look */
+header {
+  background: linear-gradient(180deg, #000 0%, #0f0f0f 100%);
+  padding: 80px 20px;
+  border-bottom: 1px solid #222;
+}
+
+header h1 {
+  font-size: 48px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+header p {
+  font-size: 15px;
+  color: #999;
+  letter-spacing: 2px;
+}
+
+/* Navigation – minimal luxury */
+nav {
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #222;
+}
+
+nav a {
+  color: #ddd;
+  letter-spacing: 1.5px;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  color: #d4af37; /* GOLD */
+}
+
+/* Section styling */
+section {
+  background: linear-gradient(180deg, #111, #0b0b0b);
+  border: 1px solid #1f1f1f;
+}
+
+/* Section headings */
+section h2 {
+  font-size: 28px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  bo
 
