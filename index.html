@@ -39,6 +39,18 @@
     .nav-cta::after { display: none !important; }
     .nav-cta:hover { background: var(--gold); color: var(--black) !important; }
 
+    /* HAMBURGER */
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; cursor: none; z-index: 101; position: relative; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 0.15em; opacity: 0.75; transition: opacity 0.3s, color 0.3s; }
+    .mobile-menu a:hover, .mobile-menu a:active { opacity: 1; color: var(--gold-light); }
+    .mobile-menu .mob-cta { border: 1px solid var(--gold); color: var(--gold) !important; padding: 12px 32px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem !important; letter-spacing: 0.2em; text-transform: uppercase; opacity: 1 !important; margin-top: 10px; }
+
     /* HERO */
     .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 0 60px; }
     .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%); }
@@ -216,7 +228,7 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 
     @media(max-width:900px){
-      nav{padding:20px 24px} .nav-links{display:none}
+      nav{padding:20px 24px} .nav-links{display:none} .hamburger{display:flex}
       section{padding:70px 24px} .hero{padding:0 24px}
       .hero-stats{right:24px;bottom:40px;gap:24px}
       .about-intro,.contact-grid,.founder-grid{grid-template-columns:1fr;gap:36px}
@@ -249,7 +261,20 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#contact" class="nav-cta">Book Now</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#events" onclick="closeMenu()">Events</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#training" onclick="closeMenu()">Training</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#contact" class="mob-cta" onclick="closeMenu()">Book Now</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -555,7 +580,7 @@
   <div class="contact-grid">
     <div class="contact-info">
       <p>Whether you're a brand looking for models, an aspiring model wanting to join our agency, or an event organizer — we'd love to hear from you.</p>
-      <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value">chinharimodels@gmail.com</div></div></div>
+      <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d2e252423252c3f2420222928213e0d2a202c2421632e2220">[email&#160;protected]</a></div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon">📱</div><div><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-value">+91 92381 37071</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon">📷</div><div><div class="contact-detail-label">Instagram</div><div class="contact-detail-value">@chinharimodels</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Raipur, Chhattisgarh, India</div></div></div>
@@ -610,7 +635,7 @@
     <div class="social-links">
       <a href="https://instagram.com/chinharimodels" class="social-link" target="_blank"><div class="social-icon">📷</div>@chinharimodels</a>
       <a href="https://wa.me/919238137071" class="social-link" target="_blank"><div class="social-icon">💬</div>WhatsApp Us</a>
-      <a href="mailto:chinharimodels@gmail.com" class="social-link"><div class="social-icon">✉</div>chinharimodels@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#8be8e3e2e5e3eaf9e2e6e4efeee7f8cbece6eae2e7a5e8e4e6" class="social-link"><div class="social-icon">✉</div><span class="__cf_email__" data-cfemail="9cfff4f5f2f4fdeef5f1f3f8f9f0efdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a>
     </div>
   </div>
 </footer>
@@ -619,7 +644,17 @@
   <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleMenu(){
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu(){
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
   const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
@@ -634,14 +669,4 @@
     document.querySelectorAll('.events-tab').forEach(t=>t.classList.remove('active'));
     document.querySelectorAll('.events-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('panel-'+tab).classList.add('active');
-  }
-  function submitForm(){
-    const n=document.getElementById('fname').value.trim(),e=document.getElementById('femail').value.trim();
-    if(!n||!e){alert('Please fill in your name and email.');return;}
-    document.getElementById('formFields').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  }
-</script>
-</body>
-</html>
+    document.getElementById('panel-'+tab).classList.a
