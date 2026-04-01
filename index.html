@@ -228,8 +228,20 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 
     @media(max-width:900px){
-      nav{padding:20px 24px} .nav-links{display:none} .hamburger{display:flex}
-      section{padding:70px 24px} .hero{padding:0 24px}
+      nav{padding:20px 24px}
+      .nav-links{display:none}
+      .hamburger{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:44px;
+        height:44px;
+        margin-left:auto;
+        flex-shrink:0;
+        cursor:pointer !important;
+      }
+      section{padding:70px 24px}
+      .hero{padding:0 24px}
       .hero-stats{right:24px;bottom:40px;gap:24px}
       .about-intro,.contact-grid,.founder-grid{grid-template-columns:1fr;gap:36px}
       .gallery-grid{grid-template-columns:1fr 1fr}
@@ -241,7 +253,8 @@
       footer{grid-template-columns:1fr;padding:40px 24px}
       .footer-bottom{padding:20px 24px;flex-direction:column;gap:12px}
       .form-row{grid-template-columns:1fr}
-      *{cursor:auto !important} .cursor,.cursor-ring{display:none}
+      *{cursor:auto !important}
+      .cursor,.cursor-ring{display:none}
       .hamburger{cursor:pointer !important}
       .mobile-menu a{cursor:pointer !important}
     }
@@ -327,7 +340,6 @@
   <div class="section-label">Our Story</div>
   <h2 class="section-title">Redefining <em>Elegance</em><br>in Chhattisgarh</h2>
 
-  <!-- About Intro -->
   <div class="about-intro">
     <div class="about-text">
       <p>Chinhari Models is Chhattisgarh's most trusted modeling and event management agency. We have been the launchpad for hundreds of careers and the backbone of some of the region's most spectacular fashion events.</p>
@@ -347,12 +359,10 @@
     </div>
   </div>
 
-  <!-- FOUNDER -->
   <div class="founder-section">
     <div class="section-label">Meet the Founder</div>
     <div class="founder-grid">
       <div class="founder-img-wrap">
-        <!-- Apni photo lagane ke liye: <img class="founder-img" src="images/founder.jpg" alt="Founder"> -->
         <div class="founder-img-placeholder">
           <span>👤</span>
           <p>Add Founder Photo</p>
@@ -375,12 +385,10 @@
     </div>
   </div>
 
-  <!-- TEAM -->
   <div class="team-section">
     <div class="section-label">Our Team</div>
     <div class="team-grid">
       <div class="team-card">
-        <!-- <img class="team-img" src="images/team1.jpg" alt="Team 1"> -->
         <div class="team-img-placeholder">👤</div>
         <div class="team-name">Team Member 1</div>
         <div class="team-post">Senior Model</div>
@@ -646,29 +654,80 @@
   <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function toggleMenu(){
-    document.getElementById('hamburger').classList.toggle('open');
-    document.getElementById('mobileMenu').classList.toggle('open');
-    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+  function toggleMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
   }
-  function closeMenu(){
+
+  function closeMenu() {
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('mobileMenu').classList.remove('open');
     document.body.style.overflow = '';
   }
-  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-  function animCursor(){cursor.style.left=mx+'px';cursor.style.top=my+'px';rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor);}
-  animCursor();
-  document.querySelectorAll('a,button,.service-card,.training-card,.gallery-item').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(1.4)';});
-    el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
+
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX;
+    my = e.clientY;
   });
-  window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
-  function switchTab(tab,btn){
-    document.querySelectorAll('.events-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.events-panel').forEach(p=>p.classList.remove('active'));
+
+  function animCursor() {
+    if (cursor && ring) {
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+    }
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  document.querySelectorAll('a,button,.service-card,.training-card,.gallery-item').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      if (cursor && ring) {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1.4)';
+      }
+    });
+    el.addEventListener('mouseleave', function() {
+      if (cursor && ring) {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+      }
+    });
+  });
+
+  window.addEventListener('scroll', function() {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.events-tab').forEach(function(t) {
+      t.classList.remove('active');
+    });
+    document.querySelectorAll('.events-panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
     btn.classList.add('active');
-    document.getElementById('panel-'+tab).classList.a
+    document.getElementById('panel-' + tab).classList.add('active');
+  }
+
+  function submitForm() {
+    document.getElementById('formFields').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
