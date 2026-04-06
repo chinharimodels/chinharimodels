@@ -3,1261 +3,480 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chinhari Models – Premium Modeling & Event Agency</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>Chinhari Models</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --gold: #c9a84c;
-      --gold-light: #e8cc80;
-      --black: #0a0a0a;
-      --dark: #111111;
-      --dark2: #1a1a1a;
-      --white: #f5f0e8;
-      --gray: #888;
-      --border: rgba(201,168,76,0.25);
-      --shadow: 0 18px 45px rgba(0,0,0,0.35);
+    :root{
+      --gold:#c9a84c;
+      --gold-light:#e8cc80;
+      --black:#0a0a0a;
+      --dark:#111111;
+      --dark2:#1a1a1a;
+      --white:#f5f0e8;
+      --gray:#888;
+      --border:rgba(201,168,76,0.25);
+      --shadow:0 18px 45px rgba(0,0,0,0.35);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--black);
+      color:var(--white);
+      font-family:'Montserrat',sans-serif;
+      font-weight:300;
+      overflow-x:hidden;
+    }
+
+    *{cursor:none}
+    .cursor{
+      width:10px;height:10px;background:var(--gold);border-radius:50%;
+      position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+      transform:translate(-50%,-50%);transition:transform .1s;
+    }
+    .cursor-ring{
+      width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;
+      position:fixed;top:0;left:0;pointer-events:none;z-index:9998;
+      transform:translate(-50%,-50%);transition:transform .18s ease-out;opacity:.6;
+    }
+
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 48px;
+      background:linear-gradient(to bottom,rgba(10,10,10,.97),rgba(10,10,10,.55),transparent);
+      transition:background .4s,border-color .4s;
+    }
+    nav.scrolled{
+      background:rgba(10,10,10,.98);
+      border-bottom:1px solid var(--border);
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white);
+    }
+    .brand-logo{
+      width:52px;height:52px;object-fit:contain;background:#000;
+      border:1px solid var(--border);border-radius:14px;padding:5px;
+    }
+    .brand-text{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;
+    }
+    .brand-text span{color:var(--gold)}
+
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+    .nav-links a{
+      color:var(--white);text-decoration:none;font-size:.7rem;letter-spacing:.2em;
+      text-transform:uppercase;opacity:.75;position:relative;transition:.3s;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;
+      background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.3s;
+    }
+    .nav-links a:hover,.nav-links a.active-link{opacity:1;color:var(--gold-light)}
+    .nav-links a:hover::after,.nav-links a.active-link::after{transform:scaleX(1)}
+    .nav-cta{
+      border:1px solid var(--gold);
+      color:var(--gold)!important;
+      padding:8px 20px;opacity:1!important;
+    }
+    .nav-cta::after{display:none!important}
+    .nav-cta:hover,.nav-cta.active-link{background:var(--gold);color:var(--black)!important}
+
+    .hamburger{
+      display:none;align-items:center;justify-content:center;
+      width:52px;height:52px;border-radius:16px;border:1px solid rgba(201,168,76,.35);
+      background:rgba(255,255,255,.03);backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);padding:0;cursor:pointer;z-index:111;position:relative;
+    }
+    .hamburger-lines{width:24px;height:18px;position:relative;display:block}
+    .hamburger-lines span{
+      position:absolute;left:0;width:24px;height:2px;border-radius:99px;
+      background:linear-gradient(90deg,var(--white),var(--gold-light));
+      transition:.3s ease;
+    }
+    .hamburger-lines span:nth-child(1){top:0}
+    .hamburger-lines span:nth-child(2){top:8px}
+    .hamburger-lines span:nth-child(3){top:16px}
+    .hamburger.open .hamburger-lines span:nth-child(1){top:8px;transform:rotate(45deg)}
+    .hamburger.open .hamburger-lines span:nth-child(2){opacity:0}
+    .hamburger.open .hamburger-lines span:nth-child(3){top:8px;transform:rotate(-45deg)}
+
+    .mobile-menu{
+      position:fixed;top:0;right:0;width:min(340px,88vw);height:100vh;
+      background:radial-gradient(circle at top right,rgba(201,168,76,.12),transparent 28%),rgba(10,10,10,.98);
+      border-left:1px solid var(--border);z-index:109;display:flex;flex-direction:column;
+      align-items:flex-start;justify-content:center;gap:22px;padding:36px 28px;
+      transform:translateX(110%);transition:transform .35s ease;box-shadow:-20px 0 40px rgba(0,0,0,.4);
+    }
+    .mobile-menu.open{transform:translateX(0)}
+    .mobile-menu a{
+      color:var(--white);text-decoration:none;font-family:'Cormorant Garamond',serif;
+      font-size:1.8rem;font-weight:300;letter-spacing:.08em;opacity:.85;transition:.3s;
     }
+    .mobile-menu a:hover,.mobile-menu a.active-link{opacity:1;color:var(--gold-light);transform:translateX(6px)}
+    .mobile-menu .mob-cta{
+      border:1px solid var(--gold);color:var(--gold)!important;padding:12px 18px;
+      font-family:'Montserrat',sans-serif;font-size:.72rem!important;letter-spacing:.2em;
+      text-transform:uppercase;opacity:1!important;margin-top:8px;
+    }
+    .mobile-overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:108;
+      opacity:0;pointer-events:none;transition:opacity .3s ease;
+    }
+    .mobile-overlay.show{opacity:1;pointer-events:auto}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
-
-    * { cursor: none; }
-
-    .cursor {
-      width: 10px;
-      height: 10px;
-      background: var(--gold);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: transform 0.1s;
-    }
-
-    .cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%,-50%);
-      transition: transform 0.18s ease-out;
-      opacity: 0.6;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 56px;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.96), rgba(10,10,10,0.45), transparent);
-      transition: background 0.4s, border-color 0.4s;
-    }
-
-    nav.scrolled {
-      background: rgba(10,10,10,0.97);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      color: var(--white);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--white);
-      text-decoration: none;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.75;
-      transition: opacity 0.3s, color 0.3s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active-link {
-      opacity: 1;
-      color: var(--gold-light);
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active-link::after {
-      transform: scaleX(1);
-    }
-
-    .nav-cta {
-      border: 1px solid var(--gold);
-      color: var(--gold) !important;
-      padding: 8px 22px;
-      opacity: 1 !important;
-    }
-
-    .nav-cta::after { display: none !important; }
-
-    .nav-cta:hover,
-    .nav-cta.active-link {
-      background: var(--gold);
-      color: var(--black) !important;
-    }
-
-    .hamburger {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      border: 1px solid rgba(201,168,76,0.35);
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
-      padding: 0;
-      cursor: pointer;
-      z-index: 111;
-      position: relative;
-    }
-
-    .hamburger-lines {
-      width: 24px;
-      height: 18px;
-      position: relative;
-      display: block;
-    }
-
-    .hamburger-lines span {
-      position: absolute;
-      left: 0;
-      width: 24px;
-      height: 2px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--white), var(--gold-light));
-      transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
-    }
-
-    .hamburger-lines span:nth-child(1) { top: 0; }
-    .hamburger-lines span:nth-child(2) { top: 8px; }
-    .hamburger-lines span:nth-child(3) { top: 16px; }
-
-    .hamburger.open .hamburger-lines span:nth-child(1) { top: 8px; transform: rotate(45deg); }
-    .hamburger.open .hamburger-lines span:nth-child(2) { opacity: 0; }
-    .hamburger.open .hamburger-lines span:nth-child(3) { top: 8px; transform: rotate(-45deg); }
-
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(340px, 88vw);
-      height: 100vh;
-      background: radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 28%), rgba(10,10,10,0.98);
-      border-left: 1px solid var(--border);
-      z-index: 109;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 22px;
-      padding: 36px 28px;
-      transform: translateX(110%);
-      transition: transform 0.35s ease;
-      box-shadow: -20px 0 40px rgba(0,0,0,0.4);
-    }
-
-    .mobile-menu.open { transform: translateX(0); }
-
-    .mobile-menu a {
-      color: var(--white);
-      text-decoration: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      opacity: 0.85;
-      transition: opacity 0.3s, color 0.3s, transform 0.3s;
-    }
-
-    .mobile-menu a:hover,
-    .mobile-menu a.active-link {
-      opacity: 1;
-      color: var(--gold-light);
-      transform: translateX(6px);
-    }
-
-    .mobile-menu .mob-cta {
-      border: 1px solid var(--gold);
-      color: var(--gold) !important;
-      padding: 12px 18px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem !important;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 1 !important;
-      margin-top: 8px;
-    }
-
-    .mobile-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 108;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .mobile-overlay.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .page-section {
-      display: none;
-      min-height: 100vh;
-      padding-top: 110px;
-      animation: fadePage 0.55s ease;
-    }
-
-    .page-section.active { display: block; }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 0 60px;
-      background:
-        radial-gradient(circle at top center, rgba(201,168,76,0.18), transparent 30%),
-        linear-gradient(135deg, #0a0a0a 0%, #1a1408 45%, #0a0a0a 100%);
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%);
-    }
-
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
-    }
-
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px),
-        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 820px;
-    }
-
-    .hero-theme-line {
-      display: inline-block;
-      padding: 14px 28px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(201,168,76,0.35);
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(201,168,76,0.16), rgba(255,220,120,0.08));
-      color: #f5d67a;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-
-    .hero-theme-sub {
-      display: block;
-      margin-bottom: 22px;
-      color: var(--gold-light);
-      font-size: 0.85rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.95;
-    }
-
-    .hero-mini-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.28em;
-      color: var(--gold);
-      margin-bottom: 18px;
-      opacity: 0.9;
-    }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 300;
-      line-height: 1.0;
-      margin-bottom: 12px;
-    }
-
-    .hero h1 em { font-style: italic; color: var(--gold-light); }
-
-    .hero-slogan {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      color: var(--gold-light);
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-
-    .hero-lines {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 22px 0 18px;
-    }
-
-    .hero-line-badge {
-      border: 1px solid var(--border);
-      padding: 10px 16px;
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .hero-desc {
-      max-width: 700px;
-      margin-bottom: 18px;
-      font-size: 0.9rem;
-      line-height: 2;
-      opacity: 0.78;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--black);
-      padding: 14px 36px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(245,240,232,0.35);
-      color: var(--white);
-      padding: 14px 36px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.3s, color 0.3s, transform 0.2s;
-      display: inline-block;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      position: absolute;
-      right: 60px;
-      bottom: 80px;
-      display: flex;
-      gap: 50px;
-      z-index: 2;
-    }
-
-    .stat { text-align: center; }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.5;
-      margin-top: 6px;
-    }
-
-    .award-strip {
-      margin-top: 38px;
-      max-width: 720px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .award-title {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .award-slider {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .award-track {
-      display: flex;
-      width: 300%;
-      animation: slideAwards 15s infinite;
-    }
-
-    .award-slide {
-      width: 100%;
-      flex: 0 0 100%;
-      position: relative;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-    }
-
-    .award-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .award-caption {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 16px 18px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      font-size: 0.76rem;
-      line-height: 1.7;
-    }
-
-    @keyframes slideAwards {
-      0%, 28% { transform: translateX(0); }
-      33%, 61% { transform: translateX(-100%); }
-      66%, 94% { transform: translateX(-200%); }
-      100% { transform: translateX(0); }
-    }
-
-    section { padding: 100px 60px; }
-
-    .section-shell {
-      min-height: 100vh;
-      background: var(--dark);
-    }
-
-    .section-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .section-label::before {
-      content: '';
-      width: 30px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .section-title em { font-style: italic; color: var(--gold-light); }
-
-    .about-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      margin-bottom: 70px;
-    }
-
-    .about-text p {
-      font-size: 0.9rem;
-      line-height: 2.0;
-      opacity: 0.7;
-      margin-bottom: 18px;
-    }
-
-    .about-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-top: 32px;
-    }
-
-    .feature-item {
-      border-left: 2px solid var(--gold);
-      padding-left: 14px;
-    }
-
-    .feature-title {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: var(--gold-light);
-    }
-
-    .feature-desc {
-      font-size: 0.72rem;
-      opacity: 0.55;
-      line-height: 1.6;
-    }
-
-    .about-card {
-      background: var(--dark2);
-      border: 1px solid var(--border);
-      padding: 48px;
-      position: relative;
-    }
-
-    .about-card::before {
-      content: '"';
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 8rem;
-      color: var(--gold);
-      opacity: 0.15;
-      position: absolute;
-      top: 10px;
-      left: 28px;
-      line-height: 1;
-    }
-
-    .about-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-style: italic;
-      line-height: 1.5;
-      margin-bottom: 22px;
-    }
-
-    .about-quote-author {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .founder-section {
-      border-top: 1px solid var(--border);
-      padding-top: 60px;
-      margin-bottom: 70px;
-    }
-
-    .founder-grid {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 56px;
-      align-items: start;
-      margin-top: 36px;
-    }
-
-    .founder-img-wrap { position: relative; }
-
-    .founder-img {
-      width: 260px;
-      height: 320px;
-      object-fit: cover;
-      display: block;
-      border: 1px solid var(--border);
-    }
-
-    .founder-badge {
-      position: absolute;
-      bottom: -14px;
-      left: 16px;
-      background: var(--gold);
-      color: var(--black);
-      padding: 7px 16px;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .founder-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 300;
-      margin-bottom: 6px;
-    }
-
-    .founder-role {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    .founder-bio p {
-      font-size: 0.87rem;
-      line-height: 2.0;
-      opacity: 0.7;
-      margin-bottom: 14px;
-    }
-
-    .founder-socials {
-      display: flex;
-      gap: 12px;
-      margin-top: 26px;
-      flex-wrap: wrap;
-    }
-
-    .founder-social-btn {
-      border: 1px solid var(--border);
-      padding: 8px 18px;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-      transition: border-color 0.3s, color 0.3s;
-    }
-
-    .founder-social-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    .team-section {
-      border-top: 1px solid var(--border);
-      padding-top: 56px;
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-      margin-top: 36px;
-    }
-
-    .team-card { text-align: center; }
-
-    .team-img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      border: 1px solid var(--border);
-      margin-bottom: 12px;
-    }
-
-    .team-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-weight: 300;
-      margin-bottom: 4px;
-    }
-
-    .team-post {
-      font-size: 0.58rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0.8;
-    }
-
-    #eventsPage { background: var(--black); }
-
-    .events-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-
-    .events-tab {
-      padding: 12px 32px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: none;
-      background: none;
-      color: var(--white);
-      opacity: 0.45;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: opacity 0.3s, color 0.3s, border-color 0.3s;
-      cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .events-tab.active {
-      opacity: 1;
-      color: var(--gold);
-      border-bottom-color: var(--gold);
-    }
-
-    .events-panel { display: none; }
-    .events-panel.active { display: block; }
-
-    .event-item {
-      display: grid;
-      grid-template-columns: 100px 1fr auto;
-      gap: 36px;
-      align-items: center;
-      padding: 26px 0;
-      border-bottom: 1px solid var(--border);
-      transition: padding-left 0.3s;
-    }
-
-    .event-item:first-child { border-top: 1px solid var(--border); }
-    .event-item:hover { padding-left: 12px; }
-
-    .event-date-day {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .event-date-month {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.5;
-      margin-top: 4px;
-    }
-
-    .event-type {
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .event-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 300;
-      margin-bottom: 6px;
-    }
-
-    .event-location {
-      font-size: 0.74rem;
-      opacity: 0.5;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 16px;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border: 1px solid;
-    }
-
-    .badge-open { border-color: #4caf50; color: #4caf50; }
-    .badge-soon { border-color: var(--gold); color: var(--gold); }
-    .badge-upcoming { border-color: var(--gray); color: var(--gray); }
-    .badge-past { border-color: #444; color: #666; }
-
-    #galleryPage { background: var(--dark); }
-
-    .gallery-group {
-      margin-top: 50px;
-    }
-
-    .gallery-group + .gallery-group {
-      margin-top: 80px;
-    }
-
-    .gallery-group-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 300;
-      margin-bottom: 20px;
-      color: var(--gold-light);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      background: var(--dark2);
-      display: block;
-      text-decoration: none;
-      border: 1px solid var(--border);
-    }
+    .page-section{display:none;min-height:100vh;padding-top:96px;animation:fadePage .55s ease}
+    .page-section.active{display:block}
 
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.5s;
+    .section-shell{min-height:100vh;background:var(--dark)}
+    section{padding:90px 48px}
+    .section-label{
+      font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+      margin-bottom:16px;display:flex;align-items:center;gap:14px;
     }
-
-    .gallery-item:hover img { transform: scale(1.05); }
-
-    .gallery-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 18px;
-      font-size: 0.72rem;
-      line-height: 1.8;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: linear-gradient(160deg, #151515, #211809);
-    }
-
-    #trainingPage { background: var(--black); }
-
-    .training-intro {
-      font-size: 0.88rem;
-      opacity: 0.6;
-      line-height: 1.9;
-      max-width: 580px;
-      margin-bottom: 50px;
-    }
-
-    .training-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-
-    .training-card {
-      background: var(--dark2);
-      padding: 38px 30px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .training-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s;
-    }
-
-    .training-card:hover::before { transform: scaleX(1); }
-
-    .training-card:hover {
-      background: #1e1a0e;
-      transform: translateY(-4px);
-    }
-
-    .training-icon {
-      font-size: 2.2rem;
-      margin-bottom: 18px;
-      display: block;
-    }
-
-    .training-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 300;
-      margin-bottom: 10px;
-    }
-
-    .training-desc {
-      font-size: 0.76rem;
-      opacity: 0.55;
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    .training-duration {
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 5px;
-    }
-
-    .training-fee {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--gold-light);
-    }
-
-    #servicesPage { background: var(--dark); }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      margin-top: 50px;
-    }
-
-    .service-card {
-      background: var(--dark2);
-      padding: 34px 26px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s;
-    }
-
-    .service-card:hover::before { transform: scaleX(1); }
-
-    .service-card:hover {
-      background: #1e1a0e;
-      transform: translateY(-4px);
-    }
-
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 300;
-      margin-bottom: 10px;
-    }
-
-    .service-desc {
-      font-size: 0.74rem;
-      opacity: 0.55;
-      line-height: 1.8;
-    }
-
-    #contactPage { background: var(--dark); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 80px;
-      margin-top: 60px;
-    }
-
-    .contact-info p {
-      font-size: 0.85rem;
-      line-height: 1.9;
-      opacity: 0.6;
-      margin-bottom: 36px;
-    }
-
-    .contact-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .contact-detail-icon {
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-      color: var(--gold);
-    }
-
-    .contact-detail-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 3px;
-    }
-
-    .contact-detail-value {
-      font-size: 0.84rem;
-      opacity: 0.75;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .form-group { margin-bottom: 16px; }
-
-    .form-group label {
-      display: block;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: var(--dark2);
-      border: 1px solid var(--border);
-      color: var(--white);
-      padding: 14px 18px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 300;
-      outline: none;
-      transition: border-color 0.3s;
-      appearance: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--gold);
+    .section-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+    .section-title{
+      font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);
+      font-weight:300;line-height:1.1;margin-bottom:24px;
     }
-
-    .form-group select option { background: var(--dark2); }
-    .form-group textarea { resize: vertical; min-height: 120px; }
+    .section-title em{font-style:italic;color:var(--gold-light)}
 
-    .form-submit {
-      width: 100%;
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      padding: 16px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      cursor: none;
-      transition: background 0.3s, transform 0.2s;
-      margin-top: 8px;
+    .home-top-slider{
+      position:relative;background:#000;border-bottom:1px solid var(--border);
+      padding:0;
     }
-
-    .form-submit:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
+    .home-top-slider .slider-frame{
+      width:100%;height:min(72vh,720px);background:#000;overflow:hidden;position:relative;
     }
-
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 40px;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.85rem;
+    .home-top-slider .slider-track{
+      display:flex;width:300%;height:100%;animation:heroSlides 15s infinite;
     }
-
-    footer {
-      background: var(--black);
-      border-top: 1px solid var(--border);
-      padding: 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
+    .home-top-slider .slide{
+      width:100%;flex:0 0 100%;position:relative;background:#000;
     }
-
-    .footer-brand .logo { display: block; margin-bottom: 16px; }
-    .footer-tagline { font-size: 0.75rem; opacity: 0.45; line-height: 1.8; max-width: 240px; }
-    .footer-links h4, .footer-social h4 { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a { font-size: 0.78rem; color: var(--white); opacity: 0.5; text-decoration: none; transition: opacity 0.3s, color 0.3s; }
-    .footer-links a:hover { opacity: 1; color: var(--gold-light); }
-    .social-links { display: flex; flex-direction: column; gap: 12px; }
-    .social-link { display: flex; align-items: center; gap: 14px; font-size: 0.78rem; opacity: 0.5; color: var(--white); text-decoration: none; transition: opacity 0.3s, color 0.3s; }
-    .social-link:hover { opacity: 1; color: var(--gold-light); }
-    .social-icon { width: 32px; height: 32px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: border-color 0.3s; }
-    .social-link:hover .social-icon { border-color: var(--gold); }
-
-    .footer-bottom {
-      background: var(--black);
-      border-top: 1px solid var(--border);
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .home-top-slider .slide img{
+      width:100%;height:100%;object-fit:contain;object-position:center;background:#000;display:block;
     }
-
-    .footer-copy { font-size: 0.65rem; opacity: 0.35; letter-spacing: 0.1em; }
-    .footer-bottom-links { display: flex; gap: 24px; }
-    .footer-bottom-links a { font-size: 0.65rem; opacity: 0.35; color: var(--white); text-decoration: none; }
-
-    @keyframes fadePage {
-      from { opacity:0; transform:translateY(18px); }
-      to { opacity:1; transform:translateY(0); }
+    .home-top-slider .caption{
+      position:absolute;left:0;right:0;bottom:0;
+      padding:18px 24px;background:linear-gradient(to top,rgba(0,0,0,.82),transparent);
+      font-size:.82rem;line-height:1.8;
+    }
+
+    .hero{
+      min-height:calc(100vh - 96px);
+      display:flex;align-items:center;position:relative;overflow:hidden;
+      padding:0 48px;
+      background:radial-gradient(circle at top center,rgba(201,168,76,.18),transparent 30%),linear-gradient(135deg,#0a0a0a 0%,#1a1408 45%,#0a0a0a 100%);
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,#0a0a0a 0%,#1a1208 50%,#0a0a0a 100%);
+    }
+    .hero-bg::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.08) 0%,transparent 60%);
+    }
+    .hero-content{position:relative;z-index:2;max-width:860px}
+    .hero-logo{
+      width:92px;height:92px;object-fit:contain;background:#000;border:1px solid var(--border);
+      border-radius:18px;padding:8px;margin-bottom:20px;
+    }
+    .hero-theme-line{
+      display:inline-block;padding:12px 22px;margin-bottom:14px;border:1px solid rgba(201,168,76,.35);
+      border-radius:999px;background:linear-gradient(90deg,rgba(201,168,76,.16),rgba(255,220,120,.08));
+      color:#f5d67a;font-size:.95rem;font-weight:700;letter-spacing:.03em;
+    }
+    .hero-theme-sub{
+      display:block;margin-bottom:18px;color:var(--gold-light);font-size:.8rem;
+      letter-spacing:.22em;text-transform:uppercase;
+    }
+    .hero-mini-label{
+      font-size:.68rem;text-transform:uppercase;letter-spacing:.24em;color:var(--gold);
+      margin-bottom:14px;opacity:.9;
+    }
+    .hero h1{
+      font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.4rem);
+      font-weight:300;line-height:1;margin-bottom:10px;
+    }
+    .hero h1 em{font-style:italic;color:var(--gold-light)}
+    .hero-slogan{
+      font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;
+      color:var(--gold-light);letter-spacing:.08em;margin-bottom:14px;
+    }
+    .hero-lines{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+    .hero-line-badge{
+      border:1px solid var(--border);padding:10px 14px;font-size:.68rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--white);background:rgba(255,255,255,.03);
+    }
+    .hero-desc{
+      max-width:720px;margin-bottom:14px;font-size:.88rem;line-height:2;opacity:.78;
+    }
+    .hero-buttons{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px}
+    .btn-primary,.btn-outline{
+      display:inline-block;text-decoration:none;padding:14px 30px;font-size:.7rem;
+      letter-spacing:.2em;text-transform:uppercase;transition:.3s;
+    }
+    .btn-primary{
+      background:var(--gold);color:var(--black);font-weight:600;
+    }
+    .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+    .btn-outline{
+      border:1px solid rgba(245,240,232,.35);color:var(--white);
+    }
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+    .hero-stats{
+      position:absolute;right:48px;bottom:54px;display:flex;gap:36px;z-index:2;
+    }
+    .stat{text-align:center}
+    .stat-num{
+      font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold);line-height:1;
+    }
+    .stat-label{
+      font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:6px;
+    }
+
+    .about-intro{
+      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:70px;
+    }
+    .about-text p{font-size:.9rem;line-height:2;opacity:.7;margin-bottom:18px}
+    .about-features{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:32px}
+    .feature-item{border-left:2px solid var(--gold);padding-left:14px}
+    .feature-title{font-size:.72rem;letter-spacing:.1em;font-weight:600;margin-bottom:4px;color:var(--gold-light)}
+    .feature-desc{font-size:.72rem;opacity:.55;line-height:1.6}
+    .about-card{background:var(--dark2);border:1px solid var(--border);padding:48px;position:relative}
+    .about-card::before{
+      content:'"';font-family:'Cormorant Garamond',serif;font-size:8rem;color:var(--gold);
+      opacity:.15;position:absolute;top:10px;left:28px;line-height:1;
+    }
+    .about-quote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;line-height:1.5;margin-bottom:22px}
+    .about-quote-author{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+
+    .founder-section{border-top:1px solid var(--border);padding-top:60px;margin-bottom:70px}
+    .founder-grid{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start;margin-top:36px}
+    .founder-img-wrap{position:relative}
+    .founder-img{
+      width:260px;height:320px;object-fit:cover;object-position:center;display:block;border:1px solid var(--border);
+    }
+    .founder-badge{
+      position:absolute;bottom:-14px;left:16px;background:var(--gold);color:var(--black);
+      padding:7px 16px;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
+    }
+    .founder-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;margin-bottom:6px}
+    .founder-role{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+    .founder-bio p{font-size:.87rem;line-height:2;opacity:.7;margin-bottom:14px}
+    .founder-socials{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+    .founder-social-btn{
+      border:1px solid var(--border);padding:8px 18px;font-size:.6rem;letter-spacing:.15em;
+      text-transform:uppercase;color:var(--white);text-decoration:none;transition:.3s;
+    }
+    .founder-social-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+    .team-section{border-top:1px solid var(--border);padding-top:56px}
+    .team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:36px}
+    .team-card{text-align:center}
+    .team-img{
+      width:100%;aspect-ratio:1;object-fit:cover;object-position:center;display:block;
+      border:1px solid var(--border);margin-bottom:12px;
+    }
+    .team-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;margin-bottom:4px}
+    .team-post{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);opacity:.8}
+
+    #eventsPage{background:var(--black)}
+    .events-tabs{display:flex;border-bottom:1px solid var(--border);margin-top:40px;flex-wrap:wrap}
+    .events-tab{
+      padding:12px 32px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border:none;background:none;
+      color:var(--white);opacity:.45;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.3s;
+      cursor:pointer;font-family:'Montserrat',sans-serif;
+    }
+    .events-tab.active{opacity:1;color:var(--gold);border-bottom-color:var(--gold)}
+    .events-panel{display:none}
+    .events-panel.active{display:block}
+    .event-item{
+      display:grid;grid-template-columns:100px 1fr auto;gap:36px;align-items:center;padding:26px 0;
+      border-bottom:1px solid var(--border);transition:padding-left .3s;
+    }
+    .event-item:first-child{border-top:1px solid var(--border)}
+    .event-item:hover{padding-left:12px}
+    .event-date-day{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+    .event-date-month{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:4px}
+    .event-type{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .event-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;margin-bottom:6px}
+    .event-location{font-size:.74rem;opacity:.5}
+    .badge{display:inline-block;padding:6px 16px;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid}
+    .badge-open{border-color:#4caf50;color:#4caf50}
+    .badge-soon{border-color:var(--gold);color:var(--gold)}
+    .badge-past{border-color:#444;color:#666}
+
+    #galleryPage{background:var(--dark)}
+    .gallery-group{margin-top:50px}
+    .gallery-group+.gallery-group{margin-top:80px}
+    .gallery-group-title{
+      font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:20px;color:var(--gold-light);
+    }
+    .gallery-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .gallery-item{
+      position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--dark2);
+      display:block;border:1px solid var(--border);
+    }
+    .gallery-item img{
+      width:100%;height:100%;object-fit:cover;object-position:center;display:block;
+    }
+    .gallery-placeholder{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;
+      padding:18px;font-size:.72rem;line-height:1.8;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--gold);background:linear-gradient(160deg,#151515,#211809);
+    }
+
+    #trainingPage{background:var(--black)}
+    .training-intro{font-size:.88rem;opacity:.6;line-height:1.9;max-width:580px;margin-bottom:50px}
+    .training-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .training-card{
+      background:var(--dark2);padding:38px 30px;position:relative;overflow:hidden;transition:.3s;
+    }
+    .training-card::before{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);
+      transform:scaleX(0);transform-origin:left;transition:.4s;
+    }
+    .training-card:hover::before{transform:scaleX(1)}
+    .training-card:hover{background:#1e1a0e;transform:translateY(-4px)}
+    .training-icon{font-size:2.2rem;margin-bottom:18px;display:block}
+    .training-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:300;margin-bottom:10px}
+    .training-desc{font-size:.76rem;opacity:.55;line-height:1.8;margin-bottom:20px}
+    .training-duration{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+    .training-fee{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light)}
+
+    #servicesPage{background:var(--dark)}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:50px}
+    .service-card{
+      background:var(--dark2);padding:34px 26px;position:relative;overflow:hidden;transition:.3s;
+    }
+    .service-card::before{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);
+      transform:scaleX(0);transform-origin:left;transition:.4s;
+    }
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-card:hover{background:#1e1a0e;transform:translateY(-4px)}
+    .service-icon{font-size:2rem;margin-bottom:16px;display:block}
+    .service-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;margin-bottom:10px}
+    .service-desc{font-size:.74rem;opacity:.55;line-height:1.8}
+
+    #contactPage{background:var(--dark)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;margin-top:60px}
+    .contact-info p{font-size:.85rem;line-height:1.9;opacity:.6;margin-bottom:36px}
+    .contact-detail{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px}
+    .contact-detail-icon{
+      width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+      font-size:.9rem;flex-shrink:0;color:var(--gold);
+    }
+    .contact-detail-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+    .contact-detail-value{font-size:.84rem;opacity:.75}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+    .form-group{margin-bottom:16px}
+    .form-group label{
+      display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;
+    }
+    .form-group input,.form-group select,.form-group textarea{
+      width:100%;background:var(--dark2);border:1px solid var(--border);color:var(--white);
+      padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:300;outline:none;transition:.3s;
+      appearance:none;
+    }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+    .form-group select option{background:var(--dark2)}
+    .form-group textarea{resize:vertical;min-height:120px}
+    .form-submit{
+      width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;font-family:'Montserrat',sans-serif;
+      font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;cursor:none;transition:.3s;margin-top:8px;
+    }
+    .form-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
+    .form-success{
+      display:none;text-align:center;padding:40px;border:1px solid var(--gold);color:var(--gold);font-size:.85rem;
+    }
+
+    footer{
+      background:var(--black);border-top:1px solid var(--border);padding:60px 48px;
+      display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;
+    }
+    .footer-brand .brand{margin-bottom:16px}
+    .footer-brand-logo{
+      width:72px;height:72px;object-fit:contain;background:#000;border:1px solid var(--border);border-radius:18px;padding:6px;
+    }
+    .footer-tagline{font-size:.75rem;opacity:.45;line-height:1.8;max-width:240px}
+    .footer-links h4,.footer-social h4{
+      font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+    }
+    .footer-links ul{list-style:none}
+    .footer-links li{margin-bottom:10px}
+    .footer-links a{font-size:.78rem;color:var(--white);opacity:.5;text-decoration:none;transition:.3s}
+    .footer-links a:hover{opacity:1;color:var(--gold-light)}
+    .social-links{display:flex;flex-direction:column;gap:12px}
+    .social-link{display:flex;align-items:center;gap:14px;font-size:.78rem;opacity:.5;color:var(--white);text-decoration:none;transition:.3s}
+    .social-link:hover{opacity:1;color:var(--gold-light)}
+    .social-icon{
+      width:32px;height:32px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:.3s;
+    }
+    .social-link:hover .social-icon{border-color:var(--gold)}
+    .footer-bottom{
+      background:var(--black);border-top:1px solid var(--border);padding:20px 48px;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .footer-copy{font-size:.65rem;opacity:.35;letter-spacing:.1em}
+    .footer-bottom-links{display:flex;gap:24px}
+    .footer-bottom-links a{font-size:.65rem;opacity:.35;color:var(--white);text-decoration:none}
+
+    @keyframes fadePage{
+      from{opacity:0;transform:translateY(18px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes heroSlides{
+      0%,28%{transform:translateX(0)}
+      33%,61%{transform:translateX(-100%)}
+      66%,94%{transform:translateX(-200%)}
+      100%{transform:translateX(0)}
     }
 
     @media(max-width:900px){
-      nav { padding: 18px 20px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .page-section { padding-top: 96px; }
-      section { padding: 70px 24px; }
-      .hero { padding: 0 24px; }
-      .hero-stats { right: 24px; bottom: 40px; gap: 24px; }
-      .about-intro, .contact-grid, .founder-grid { grid-template-columns: 1fr; gap: 36px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .training-grid, .services-grid { grid-template-columns: 1fr 1fr; }
-      .team-grid { grid-template-columns: repeat(2,1fr); }
-      .event-item { grid-template-columns: 80px 1fr; }
-      .event-item > div:last-child { display: none; }
-      footer { grid-template-columns: 1fr; padding: 40px 24px; }
-      .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 12px; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero-theme-line { font-size: 0.85rem; padding: 12px 18px; line-height: 1.5; }
-      .hero-theme-sub { font-size: 0.72rem; letter-spacing: 0.14em; }
-      .hero-slogan { font-size: 1.2rem; }
-      .hero-desc { font-size: 0.82rem; line-height: 1.9; }
-      .founder-img { width: 100%; max-width: 260px; }
-      .award-strip { max-width: 100%; }
-      * { cursor:auto !important; }
-      .cursor, .cursor-ring { display:none; }
-      .hamburger, .mobile-menu a { cursor:pointer !important; }
+      nav{padding:16px 18px}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .page-section{padding-top:84px}
+      section{padding:70px 22px}
+      .hero{padding:0 22px}
+      .hero-stats{position:static;margin-top:34px;gap:18px;justify-content:flex-start;flex-wrap:wrap}
+      .about-intro,.contact-grid,.founder-grid{grid-template-columns:1fr;gap:34px}
+      .gallery-grid{grid-template-columns:1fr 1fr}
+      .training-grid,.services-grid{grid-template-columns:1fr 1fr}
+      .team-grid{grid-template-columns:repeat(2,1fr)}
+      .event-item{grid-template-columns:80px 1fr}
+      .event-item > div:last-child{display:none}
+      footer{grid-template-columns:1fr;padding:40px 22px}
+      .footer-bottom{padding:20px 22px;flex-direction:column;gap:12px}
+      .form-row{grid-template-columns:1fr}
+      .founder-img{width:100%;max-width:260px}
+      .home-top-slider .slider-frame{height:44vh}
+      .brand-logo{width:44px;height:44px;border-radius:12px}
+      .brand-text{font-size:1rem;letter-spacing:.12em}
+      .hero-logo{width:70px;height:70px;border-radius:14px}
+      .footer-brand-logo{width:58px;height:58px}
+      *{cursor:auto!important}
+      .cursor,.cursor-ring{display:none}
+      .hamburger,.mobile-menu a{cursor:pointer!important}
     }
 
     @media(max-width:640px){
-      .hero h1 { font-size: clamp(2.7rem, 13vw, 4.3rem); }
-      .hero-buttons { flex-direction: column; align-items: flex-start; }
-      .hero-lines { flex-direction: column; align-items: flex-start; }
-      .hero-stats {
-        position: static;
-        margin-top: 44px;
-        gap: 18px;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
-      .training-grid, .services-grid, .gallery-grid, .team-grid { grid-template-columns: 1fr; }
-      .events-tabs { gap: 10px; border-bottom: none; }
-      .events-tab { padding: 10px 0; }
-      .mobile-menu a { font-size: 1.6rem; }
-      .hero-theme-line {
-        font-size: 0.78rem;
-        width: 100%;
-        text-align: center;
-        border-radius: 18px;
-      }
-      .gallery-item,
-      .award-slide {
-        aspect-ratio: 4/5;
-      }
-      .gallery-item img,
-      .team-img,
-      .founder-img,
-      .award-slide img {
-        object-fit: cover;
-        object-position: center;
-      }
+      .hero h1{font-size:clamp(2.4rem,13vw,4rem)}
+      .hero-buttons,.hero-lines{flex-direction:column;align-items:flex-start}
+      .training-grid,.services-grid,.gallery-grid,.team-grid{grid-template-columns:1fr}
+      .events-tabs{gap:10px;border-bottom:none}
+      .events-tab{padding:10px 0}
+      .mobile-menu a{font-size:1.55rem}
+      .hero-theme-line{font-size:.76rem;width:100%;text-align:center;border-radius:18px}
+      .home-top-slider .slider-frame{height:38vh}
+      .gallery-item{aspect-ratio:4/5}
+      .gallery-item img,.team-img,.founder-img,.award-slide img{object-position:center}
     }
   </style>
 </head>
@@ -1267,7 +486,10 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="navbar">
-  <a href="#" class="logo" onclick="openSection('home'); return false;">Chinhari <span>Models</span></a>
+  <a href="#" class="brand" onclick="openSection('home'); return false;">
+    <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="brand-logo">
+    <div class="brand-text">Chinhari <span>Models</span></div>
+  </a>
 
   <ul class="nav-links">
     <li><a href="#" data-section-link="home" class="active-link" onclick="openSection('home'); return false;">Home</a></li>
@@ -1281,9 +503,7 @@
 
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
     <span class="hamburger-lines">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </span>
   </button>
 </nav>
@@ -1301,10 +521,30 @@
 </div>
 
 <section class="page-section active" id="homePage">
+  <div class="home-top-slider">
+    <div class="slider-frame">
+      <div class="slider-track">
+        <div class="slide">
+          <img src="images/award1.jpg" alt="Award 1">
+          <div class="caption">Prem Sai Bhagat was honored by the Collector, Raigarh for his remarkable contribution and inspiring journey.</div>
+        </div>
+        <div class="slide">
+          <img src="images/award2.jpg" alt="Award 2">
+          <div class="caption">A proud moment that reflects leadership, dedication, and a growing vision for Chhattisgarhi art, fashion, and culture.</div>
+        </div>
+        <div class="slide">
+          <img src="images/award3.jpg" alt="Award 3">
+          <div class="caption">This recognition strengthens the mission of building a stronger pageant and modeling platform for future generations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section class="hero">
     <div class="hero-bg"></div>
-
     <div class="hero-content">
+      <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="hero-logo">
+
       <div class="hero-theme-line">एक प्रयास अपन माटी के नाम</div>
       <div class="hero-theme-sub">जय जोहार • जय छत्तीसगढ़</div>
 
@@ -1329,26 +569,6 @@
       <div class="hero-buttons">
         <a href="#" class="btn-primary" onclick="openSection('about'); return false;">About Us</a>
         <a href="#" class="btn-outline" onclick="openSection('gallery'); return false;">View Gallery</a>
-      </div>
-
-      <div class="award-strip">
-        <div class="award-title">Special Recognition</div>
-        <div class="award-slider">
-          <div class="award-track">
-            <div class="award-slide">
-              <img src="images/award1.jpeg" alt="Prem Sai Bhagat Award 1">
-              <div class="award-caption">Prem Sai Bhagat received recognition from the Collector, Raigarh.</div>
-            </div>
-            <div class="award-slide">
-              <img src="images/award2.jpeg" alt="Prem Sai Bhagat Award 2">
-              <div class="award-caption">A proud moment celebrating achievement, leadership, and Chhattisgarhi identity.</div>
-            </div>
-            <div class="award-slide">
-              <img src="images/award3.jpeg" alt="Prem Sai Bhagat Award 3">
-              <div class="award-caption">This honor reflects a growing vision for the future of fashion and pageantry in Chhattisgarh.</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -1389,7 +609,7 @@
         <div class="section-label">Meet the Founder</div>
         <div class="founder-grid">
           <div class="founder-img-wrap">
-            <img class="founder-img" src="images/founder.jpeg" alt="Prem Sai Bhagat" />
+            <img class="founder-img" src="images/founder.jpg" alt="Prem Sai Bhagat" />
             <div class="founder-badge">Founder & Director</div>
           </div>
 
@@ -1418,25 +638,21 @@
             <div class="team-name">Miss Anupama Ratnakar Mam</div>
             <div class="team-post">Head Manager & Co-Director</div>
           </div>
-
           <div class="team-card">
             <img class="team-img" src="images/rohan.jpg" alt="Mr. Rohan Dhiwar Sir" />
             <div class="team-name">Mr. Rohan Dhiwar Sir</div>
             <div class="team-post">Agency Assistant</div>
           </div>
-
           <div class="team-card">
             <img class="team-img" src="images/pooja.jpg" alt="Miss Pooja Tandekar Mam" />
             <div class="team-name">Miss Pooja Tandekar Mam</div>
             <div class="team-post">Agency Assistant</div>
           </div>
-
           <div class="team-card">
             <img class="team-img" src="images/shivlal.jpg" alt="Mr. Shivlal Minj Sir" />
             <div class="team-name">Mr. Shivlal Minj Sir</div>
             <div class="team-post">Agency Assistant</div>
           </div>
-
           <div class="team-card">
             <img class="team-img" src="images/durgesh.jpg" alt="Durgesh Kashyap" />
             <div class="team-name">Durgesh Kashyap</div>
@@ -1449,7 +665,7 @@
 </section>
 
 <section class="page-section" id="eventsPage">
-  <section class="section-shell" style="background: var(--black);">
+  <section class="section-shell" style="background:var(--black);">
     <section>
       <div class="section-label">Events</div>
       <h2 class="section-title">Upcoming & <em>Past Events</em></h2>
@@ -1501,32 +717,32 @@
       <div class="gallery-group">
         <h3 class="gallery-group-title">Swadesi Mela</h3>
         <div class="gallery-grid">
-          <div class="gallery-item"><img src="images/swadesi1.jpeg" alt="Swadesi Mela 1" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 1</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi2.jpeg" alt="Swadesi Mela 2" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 2</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi3.jpeg" alt="Swadesi Mela 3" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 3</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi4.jpeg" alt="Swadesi Mela 4" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 4</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi5.jpeg" alt="Swadesi Mela 5" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 5</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi6.jpeg" alt="Swadesi Mela 6" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 6</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi7.jpeg" alt="Swadesi Mela 7" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 7</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi8.jpeg" alt="Swadesi Mela 8" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 8</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi9.jpeg" alt="Swadesi Mela 9" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 9</div>';"></div>
-          <div class="gallery-item"><img src="images/swadesi10.jpeg" alt="Swadesi Mela 10" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 10</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi1.jpeg" alt="Swadesi 1" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 1</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi2.jpg" alt="Swadesi 2" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 2</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi3.jpg" alt="Swadesi 3" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 3</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi4.jpg" alt="Swadesi 4" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 4</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi5.jpg" alt="Swadesi 5" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 5</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi6.jpg" alt="Swadesi 6" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 6</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi7.jpg" alt="Swadesi 7" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 7</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi8.jpg" alt="Swadesi 8" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 8</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi9.jpg" alt="Swadesi 9" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 9</div>';"></div>
+          <div class="gallery-item"><img src="images/swadesi10.jpg" alt="Swadesi 10" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Swadesi 10</div>';"></div>
         </div>
       </div>
 
       <div class="gallery-group">
         <h3 class="gallery-group-title">Other Functions</h3>
         <div class="gallery-grid">
-          <div class="gallery-item"><img src="images/other1.jpeg" alt="Other Function 1" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 1</div>';"></div>
-          <div class="gallery-item"><img src="images/other2.jpeg" alt="Other Function 2" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 2</div>';"></div>
-          <div class="gallery-item"><img src="images/other3.jpeg" alt="Other Function 3" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 3</div>';"></div>
-          <div class="gallery-item"><img src="images/other4.jpeg" alt="Other Function 4" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 4</div>';"></div>
-          <div class="gallery-item"><img src="images/other5.jpeg" alt="Other Function 5" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 5</div>';"></div>
-          <div class="gallery-item"><img src="images/other6.jpg" alt="Other Function 6" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 6</div>';"></div>
-          <div class="gallery-item"><img src="images/other7.jpg" alt="Other Function 7" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 7</div>';"></div>
-          <div class="gallery-item"><img src="images/other8.jpg" alt="Other Function 8" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 8</div>';"></div>
-          <div class="gallery-item"><img src="images/other9.jpg" alt="Other Function 9" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 9</div>';"></div>
-          <div class="gallery-item"><img src="images/other10.jpg" alt="Other Function 10" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 10</div>';"></div>
+          <div class="gallery-item"><img src="images/other1.jpg" alt="Other 1" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 1</div>';"></div>
+          <div class="gallery-item"><img src="images/other2.jpg" alt="Other 2" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 2</div>';"></div>
+          <div class="gallery-item"><img src="images/other3.jpg" alt="Other 3" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 3</div>';"></div>
+          <div class="gallery-item"><img src="images/other4.jpg" alt="Other 4" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 4</div>';"></div>
+          <div class="gallery-item"><img src="images/other5.jpg" alt="Other 5" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 5</div>';"></div>
+          <div class="gallery-item"><img src="images/other6.jpg" alt="Other 6" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 6</div>';"></div>
+          <div class="gallery-item"><img src="images/other7.jpg" alt="Other 7" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 7</div>';"></div>
+          <div class="gallery-item"><img src="images/other8.jpg" alt="Other 8" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 8</div>';"></div>
+          <div class="gallery-item"><img src="images/other9.jpg" alt="Other 9" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 9</div>';"></div>
+          <div class="gallery-item"><img src="images/other10.jpg" alt="Other 10" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;gallery-placeholder&quot;>Upload Other 10</div>';"></div>
         </div>
       </div>
     </section>
@@ -1534,7 +750,7 @@
 </section>
 
 <section class="page-section" id="trainingPage">
-  <section class="section-shell" style="background: var(--black);">
+  <section class="section-shell" style="background:var(--black);">
     <section>
       <div class="section-label">Training Classes</div>
       <h2 class="section-title">Shape Your <em>Career</em></h2>
@@ -1617,7 +833,10 @@
 
 <footer>
   <div class="footer-brand">
-    <a href="#" class="logo" onclick="openSection('home'); return false;">Chinhari <span>Models</span></a>
+    <a href="#" class="brand" onclick="openSection('home'); return false;">
+      <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="footer-brand-logo">
+      <div class="brand-text">Chinhari <span>Models</span></div>
+    </a>
     <p class="footer-tagline">Chhattisgarh's premier modeling & event management agency. We bring talent and vision together.</p>
   </div>
 
@@ -1736,11 +955,9 @@
     document.querySelectorAll('.events-tab').forEach(function(t) {
       t.classList.remove('active');
     });
-
     document.querySelectorAll('.events-panel').forEach(function(p) {
       p.classList.remove('active');
     });
-
     btn.classList.add('active');
     document.getElementById('panel-' + tab).classList.add('active');
   }
