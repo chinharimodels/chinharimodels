@@ -43,9 +43,9 @@
     nav{
       position:fixed;top:0;left:0;right:0;z-index:100;
       display:flex;align-items:center;justify-content:space-between;
-      padding:18px 48px;
+      padding:16px 44px;
       background:linear-gradient(to bottom,rgba(10,10,10,.97),rgba(10,10,10,.55),transparent);
-      transition:background .4s,border-color .4s;
+      transition:background .3s;
     }
     nav.scrolled{
       background:rgba(10,10,10,.98);
@@ -56,30 +56,35 @@
       display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white);
     }
     .brand-logo{
-      width:52px;height:52px;object-fit:contain;background:#000;
-      border:1px solid var(--border);border-radius:14px;padding:5px;
+      width:52px;height:52px;object-fit:contain;background:#000;border:1px solid var(--border);
+      border-radius:14px;padding:5px;
     }
     .brand-text{
       font-family:'Cormorant Garamond',serif;
-      font-size:1.35rem;letter-spacing:.18em;text-transform:uppercase;
+      font-size:1.35rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
     }
     .brand-text span{color:var(--gold)}
 
-    .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+    .nav-links{
+      display:flex;gap:26px;list-style:none;align-items:center;
+    }
     .nav-links a{
-      color:var(--white);text-decoration:none;font-size:.7rem;letter-spacing:.2em;
-      text-transform:uppercase;opacity:.75;position:relative;transition:.3s;
+      color:var(--white);text-decoration:none;font-size:.68rem;letter-spacing:.2em;
+      text-transform:uppercase;opacity:.76;position:relative;transition:.3s;
     }
     .nav-links a::after{
-      content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;
-      background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.3s;
+      content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--gold);
+      transform:scaleX(0);transform-origin:left;transition:.3s;
     }
     .nav-links a:hover,.nav-links a.active-link{opacity:1;color:var(--gold-light)}
     .nav-links a:hover::after,.nav-links a.active-link::after{transform:scaleX(1)}
     .nav-cta{
       border:1px solid var(--gold);
       color:var(--gold)!important;
-      padding:8px 20px;opacity:1!important;
+      padding:8px 18px;
+      opacity:1!important;
     }
     .nav-cta::after{display:none!important}
     .nav-cta:hover,.nav-cta.active-link{background:var(--gold);color:var(--black)!important}
@@ -87,8 +92,8 @@
     .hamburger{
       display:none;align-items:center;justify-content:center;
       width:52px;height:52px;border-radius:16px;border:1px solid rgba(201,168,76,.35);
-      background:rgba(255,255,255,.03);backdrop-filter:blur(12px);
-      box-shadow:var(--shadow);padding:0;cursor:pointer;z-index:111;position:relative;
+      background:rgba(255,255,255,.03);backdrop-filter:blur(12px);box-shadow:var(--shadow);
+      padding:0;cursor:pointer;z-index:111;position:relative;
     }
     .hamburger-lines{width:24px;height:18px;position:relative;display:block}
     .hamburger-lines span{
@@ -113,7 +118,7 @@
     .mobile-menu.open{transform:translateX(0)}
     .mobile-menu a{
       color:var(--white);text-decoration:none;font-family:'Cormorant Garamond',serif;
-      font-size:1.8rem;font-weight:300;letter-spacing:.08em;opacity:.85;transition:.3s;
+      font-size:1.7rem;letter-spacing:.08em;opacity:.85;transition:.3s;
     }
     .mobile-menu a:hover,.mobile-menu a.active-link{opacity:1;color:var(--gold-light);transform:translateX(6px)}
     .mobile-menu .mob-cta{
@@ -122,51 +127,49 @@
       text-transform:uppercase;opacity:1!important;margin-top:8px;
     }
     .mobile-overlay{
-      position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:108;
-      opacity:0;pointer-events:none;transition:opacity .3s ease;
+      position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:108;opacity:0;pointer-events:none;transition:.3s;
     }
     .mobile-overlay.show{opacity:1;pointer-events:auto}
 
-    .page-section{display:none;min-height:100vh;padding-top:96px;animation:fadePage .55s ease}
+    .page-section{display:none;min-height:100vh;padding-top:84px;animation:fadePage .45s ease}
     .page-section.active{display:block}
 
-    .section-shell{min-height:100vh;background:var(--dark)}
-    section{padding:90px 48px}
-    .section-label{
-      font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
-      margin-bottom:16px;display:flex;align-items:center;gap:14px;
+    .home-slider{
+      background:#000;
+      border-bottom:1px solid var(--border);
     }
-    .section-label::before{content:'';width:30px;height:1px;background:var(--gold)}
-    .section-title{
-      font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);
-      font-weight:300;line-height:1.1;margin-bottom:24px;
+    .slider-frame{
+      position:relative;
+      width:100%;
+      height:500px;
+      background:#000;
+      overflow:hidden;
     }
-    .section-title em{font-style:italic;color:var(--gold-light)}
-
-    .home-top-slider{
-      position:relative;background:#000;border-bottom:1px solid var(--border);
-      padding:0;
+    .simple-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity .8s ease;
     }
-    .home-top-slider .slider-frame{
-      width:100%;height:min(72vh,720px);background:#000;overflow:hidden;position:relative;
+    .simple-slide.active{opacity:1}
+    .simple-slide img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      background:#000;
+      display:block;
     }
-    .home-top-slider .slider-track{
-      display:flex;width:300%;height:100%;animation:heroSlides 15s infinite;
-    }
-    .home-top-slider .slide{
-      width:100%;flex:0 0 100%;position:relative;background:#000;
-    }
-    .home-top-slider .slide img{
-      width:100%;height:100%;object-fit:contain;object-position:center;background:#000;display:block;
-    }
-    .home-top-slider .caption{
+    .simple-caption{
       position:absolute;left:0;right:0;bottom:0;
-      padding:18px 24px;background:linear-gradient(to top,rgba(0,0,0,.82),transparent);
-      font-size:.82rem;line-height:1.8;
+      padding:18px 24px;
+      background:linear-gradient(to top,rgba(0,0,0,.84),transparent);
+      font-size:.82rem;
+      line-height:1.8;
     }
 
     .hero{
-      min-height:calc(100vh - 96px);
+      min-height:calc(100vh - 84px);
       display:flex;align-items:center;position:relative;overflow:hidden;
       padding:0 48px;
       background:radial-gradient(circle at top center,rgba(201,168,76,.18),transparent 30%),linear-gradient(135deg,#0a0a0a 0%,#1a1408 45%,#0a0a0a 100%);
@@ -181,8 +184,8 @@
     }
     .hero-content{position:relative;z-index:2;max-width:860px}
     .hero-logo{
-      width:92px;height:92px;object-fit:contain;background:#000;border:1px solid var(--border);
-      border-radius:18px;padding:8px;margin-bottom:20px;
+      width:78px;height:78px;object-fit:contain;background:#000;border:1px solid var(--border);
+      border-radius:16px;padding:8px;margin-bottom:18px;
     }
     .hero-theme-line{
       display:inline-block;padding:12px 22px;margin-bottom:14px;border:1px solid rgba(201,168,76,.35);
@@ -198,7 +201,7 @@
       margin-bottom:14px;opacity:.9;
     }
     .hero h1{
-      font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.4rem);
+      font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.2rem);
       font-weight:300;line-height:1;margin-bottom:10px;
     }
     .hero h1 em{font-style:italic;color:var(--gold-light)}
@@ -219,13 +222,9 @@
       display:inline-block;text-decoration:none;padding:14px 30px;font-size:.7rem;
       letter-spacing:.2em;text-transform:uppercase;transition:.3s;
     }
-    .btn-primary{
-      background:var(--gold);color:var(--black);font-weight:600;
-    }
+    .btn-primary{background:var(--gold);color:var(--black);font-weight:600}
     .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
-    .btn-outline{
-      border:1px solid rgba(245,240,232,.35);color:var(--white);
-    }
+    .btn-outline{border:1px solid rgba(245,240,232,.35);color:var(--white)}
     .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 
     .hero-stats{
@@ -235,13 +234,22 @@
     .stat-num{
       font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold);line-height:1;
     }
-    .stat-label{
-      font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:6px;
-    }
+    .stat-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.5;margin-top:6px}
 
-    .about-intro{
-      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:70px;
+    section{padding:90px 48px}
+    .section-shell{min-height:100vh;background:var(--dark)}
+    .section-label{
+      font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+      margin-bottom:16px;display:flex;align-items:center;gap:14px;
     }
+    .section-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+    .section-title{
+      font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);
+      font-weight:300;line-height:1.1;margin-bottom:24px;
+    }
+    .section-title em{font-style:italic;color:var(--gold-light)}
+
+    .about-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:70px}
     .about-text p{font-size:.9rem;line-height:2;opacity:.7;margin-bottom:18px}
     .about-features{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:32px}
     .feature-item{border-left:2px solid var(--gold);padding-left:14px}
@@ -385,16 +393,13 @@
       appearance:none;
     }
     .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
-    .form-group select option{background:var(--dark2)}
     .form-group textarea{resize:vertical;min-height:120px}
     .form-submit{
       width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;font-family:'Montserrat',sans-serif;
       font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;cursor:none;transition:.3s;margin-top:8px;
     }
     .form-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
-    .form-success{
-      display:none;text-align:center;padding:40px;border:1px solid var(--gold);color:var(--gold);font-size:.85rem;
-    }
+    .form-success{display:none;text-align:center;padding:40px;border:1px solid var(--gold);color:var(--gold);font-size:.85rem}
 
     footer{
       background:var(--black);border-top:1px solid var(--border);padding:60px 48px;
@@ -402,7 +407,7 @@
     }
     .footer-brand .brand{margin-bottom:16px}
     .footer-brand-logo{
-      width:72px;height:72px;object-fit:contain;background:#000;border:1px solid var(--border);border-radius:18px;padding:6px;
+      width:64px;height:64px;object-fit:contain;background:#000;border:1px solid var(--border);border-radius:16px;padding:6px;
     }
     .footer-tagline{font-size:.75rem;opacity:.45;line-height:1.8;max-width:240px}
     .footer-links h4,.footer-social h4{
@@ -431,12 +436,6 @@
       from{opacity:0;transform:translateY(18px)}
       to{opacity:1;transform:translateY(0)}
     }
-    @keyframes heroSlides{
-      0%,28%{transform:translateX(0)}
-      33%,61%{transform:translateX(-100%)}
-      66%,94%{transform:translateX(-200%)}
-      100%{transform:translateX(0)}
-    }
 
     @media(max-width:900px){
       nav{padding:16px 18px}
@@ -456,27 +455,25 @@
       .footer-bottom{padding:20px 22px;flex-direction:column;gap:12px}
       .form-row{grid-template-columns:1fr}
       .founder-img{width:100%;max-width:260px}
-      .home-top-slider .slider-frame{height:44vh}
-      .brand-logo{width:44px;height:44px;border-radius:12px}
+      .slider-frame{height:300px}
+      .brand-logo{width:44px;height:44px}
       .brand-text{font-size:1rem;letter-spacing:.12em}
-      .hero-logo{width:70px;height:70px;border-radius:14px}
-      .footer-brand-logo{width:58px;height:58px}
+      .hero-logo{width:64px;height:64px}
+      .footer-brand-logo{width:56px;height:56px}
       *{cursor:auto!important}
       .cursor,.cursor-ring{display:none}
       .hamburger,.mobile-menu a{cursor:pointer!important}
     }
 
     @media(max-width:640px){
-      .hero h1{font-size:clamp(2.4rem,13vw,4rem)}
+      .hero h1{font-size:clamp(2.3rem,13vw,4rem)}
       .hero-buttons,.hero-lines{flex-direction:column;align-items:flex-start}
       .training-grid,.services-grid,.gallery-grid,.team-grid{grid-template-columns:1fr}
       .events-tabs{gap:10px;border-bottom:none}
       .events-tab{padding:10px 0}
       .mobile-menu a{font-size:1.55rem}
       .hero-theme-line{font-size:.76rem;width:100%;text-align:center;border-radius:18px}
-      .home-top-slider .slider-frame{height:38vh}
-      .gallery-item{aspect-ratio:4/5}
-      .gallery-item img,.team-img,.founder-img,.award-slide img{object-position:center}
+      .slider-frame{height:220px}
     }
   </style>
 </head>
@@ -521,21 +518,19 @@
 </div>
 
 <section class="page-section active" id="homePage">
-  <div class="home-top-slider">
+  <div class="home-slider">
     <div class="slider-frame">
-      <div class="slider-track">
-        <div class="slide">
-          <img src="images/award1.jpeg" alt="Award 1">
-          <div class="caption">Prem Sai Bhagat was honored by the Collector, Raigarh for his remarkable contribution and inspiring journey.</div>
-        </div>
-        <div class="slide">
-          <img src="images/award2.jpeg" alt="Award 2">
-          <div class="caption">A proud moment that reflects leadership, dedication, and a growing vision for Chhattisgarhi art, fashion, and culture.</div>
-        </div>
-        <div class="slide">
-          <img src="images/award3.jpeg" alt="Award 3">
-          <div class="caption">This recognition strengthens the mission of building a stronger pageant and modeling platform for future generations.</div>
-        </div>
+      <div class="simple-slide active">
+        <img src="images/award1.jpeg" alt="Award 1">
+        <div class="simple-caption">Prem Sai Bhagat was honored by the Collector, Raigarh for his remarkable contribution and inspiring journey.</div>
+      </div>
+      <div class="simple-slide">
+        <img src="images/award2.jpeg" alt="Award 2">
+        <div class="simple-caption">A proud moment that reflects leadership, dedication, and a growing vision for Chhattisgarhi art, fashion, and culture.</div>
+      </div>
+      <div class="simple-slide">
+        <img src="images/award3.jpeg" alt="Award 3">
+        <div class="simple-caption">This recognition strengthens the mission of building a stronger pageant and modeling platform for future generations.</div>
       </div>
     </div>
   </div>
@@ -609,7 +604,7 @@
         <div class="section-label">Meet the Founder</div>
         <div class="founder-grid">
           <div class="founder-img-wrap">
-            <img class="founder-img" src="images/founder.jpg" alt="Prem Sai Bhagat" />
+            <img class="founder-img" src="images/founder.jpeg" alt="Prem Sai Bhagat" />
             <div class="founder-badge">Founder & Director</div>
           </div>
 
@@ -634,22 +629,22 @@
         <div class="section-label">Our Team</div>
         <div class="team-grid">
           <div class="team-card">
-            <img class="team-img" src="images/anupama.jpg" alt="Miss Anupama Ratnakar Mam" />
+            <img class="team-img" src="images/anupama.jpeg" alt="Miss Anupama Ratnakar Mam" />
             <div class="team-name">Miss Anupama Ratnakar Mam</div>
             <div class="team-post">Head Manager & Co-Director</div>
           </div>
           <div class="team-card">
-            <img class="team-img" src="images/rohan.jpg" alt="Mr. Rohan Dhiwar Sir" />
+            <img class="team-img" src="images/rohan.jpeg" alt="Mr. Rohan Dhiwar Sir" />
             <div class="team-name">Mr. Rohan Dhiwar Sir</div>
             <div class="team-post">Agency Assistant</div>
           </div>
           <div class="team-card">
-            <img class="team-img" src="images/pooja.jpg" alt="Miss Pooja Tandekar Mam" />
+            <img class="team-img" src="images/pooja.jpeg" alt="Miss Pooja Tandekar Mam" />
             <div class="team-name">Miss Pooja Tandekar Mam</div>
             <div class="team-post">Agency Assistant</div>
           </div>
           <div class="team-card">
-            <img class="team-img" src="images/shivlal.jpg" alt="Mr. Shivlal Minj Sir" />
+            <img class="team-img" src="images/shivlal.jpeg" alt="Mr. Shivlal Minj Sir" />
             <div class="team-name">Mr. Shivlal Minj Sir</div>
             <div class="team-post">Agency Assistant</div>
           </div>
@@ -948,7 +943,7 @@
   });
 
   window.addEventListener('scroll', function() {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
   });
 
   function switchTab(tab, btn) {
@@ -965,6 +960,16 @@
   function submitForm() {
     document.getElementById('formFields').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  const slides = document.querySelectorAll('.simple-slide');
+  let currentSlide = 0;
+  if (slides.length > 0) {
+    setInterval(function () {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 3000);
   }
 </script>
 </body>
