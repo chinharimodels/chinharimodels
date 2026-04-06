@@ -89,55 +89,62 @@
     .nav-cta::after{display:none!important}
     .nav-cta:hover,.nav-cta.active-link{background:var(--gold);color:var(--black)!important}
 
-    .hamburger{
-      display:none;
-      align-items:center;
-      justify-content:center;
-      width:48px;
-      height:48px;
-      background:transparent;
-      border:none;
-      padding:0;
-      cursor:pointer;
-      z-index:111;
-      position:relative;
-    }
-    .hamburger-lines{
-      width:28px;
-      height:20px;
-      position:relative;
-      display:block;
-    }
-    .hamburger-lines span{
-      position:absolute;
-      left:0;
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      background:var(--white);
-      transition:transform .35s ease, top .35s ease, opacity .25s ease, width .35s ease;
-      transform-origin:center;
-    }
-    .hamburger-lines span:nth-child(1){top:0}
-    .hamburger-lines span:nth-child(2){top:9px;width:75%}
-    .hamburger-lines span:nth-child(3){top:18px}
+   .hamburger{
+  display:none;
+  width:42px;
+  height:42px;
+  background:transparent;
+  border:none;
+  padding:0;
+  position:relative;
+  z-index:111;
+  cursor:pointer;
+}
 
-    .hamburger:hover .hamburger-lines span:nth-child(2){
-      width:100%;
-    }
+.hamburger-lines{
+  width:26px;
+  height:18px;
+  position:relative;
+  display:block;
+  margin:auto;
+}
 
-    .hamburger.open .hamburger-lines span:nth-child(1){
-      top:9px;
-      transform:rotate(45deg);
-    }
-    .hamburger.open .hamburger-lines span:nth-child(2){
-      opacity:0;
-      transform:translateX(8px);
-    }
-    .hamburger.open .hamburger-lines span:nth-child(3){
-      top:9px;
-      transform:rotate(-45deg);
-    }
+.hamburger-lines span{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:2px;
+  background:#fff;
+  border-radius:2px;
+  transition:all 0.3s ease;
+}
+
+.hamburger-lines span:nth-child(1){
+  top:0;
+}
+
+.hamburger-lines span:nth-child(2){
+  top:8px;
+}
+
+.hamburger-lines span:nth-child(3){
+  top:16px;
+}
+
+.hamburger.open .hamburger-lines span:nth-child(1){
+  top:8px;
+  transform:rotate(45deg);
+}
+
+.hamburger.open .hamburger-lines span:nth-child(2){
+  opacity:0;
+}
+
+.hamburger.open .hamburger-lines span:nth-child(3){
+  top:8px;
+  transform:rotate(-45deg);
+}
+
 
     .mobile-menu{
       position:fixed;top:0;right:0;width:min(340px,88vw);height:100vh;
