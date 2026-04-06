@@ -15,82 +15,465 @@
       --white: #f5f0e8;
       --gray: #888;
       --border: rgba(201,168,76,0.25);
+      --shadow: 0 18px 45px rgba(0,0,0,0.35);
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
 
-    /* CURSOR */
     * { cursor: none; }
-    .cursor { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s; }
-    .cursor-ring { width: 36px; height: 36px; border: 1px solid var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.18s ease-out; opacity: 0.6; }
 
-    /* NAVBAR */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 60px; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); transition: background 0.4s; }
-    nav.scrolled { background: rgba(10,10,10,0.97); border-bottom: 1px solid var(--border); }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; letter-spacing: 0.25em; color: var(--white); text-transform: uppercase; text-decoration: none; }
+    .cursor {
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s;
+    }
+
+    .cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.18s ease-out;
+      opacity: 0.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.96), rgba(10,10,10,0.45), transparent);
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(10,10,10,0.97);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--white);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
     .logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: var(--white); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.75; transition: opacity 0.3s, color 0.3s; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-    .nav-links a:hover { opacity: 1; color: var(--gold-light); }
-    .nav-links a:hover::after { transform: scaleX(1); }
-    .nav-cta { border: 1px solid var(--gold); color: var(--gold) !important; padding: 8px 22px; opacity: 1 !important; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      transition: opacity 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active-link {
+      opacity: 1;
+      color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active-link::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 8px 22px;
+      opacity: 1 !important;
+    }
+
     .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--gold); color: var(--black) !important; }
 
-    /* HAMBURGER */
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; cursor: pointer; z-index: 101; position: relative; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 36px; }
+    .nav-cta:hover,
+    .nav-cta.active-link {
+      background: var(--gold);
+      color: var(--black) !important;
+    }
+
+    .hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+      padding: 0;
+      cursor: pointer;
+      z-index: 101;
+      position: relative;
+    }
+
+    .hamburger-lines {
+      width: 24px;
+      height: 18px;
+      position: relative;
+      display: block;
+    }
+
+    .hamburger-lines span {
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--white), var(--gold-light));
+      transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+    }
+
+    .hamburger-lines span:nth-child(1) { top: 0; }
+    .hamburger-lines span:nth-child(2) { top: 8px; }
+    .hamburger-lines span:nth-child(3) { top: 16px; }
+
+    .hamburger.open .hamburger-lines span:nth-child(1) {
+      top: 8px;
+      transform: rotate(45deg);
+    }
+
+    .hamburger.open .hamburger-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open .hamburger-lines span:nth-child(3) {
+      top: 8px;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 28%),
+        rgba(10,10,10,0.98);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px 24px;
+    }
+
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 0.15em; opacity: 0.75; transition: opacity 0.3s, color 0.3s; }
-    .mobile-menu a:hover, .mobile-menu a:active { opacity: 1; color: var(--gold-light); }
-    .mobile-menu .mob-cta { border: 1px solid var(--gold); color: var(--gold) !important; padding: 12px 32px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem !important; letter-spacing: 0.2em; text-transform: uppercase; opacity: 1 !important; margin-top: 10px; }
 
-    /* HERO */
-    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 0 60px; }
-    .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%); }
-    .hero-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%); }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px), repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px); }
-    .hero-content { position: relative; z-index: 2; max-width: 700px; }
-    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; animation: fadeUp 0.8s 0.3s both; }
-    .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 300; line-height: 1.0; margin-bottom: 32px; animation: fadeUp 0.9s 0.5s both; }
+    .mobile-menu a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      opacity: 0.8;
+      transition: opacity 0.3s, color 0.3s, transform 0.3s;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:active,
+    .mobile-menu a.active-link {
+      opacity: 1;
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .mobile-menu .mob-cta {
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 12px 32px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 1 !important;
+      margin-top: 10px;
+    }
+
+    .page-section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 110px;
+      animation: fadePage 0.55s ease;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 60px;
+      padding-top: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%);
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px),
+        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.03) 80px, rgba(201,168,76,0.03) 81px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      animation: fadeUp 0.8s 0.3s both;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      margin-bottom: 32px;
+      animation: fadeUp 0.9s 0.5s both;
+    }
+
     .hero h1 em { font-style: italic; color: var(--gold-light); }
-    .hero-desc { font-size: 0.85rem; line-height: 1.9; max-width: 450px; margin-bottom: 48px; opacity: 0.65; animation: fadeUp 0.9s 0.7s both; }
-    .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; animation: fadeUp 0.9s 0.9s both; }
-    .btn-primary { background: var(--gold); color: var(--black); padding: 14px 36px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 600; font-family: 'Montserrat', sans-serif; transition: background 0.3s, transform 0.2s; display: inline-block; }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline { border: 1px solid rgba(245,240,232,0.35); color: var(--white); padding: 14px 36px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-family: 'Montserrat', sans-serif; transition: border-color 0.3s, color 0.3s, transform 0.2s; display: inline-block; }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-    .hero-stats { position: absolute; right: 60px; bottom: 80px; display: flex; gap: 50px; animation: fadeUp 0.9s 1.1s both; }
+
+    .hero-desc {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      max-width: 450px;
+      margin-bottom: 48px;
+      opacity: 0.65;
+      animation: fadeUp 0.9s 0.7s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.9s 0.9s both;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      padding: 14px 36px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(245,240,232,0.35);
+      color: var(--white);
+      padding: 14px 36px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 60px;
+      bottom: 80px;
+      display: flex;
+      gap: 50px;
+      animation: fadeUp 0.9s 1.1s both;
+    }
+
     .stat { text-align: center; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold); line-height: 1; }
-    .stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-top: 6px; }
-    .scroll-indicator { position: absolute; bottom: 40px; left: 60px; display: flex; align-items: center; gap: 12px; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.4; animation: fadeUp 1s 1.3s both; }
-    .scroll-line { width: 40px; height: 1px; background: var(--white); animation: scrollLine 2s infinite; }
-    @keyframes scrollLine { 0%{width:10px;opacity:0.2} 50%{width:40px;opacity:0.6} 100%{width:10px;opacity:0.2} }
 
-    /* MARQUEE */
-    .marquee-section { padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; background: var(--dark); }
-    .marquee-track { display: flex; animation: marquee 18s linear infinite; white-space: nowrap; }
-    .marquee-item { display: inline-flex; align-items: center; gap: 30px; padding: 0 30px; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); flex-shrink: 0; }
-    .marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
-    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
 
-    /* SECTIONS */
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-top: 6px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 60px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      animation: fadeUp 1s 1.3s both;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--white);
+      animation: scrollLine 2s infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { width:10px; opacity:0.2; }
+      50% { width:40px; opacity:0.6; }
+      100% { width:10px; opacity:0.2; }
+    }
+
     section { padding: 100px 60px; }
-    .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
-    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 24px; }
+
+    .section-shell {
+      min-height: 100vh;
+      background: var(--dark);
+    }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
     .section-title em { font-style: italic; color: var(--gold-light); }
 
-    /* ABOUT */
-    #about { background: var(--dark); }
+    #aboutPage { background: var(--dark); }
     .about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 70px; }
     .about-text p { font-size: 0.9rem; line-height: 2.0; opacity: 0.7; margin-bottom: 18px; }
     .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; }
@@ -102,11 +485,9 @@
     .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; line-height: 1.5; margin-bottom: 22px; }
     .about-quote-author { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
-    /* FOUNDER */
     .founder-section { border-top: 1px solid var(--border); padding-top: 60px; margin-bottom: 70px; }
     .founder-grid { display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start; margin-top: 36px; }
     .founder-img-wrap { position: relative; }
-    .founder-img { width: 260px; height: 320px; object-fit: cover; display: block; border: 1px solid var(--border); }
     .founder-img-placeholder { width: 260px; height: 320px; background: linear-gradient(160deg, #1a1a1a, #1a1208); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
     .founder-img-placeholder span { font-size: 3rem; opacity: 0.2; }
     .founder-img-placeholder p { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.5; }
@@ -118,18 +499,15 @@
     .founder-social-btn { border: 1px solid var(--border); padding: 8px 18px; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: border-color 0.3s, color 0.3s; }
     .founder-social-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* TEAM */
     .team-section { border-top: 1px solid var(--border); padding-top: 56px; }
     .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 36px; }
     .team-card { text-align: center; }
     .team-img-placeholder { width: 100%; aspect-ratio: 1; background: linear-gradient(160deg,#1a1a1a,#1a1208); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; opacity: 0.2; margin-bottom: 12px; }
-    .team-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border: 1px solid var(--border); margin-bottom: 12px; }
     .team-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; margin-bottom: 4px; }
     .team-post { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
 
-    /* EVENTS */
-    #events { background: var(--black); }
-    .events-tabs { display: flex; border-bottom: 1px solid var(--border); margin-top: 40px; }
+    #eventsPage { background: var(--black); }
+    .events-tabs { display: flex; border-bottom: 1px solid var(--border); margin-top: 40px; flex-wrap: wrap; }
     .events-tab { padding: 12px 32px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; border: none; background: none; color: var(--white); opacity: 0.45; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: opacity 0.3s, color 0.3s, border-color 0.3s; cursor: pointer; font-family: 'Montserrat', sans-serif; }
     .events-tab.active { opacity: 1; color: var(--gold); border-bottom-color: var(--gold); }
     .events-panel { display: none; }
@@ -148,22 +526,17 @@
     .badge-upcoming { border-color: var(--gray); color: var(--gray); }
     .badge-past { border-color: #444; color: #666; }
 
-    /* GALLERY */
-    #gallery { background: var(--dark); }
+    #galleryPage { background: var(--dark); }
     .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 50px; }
     .gallery-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--dark2); }
     .gallery-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
     .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-placeholder { width: 100%; height: 100%; background: linear-gradient(160deg, #1a1a1a, #1a1208); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-    .gallery-placeholder span { font-size: 2rem; opacity: 0.15; }
-    .gallery-placeholder p { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); opacity: 0.4; }
     .gallery-overlay { position: absolute; inset: 0; background: rgba(10,10,10,0.45); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
     .gallery-item:hover .gallery-overlay { opacity: 1; }
     .gallery-overlay-icon { font-size: 1.8rem; }
 
-    /* TRAINING */
-    #training { background: var(--black); }
+    #trainingPage { background: var(--black); }
     .training-intro { font-size: 0.88rem; opacity: 0.6; line-height: 1.9; max-width: 580px; margin-bottom: 50px; }
     .training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
     .training-card { background: var(--dark2); padding: 38px 30px; position: relative; overflow: hidden; transition: background 0.3s, transform 0.3s; }
@@ -176,8 +549,7 @@
     .training-duration { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
     .training-fee { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold-light); }
 
-    /* SERVICES */
-    #services { background: var(--dark); }
+    #servicesPage { background: var(--dark); }
     .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 50px; }
     .service-card { background: var(--dark2); padding: 34px 26px; position: relative; overflow: hidden; transition: background 0.3s, transform 0.3s; }
     .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
@@ -187,8 +559,7 @@
     .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; margin-bottom: 10px; }
     .service-desc { font-size: 0.74rem; opacity: 0.55; line-height: 1.8; }
 
-    /* CONTACT */
-    #contact { background: var(--dark); }
+    #contactPage { background: var(--dark); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; margin-top: 60px; }
     .contact-info p { font-size: 0.85rem; line-height: 1.9; opacity: 0.6; margin-bottom: 36px; }
     .contact-detail { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
@@ -206,8 +577,15 @@
     .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
     .form-success { display: none; text-align: center; padding: 40px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.85rem; }
 
-    /* FOOTER */
-    footer { background: var(--black); border-top: 1px solid var(--border); padding: 60px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
     .footer-brand .logo { display: block; margin-bottom: 16px; }
     .footer-tagline { font-size: 0.75rem; opacity: 0.45; line-height: 1.8; max-width: 240px; }
     .footer-links h4, .footer-social h4 { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
@@ -220,43 +598,71 @@
     .social-link:hover { opacity: 1; color: var(--gold-light); }
     .social-icon { width: 32px; height: 32px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: border-color 0.3s; }
     .social-link:hover .social-icon { border-color: var(--gold); }
-    .footer-bottom { background: var(--black); border-top: 1px solid var(--border); padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+
+    .footer-bottom {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .footer-copy { font-size: 0.65rem; opacity: 0.35; letter-spacing: 0.1em; }
     .footer-bottom-links { display: flex; gap: 24px; }
     .footer-bottom-links a { font-size: 0.65rem; opacity: 0.35; color: var(--white); text-decoration: none; }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes fadePage {
+      from { opacity:0; transform:translateY(18px); }
+      to { opacity:1; transform:translateY(0); }
+    }
 
     @media(max-width:900px){
-      nav{padding:20px 24px}
-      .nav-links{display:none}
-      .hamburger{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        width:44px;
-        height:44px;
-        margin-left:auto;
-        flex-shrink:0;
-        cursor:pointer !important;
+      nav { padding: 18px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .page-section { padding-top: 96px; }
+      section { padding: 70px 24px; }
+      .hero { padding: 0 24px; }
+      .hero-stats { right: 24px; bottom: 40px; gap: 24px; }
+      .about-intro, .contact-grid, .founder-grid { grid-template-columns: 1fr; gap: 36px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.wide { grid-column: span 2; }
+      .training-grid, .services-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: repeat(3,1fr); }
+      .event-item { grid-template-columns: 80px 1fr; }
+      .event-item > div:last-child { display: none; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px; }
+      .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 12px; }
+      .form-row { grid-template-columns: 1fr; }
+      * { cursor:auto !important; }
+      .cursor, .cursor-ring { display:none; }
+      .hamburger, .mobile-menu a { cursor:pointer !important; }
+    }
+
+    @media(max-width:640px){
+      .hero h1 { font-size: clamp(2.7rem, 13vw, 4.3rem); }
+      .hero-desc { font-size: 0.8rem; }
+      .hero-buttons { flex-direction: column; align-items: flex-start; }
+      .hero-stats {
+        position: static;
+        margin-top: 44px;
+        gap: 18px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
       }
-      section{padding:70px 24px}
-      .hero{padding:0 24px}
-      .hero-stats{right:24px;bottom:40px;gap:24px}
-      .about-intro,.contact-grid,.founder-grid{grid-template-columns:1fr;gap:36px}
-      .gallery-grid{grid-template-columns:1fr 1fr}
-      .gallery-item.wide{grid-column:span 2}
-      .training-grid,.services-grid{grid-template-columns:1fr 1fr}
-      .team-grid{grid-template-columns:repeat(3,1fr)}
-      .event-item{grid-template-columns:80px 1fr}
-      .event-item > div:last-child{display:none}
-      footer{grid-template-columns:1fr;padding:40px 24px}
-      .footer-bottom{padding:20px 24px;flex-direction:column;gap:12px}
-      .form-row{grid-template-columns:1fr}
-      *{cursor:auto !important}
-      .cursor,.cursor-ring{display:none}
-      .hamburger{cursor:pointer !important}
-      .mobile-menu a{cursor:pointer !important}
+      .scroll-indicator { display: none; }
+      .training-grid, .services-grid, .gallery-grid, .team-grid { grid-template-columns: 1fr; }
+      .gallery-item.wide { grid-column: span 1; aspect-ratio: 3/4; }
+      .events-tabs { gap: 10px; border-bottom: none; }
+      .events-tab { padding: 10px 0; }
+      .founder-img-placeholder { width: 100%; max-width: 260px; }
+      .mobile-menu a { font-size: 1.7rem; }
     }
   </style>
 </head>
@@ -265,381 +671,389 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#" class="logo">Chinhari <span>Models</span></a>
+  <a href="#" class="logo" onclick="openSection('home'); return false;">Chinhari <span>Models</span></a>
+
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#training">Training</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+    <li><a href="#" data-section-link="home" class="active-link" onclick="openSection('home'); return false;">Home</a></li>
+    <li><a href="#" data-section-link="about" onclick="openSection('about'); return false;">About</a></li>
+    <li><a href="#" data-section-link="events" onclick="openSection('events'); return false;">Events</a></li>
+    <li><a href="#" data-section-link="gallery" onclick="openSection('gallery'); return false;">Gallery</a></li>
+    <li><a href="#" data-section-link="training" onclick="openSection('training'); return false;">Training</a></li>
+    <li><a href="#" data-section-link="services" onclick="openSection('services'); return false;">Services</a></li>
+    <li><a href="#" data-section-link="contact" class="nav-cta" onclick="openSection('contact'); return false;">Book Now</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <span class="hamburger-lines">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#events" onclick="closeMenu()">Events</a>
-  <a href="#gallery" onclick="closeMenu()">Gallery</a>
-  <a href="#training" onclick="closeMenu()">Training</a>
-  <a href="#services" onclick="closeMenu()">Services</a>
-  <a href="#contact" class="mob-cta" onclick="closeMenu()">Book Now</a>
+  <a href="#" data-mobile-link="home" class="active-link" onclick="openSection('home', true); return false;">Home</a>
+  <a href="#" data-mobile-link="about" onclick="openSection('about', true); return false;">About</a>
+  <a href="#" data-mobile-link="events" onclick="openSection('events', true); return false;">Events</a>
+  <a href="#" data-mobile-link="gallery" onclick="openSection('gallery', true); return false;">Gallery</a>
+  <a href="#" data-mobile-link="training" onclick="openSection('training', true); return false;">Training</a>
+  <a href="#" data-mobile-link="services" onclick="openSection('services', true); return false;">Services</a>
+  <a href="#" data-mobile-link="contact" class="mob-cta" onclick="openSection('contact', true); return false;">Book Now</a>
 </div>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Premium Modeling Agency — Raipur, CG</div>
-    <h1>Where <em>Beauty</em><br>Meets Vision</h1>
-    <p class="hero-desc">Chinhari Models — Chhattisgarh's premier modeling & event organizing agency. We connect extraordinary talent with world-class brands, fashion shows, and commercial projects.</p>
-    <div class="hero-buttons">
-      <a href="#gallery" class="btn-primary">View Gallery</a>
-      <a href="#contact" class="btn-outline">Book an Event</a>
+<section class="page-section active" id="homePage">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Premium Modeling Agency — Raipur, CG</div>
+      <h1>Where <em>Beauty</em><br>Meets Vision</h1>
+      <p class="hero-desc">Chinhari Models — Chhattisgarh's premier modeling & event organizing agency. We connect extraordinary talent with world-class brands, fashion shows, and commercial projects.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary" onclick="openSection('gallery'); return false;">View Gallery</a>
+        <a href="#" class="btn-outline" onclick="openSection('contact'); return false;">Book an Event</a>
+      </div>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Models</div></div>
-    <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Events</div></div>
-    <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years</div></div>
-  </div>
-  <div class="scroll-indicator"><div class="scroll-line"></div>Scroll to explore</div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Models</div></div>
+      <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Events</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years</div></div>
+    </div>
+    <div class="scroll-indicator"><div class="scroll-line"></div>Select a section to explore</div>
+  </section>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item">Fashion Shows <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Brand Promotions <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Commercial Shoots <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Ramp Walks <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Event Organization <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Portfolio Shoots <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Grooming & Training <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Wedding Events <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Corporate Events <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Fashion Shows <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Brand Promotions <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Commercial Shoots <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Ramp Walks <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Event Organization <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Portfolio Shoots <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Grooming & Training <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Wedding Events <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Corporate Events <span class="marquee-dot"></span></span>
-  </div>
-</div>
+<section class="page-section" id="aboutPage">
+  <section class="section-shell">
+    <section>
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Redefining <em>Elegance</em><br>in Chhattisgarh</h2>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">Our Story</div>
-  <h2 class="section-title">Redefining <em>Elegance</em><br>in Chhattisgarh</h2>
-
-  <div class="about-intro">
-    <div class="about-text">
-      <p>Chinhari Models is Chhattisgarh's most trusted modeling and event management agency. We have been the launchpad for hundreds of careers and the backbone of some of the region's most spectacular fashion events.</p>
-      <p>From intimate brand activations to grand fashion galas, we bring together the finest talent, creative direction, and flawless execution — every single time.</p>
-      <div class="about-features">
-        <div class="feature-item"><div class="feature-title">Talent Management</div><div class="feature-desc">Curating top models across Chhattisgarh</div></div>
-        <div class="feature-item"><div class="feature-title">Event Production</div><div class="feature-desc">End-to-end event planning & execution</div></div>
-        <div class="feature-item"><div class="feature-title">Brand Campaigns</div><div class="feature-desc">Connecting brands with perfect talent</div></div>
-        <div class="feature-item"><div class="feature-title">Model Training</div><div class="feature-desc">Professional grooming & portfolio coaching</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="about-card">
-        <p class="about-quote">We don't just represent models — we build legacies, one runway at a time.</p>
-        <div class="about-quote-author">— Chinhari Models, Est. 2019</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="founder-section">
-    <div class="section-label">Meet the Founder</div>
-    <div class="founder-grid">
-      <div class="founder-img-wrap">
-        <div class="founder-img-placeholder">
-          <span>👤</span>
-          <p>Add Founder Photo</p>
+      <div class="about-intro">
+        <div class="about-text">
+          <p>Chinhari Models is Chhattisgarh's most trusted modeling and event management agency. We have been the launchpad for hundreds of careers and the backbone of some of the region's most spectacular fashion events.</p>
+          <p>From intimate brand activations to grand fashion galas, we bring together the finest talent, creative direction, and flawless execution — every single time.</p>
+          <div class="about-features">
+            <div class="feature-item"><div class="feature-title">Talent Management</div><div class="feature-desc">Curating top models across Chhattisgarh</div></div>
+            <div class="feature-item"><div class="feature-title">Event Production</div><div class="feature-desc">End-to-end event planning & execution</div></div>
+            <div class="feature-item"><div class="feature-title">Brand Campaigns</div><div class="feature-desc">Connecting brands with perfect talent</div></div>
+            <div class="feature-item"><div class="feature-title">Model Training</div><div class="feature-desc">Professional grooming & portfolio coaching</div></div>
+          </div>
         </div>
-        <div class="founder-badge">Founder & Director</div>
-      </div>
-      <div class="founder-info">
-        <div class="founder-name">Founder Name</div>
-        <div class="founder-role">Founder & Creative Director, Chinhari Models</div>
-        <div class="founder-bio">
-          <p>With over a decade of experience in fashion, modeling, and event management, our founder established Chinhari Models with a singular vision — to create a platform where talent from Chhattisgarh could shine on the national stage.</p>
-          <p>Having trained hundreds of models and organized some of the region's most celebrated fashion events, she continues to mentor, inspire, and lead the agency towards new heights every year.</p>
-          <p>Her work has been featured across leading fashion publications and her models have graced ramps across India.</p>
-        </div>
-        <div class="founder-socials">
-          <a href="https://instagram.com/chinharimodels" target="_blank" class="founder-social-btn">📷 Instagram</a>
-          <a href="https://wa.me/919238137071" target="_blank" class="founder-social-btn">💬 WhatsApp</a>
+        <div>
+          <div class="about-card">
+            <p class="about-quote">We don't just represent models — we build legacies, one runway at a time.</p>
+            <div class="about-quote-author">— Chinhari Models, Est. 2019</div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="team-section">
-    <div class="section-label">Our Team</div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-img-placeholder">👤</div>
-        <div class="team-name">Team Member 1</div>
-        <div class="team-post">Senior Model</div>
-      </div>
-      <div class="team-card">
-        <div class="team-img-placeholder">👤</div>
-        <div class="team-name">Team Member 2</div>
-        <div class="team-post">Choreographer</div>
-      </div>
-      <div class="team-card">
-        <div class="team-img-placeholder">👤</div>
-        <div class="team-name">Team Member 3</div>
-        <div class="team-post">Makeup Artist</div>
-      </div>
-      <div class="team-card">
-        <div class="team-img-placeholder">👤</div>
-        <div class="team-name">Team Member 4</div>
-        <div class="team-post">Event Manager</div>
-      </div>
-      <div class="team-card">
-        <div class="team-img-placeholder">👤</div>
-        <div class="team-name">Team Member 5</div>
-        <div class="team-post">Photographer</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EVENTS -->
-<section id="events">
-  <div class="section-label">Events</div>
-  <h2 class="section-title">Upcoming & <em>Past Events</em></h2>
-  <div class="events-tabs">
-    <button class="events-tab active" onclick="switchTab('upcoming',this)">Upcoming Events</button>
-    <button class="events-tab" onclick="switchTab('past',this)">Past Events</button>
-  </div>
-
-  <div class="events-panel active" id="panel-upcoming">
-    <div class="events-list">
-      <div class="event-item">
-        <div><div class="event-date-day">15</div><div class="event-date-month">Apr 2025</div></div>
-        <div><div class="event-type">Fashion Show</div><div class="event-name">Chhattisgarh Fashion Week 2025</div><div class="event-location">📍 Raipur Convention Centre, Raipur</div></div>
-        <div><span class="badge badge-open">Open</span></div>
-      </div>
-      <div class="event-item">
-        <div><div class="event-date-day">22</div><div class="event-date-month">Apr 2025</div></div>
-        <div><div class="event-type">Brand Campaign</div><div class="event-name">Summer Brand Photoshoot</div><div class="event-location">📍 Studio 7, Shankar Nagar, Raipur</div></div>
-        <div><span class="badge badge-soon">Filling Fast</span></div>
-      </div>
-      <div class="event-item">
-        <div><div class="event-date-day">10</div><div class="event-date-month">May 2025</div></div>
-        <div><div class="event-type">Corporate Event</div><div class="event-name">Annual Gala & Award Night</div><div class="event-location">📍 Marriott Hotel, Raipur</div></div>
-        <div><span class="badge badge-upcoming">Upcoming</span></div>
-      </div>
-      <div class="event-item">
-        <div><div class="event-date-day">28</div><div class="event-date-month">May 2025</div></div>
-        <div><div class="event-type">Model Audition</div><div class="event-name">Open Auditions — Batch 2025</div><div class="event-location">📍 Chinhari Studio, Raipur</div></div>
-        <div><span class="badge badge-open">Register</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="events-panel" id="panel-past">
-    <div class="events-list">
-      <div class="event-item">
-        <div><div class="event-date-day">18</div><div class="event-date-month">Jan 2025</div></div>
-        <div><div class="event-type">Fashion Show</div><div class="event-name">Winter Couture Night 2025</div><div class="event-location">📍 Hotel Babylon International, Raipur</div></div>
-        <div><span class="badge badge-past">Completed</span></div>
-      </div>
-      <div class="event-item">
-        <div><div class="event-date-day">05</div><div class="event-date-month">Dec 2024</div></div>
-        <div><div class="event-type">Brand Promotion</div><div class="event-name">Festive Brand Campaign — Meesho</div><div class="event-location">📍 VR Raipur Mall, Raipur</div></div>
-        <div><span class="badge badge-past">Completed</span></div>
-      </div>
-      <div class="event-item">
-        <div><div class="event-date-day">14</div><div class="event-date-month">Oct 2024</div></div>
-        <div><div class="event-type">Ramp Walk</div><div class="event-name">Navratri Fashion Showcase</div><div class="event-location">📍 Science College Ground, Raipur</div></div>
-        <div><span class="badge badge-past">Completed</span></div>
-      </div>
-      <div class="event-item">
-        <div><div class="event-date-day">20</div><div class="event-date-month">Aug 2024</div></div>
-        <div><div class="event-type">Wedding Event</div><div class="event-name">Royal Bridal Show — Season 4</div><div class="event-location">📍 The Lalit, Raipur</div></div>
-        <div><span class="badge badge-past">Completed</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="section-label">Gallery</div>
-  <h2 class="section-title">Moments That <em>Define Us</em></h2>
-  <div class="gallery-grid">
-    <div class="gallery-item wide">
-      <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=450&fit=crop" alt="Fashion Show" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1604004555489-723a93d6ce74?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item wide">
-      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=450&fit=crop" alt="Ramp Walk" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1591823616048-1204e2b2b93b?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=600&fit=crop" alt="Fashion" loading="lazy"/>
-      <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TRAINING -->
-<section id="training">
-  <div class="section-label">Training Classes</div>
-  <h2 class="section-title">Shape Your <em>Career</em></h2>
-  <p class="training-intro">Our professional training programs are designed to help aspiring models build confidence, master the runway, and launch successful careers in the fashion industry.</p>
-  <div class="training-grid">
-    <div class="training-card">
-      <span class="training-icon">👗</span>
-      <div class="training-name">Ramp Walk & Runway</div>
-      <div class="training-desc">Master the art of ramp walking with perfect posture, turns, and expressions. Trained by professional choreographers.</div>
-      <div class="training-duration">Duration: 4 Weeks</div>
-      <div class="training-fee">₹ 5,000 / batch</div>
-    </div>
-    <div class="training-card">
-      <span class="training-icon">📸</span>
-      <div class="training-name">Portfolio & Shoot Prep</div>
-      <div class="training-desc">Learn camera angles, expressions, poses, and styling. Get a professional portfolio ready for auditions and campaigns.</div>
-      <div class="training-duration">Duration: 3 Weeks</div>
-      <div class="training-fee">₹ 4,500 / batch</div>
-    </div>
-    <div class="training-card">
-      <span class="training-icon">💄</span>
-      <div class="training-name">Grooming & Personality</div>
-      <div class="training-desc">Complete grooming, etiquette, public speaking, and personality development for aspiring models.</div>
-      <div class="training-duration">Duration: 3 Weeks</div>
-      <div class="training-fee">₹ 4,000 / batch</div>
-    </div>
-    <div class="training-card">
-      <span class="training-icon">🎤</span>
-      <div class="training-name">Anchoring & Hosting</div>
-      <div class="training-desc">Learn professional event hosting, stage presence, diction, and anchoring skills for fashion shows and events.</div>
-      <div class="training-duration">Duration: 2 Weeks</div>
-      <div class="training-fee">₹ 3,500 / batch</div>
-    </div>
-    <div class="training-card">
-      <span class="training-icon">👑</span>
-      <div class="training-name">Pageant Preparation</div>
-      <div class="training-desc">Comprehensive training for beauty pageants — interview prep, Q&A practice, gown evening wear, and stage walk.</div>
-      <div class="training-duration">Duration: 6 Weeks</div>
-      <div class="training-fee">₹ 8,000 / batch</div>
-    </div>
-    <div class="training-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#1a1208;border:1px solid var(--border);">
-      <span class="training-icon">✨</span>
-      <div class="training-name">Custom Training</div>
-      <div class="training-desc" style="margin-bottom:24px;">Need a custom program? Contact us and we'll design one just for you.</div>
-      <a href="#contact" class="btn-primary" style="font-size:0.65rem;padding:10px 24px;">Enquire Now</a>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-label">What We Offer</div>
-  <h2 class="section-title">Our <em>Services</em></h2>
-  <div class="services-grid">
-    <div class="service-card"><span class="service-icon">👗</span><div class="service-name">Fashion Shows</div><div class="service-desc">Grand runway productions with curated talent, choreography, and stage design.</div></div>
-    <div class="service-card"><span class="service-icon">📸</span><div class="service-name">Portfolio Shoots</div><div class="service-desc">Professional photography and shoot management with top photographers.</div></div>
-    <div class="service-card"><span class="service-icon">🎪</span><div class="service-name">Event Management</div><div class="service-desc">Complete event planning, logistics, and execution for any scale.</div></div>
-    <div class="service-card"><span class="service-icon">📢</span><div class="service-name">Brand Promotion</div><div class="service-desc">Strategic brand activation campaigns with the right faces and formats.</div></div>
-    <div class="service-card"><span class="service-icon">💍</span><div class="service-name">Bridal & Wedding</div><div class="service-desc">Model hosting and bridal fashion shows for luxury weddings.</div></div>
-    <div class="service-card"><span class="service-icon">🏢</span><div class="service-name">Corporate Events</div><div class="service-desc">Professional anchoring and model appearances for corporate galas.</div></div>
-    <div class="service-card"><span class="service-icon">✨</span><div class="service-name">Talent Management</div><div class="service-desc">Career management, brand partnerships, and representation for models.</div></div>
-    <div class="service-card"><span class="service-icon">🎓</span><div class="service-name">Casting & Auditions</div><div class="service-desc">Organizing casting calls and auditions for brands and designers.</div></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Get in Touch</div>
-  <h2 class="section-title">Let's Create<br><em>Something Beautiful</em></h2>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <p>Whether you're a brand looking for models, an aspiring model wanting to join our agency, or an event organizer — we'd love to hear from you.</p>
-      <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d2e252423252c3f2420222928213e0d2a202c2421632e2220">[email&#160;protected]</a></div></div></div>
-      <div class="contact-detail"><div class="contact-detail-icon">📱</div><div><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-value">+91 92381 37071</div></div></div>
-      <div class="contact-detail"><div class="contact-detail-icon">📷</div><div><div class="contact-detail-label">Instagram</div><div class="contact-detail-value">@chinharimodels</div></div></div>
-      <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Raipur, Chhattisgarh, India</div></div></div>
-    </div>
-    <div>
-      <div id="formSuccess" class="form-success">✓ &nbsp; Your message has been sent! We'll be in touch soon.</div>
-      <div id="formFields">
-        <div class="form-row">
-          <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="Full Name"/></div>
-          <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX"/></div>
+      <div class="founder-section">
+        <div class="section-label">Meet the Founder</div>
+        <div class="founder-grid">
+          <div class="founder-img-wrap">
+            <div class="founder-img-placeholder">
+              <span>👤</span>
+              <p>Add Founder Photo</p>
+            </div>
+            <div class="founder-badge">Founder & Director</div>
+          </div>
+          <div class="founder-info">
+            <div class="founder-name">Founder Name</div>
+            <div class="founder-role">Founder & Creative Director, Chinhari Models</div>
+            <div class="founder-bio">
+              <p>With over a decade of experience in fashion, modeling, and event management, our founder established Chinhari Models with a singular vision — to create a platform where talent from Chhattisgarh could shine on the national stage.</p>
+              <p>Having trained hundreds of models and organized some of the region's most celebrated fashion events, she continues to mentor, inspire, and lead the agency towards new heights every year.</p>
+              <p>Her work has been featured across leading fashion publications and her models have graced ramps across India.</p>
+            </div>
+            <div class="founder-socials">
+              <a href="https://instagram.com/chinharimodels" target="_blank" class="founder-social-btn">📷 Instagram</a>
+              <a href="https://wa.me/919238137071" target="_blank" class="founder-social-btn">💬 WhatsApp</a>
+            </div>
+          </div>
         </div>
-        <div class="form-group"><label>Email Address</label><input type="email" id="femail" placeholder="you@example.com"/></div>
-        <div class="form-group">
-          <label>Inquiry Type</label>
-          <select id="ftype">
-            <option value="">Select a Category</option>
-            <option>Book Models for Event</option>
-            <option>Join as a Model</option>
-            <option>Fashion Show / Ramp Walk</option>
-            <option>Brand Promotion</option>
-            <option>Event Management</option>
-            <option>Training Classes</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Message</label><textarea id="fmsg" placeholder="Tell us about your project, event, or inquiry..."></textarea></div>
-        <button class="form-submit" onclick="submitForm()">Send Inquiry →</button>
       </div>
-    </div>
-  </div>
+
+      <div class="team-section">
+        <div class="section-label">Our Team</div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-img-placeholder">👤</div>
+            <div class="team-name">Team Member 1</div>
+            <div class="team-post">Senior Model</div>
+          </div>
+          <div class="team-card">
+            <div class="team-img-placeholder">👤</div>
+            <div class="team-name">Team Member 2</div>
+            <div class="team-post">Choreographer</div>
+          </div>
+          <div class="team-card">
+            <div class="team-img-placeholder">👤</div>
+            <div class="team-name">Team Member 3</div>
+            <div class="team-post">Makeup Artist</div>
+          </div>
+          <div class="team-card">
+            <div class="team-img-placeholder">👤</div>
+            <div class="team-name">Team Member 4</div>
+            <div class="team-post">Event Manager</div>
+          </div>
+          <div class="team-card">
+            <div class="team-img-placeholder">👤</div>
+            <div class="team-name">Team Member 5</div>
+            <div class="team-post">Photographer</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
 </section>
 
-<!-- FOOTER -->
+<section class="page-section" id="eventsPage">
+  <section class="section-shell" style="background: var(--black);">
+    <section>
+      <div class="section-label">Events</div>
+      <h2 class="section-title">Upcoming & <em>Past Events</em></h2>
+
+      <div class="events-tabs">
+        <button class="events-tab active" onclick="switchTab('upcoming', this)">Upcoming Events</button>
+        <button class="events-tab" onclick="switchTab('past', this)">Past Events</button>
+      </div>
+
+      <div class="events-panel active" id="panel-upcoming">
+        <div class="events-list">
+          <div class="event-item">
+            <div><div class="event-date-day">15</div><div class="event-date-month">Apr 2025</div></div>
+            <div><div class="event-type">Fashion Show</div><div class="event-name">Chhattisgarh Fashion Week 2025</div><div class="event-location">📍 Raipur Convention Centre, Raipur</div></div>
+            <div><span class="badge badge-open">Open</span></div>
+          </div>
+          <div class="event-item">
+            <div><div class="event-date-day">22</div><div class="event-date-month">Apr 2025</div></div>
+            <div><div class="event-type">Brand Campaign</div><div class="event-name">Summer Brand Photoshoot</div><div class="event-location">📍 Studio 7, Shankar Nagar, Raipur</div></div>
+            <div><span class="badge badge-soon">Filling Fast</span></div>
+          </div>
+          <div class="event-item">
+            <div><div class="event-date-day">10</div><div class="event-date-month">May 2025</div></div>
+            <div><div class="event-type">Corporate Event</div><div class="event-name">Annual Gala & Award Night</div><div class="event-location">📍 Marriott Hotel, Raipur</div></div>
+            <div><span class="badge badge-upcoming">Upcoming</span></div>
+          </div>
+          <div class="event-item">
+            <div><div class="event-date-day">28</div><div class="event-date-month">May 2025</div></div>
+            <div><div class="event-type">Model Audition</div><div class="event-name">Open Auditions — Batch 2025</div><div class="event-location">📍 Chinhari Studio, Raipur</div></div>
+            <div><span class="badge badge-open">Register</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="events-panel" id="panel-past">
+        <div class="events-list">
+          <div class="event-item">
+            <div><div class="event-date-day">18</div><div class="event-date-month">Jan 2025</div></div>
+            <div><div class="event-type">Fashion Show</div><div class="event-name">Winter Couture Night 2025</div><div class="event-location">📍 Hotel Babylon International, Raipur</div></div>
+            <div><span class="badge badge-past">Completed</span></div>
+          </div>
+          <div class="event-item">
+            <div><div class="event-date-day">05</div><div class="event-date-month">Dec 2024</div></div>
+            <div><div class="event-type">Brand Promotion</div><div class="event-name">Festive Brand Campaign — Meesho</div><div class="event-location">📍 VR Raipur Mall, Raipur</div></div>
+            <div><span class="badge badge-past">Completed</span></div>
+          </div>
+          <div class="event-item">
+            <div><div class="event-date-day">14</div><div class="event-date-month">Oct 2024</div></div>
+            <div><div class="event-type">Ramp Walk</div><div class="event-name">Navratri Fashion Showcase</div><div class="event-location">📍 Science College Ground, Raipur</div></div>
+            <div><span class="badge badge-past">Completed</span></div>
+          </div>
+          <div class="event-item">
+            <div><div class="event-date-day">20</div><div class="event-date-month">Aug 2024</div></div>
+            <div><div class="event-type">Wedding Event</div><div class="event-name">Royal Bridal Show — Season 4</div><div class="event-location">📍 The Lalit, Raipur</div></div>
+            <div><span class="badge badge-past">Completed</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<section class="page-section" id="galleryPage">
+  <section class="section-shell">
+    <section>
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">Moments That <em>Define Us</em></h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item wide">
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=450&fit=crop" alt="Fashion Show" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1604004555489-723a93d6ce74?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item wide">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=450&fit=crop" alt="Ramp Walk" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1591823616048-1204e2b2b93b?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=600&fit=crop" alt="Fashion" loading="lazy"/>
+          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<section class="page-section" id="trainingPage">
+  <section class="section-shell" style="background: var(--black);">
+    <section>
+      <div class="section-label">Training Classes</div>
+      <h2 class="section-title">Shape Your <em>Career</em></h2>
+      <p class="training-intro">Our professional training programs are designed to help aspiring models build confidence, master the runway, and launch successful careers in the fashion industry.</p>
+
+      <div class="training-grid">
+        <div class="training-card">
+          <span class="training-icon">👗</span>
+          <div class="training-name">Ramp Walk & Runway</div>
+          <div class="training-desc">Master the art of ramp walking with perfect posture, turns, and expressions. Trained by professional choreographers.</div>
+          <div class="training-duration">Duration: 4 Weeks</div>
+          <div class="training-fee">₹ 5,000 / batch</div>
+        </div>
+        <div class="training-card">
+          <span class="training-icon">📸</span>
+          <div class="training-name">Portfolio & Shoot Prep</div>
+          <div class="training-desc">Learn camera angles, expressions, poses, and styling. Get a professional portfolio ready for auditions and campaigns.</div>
+          <div class="training-duration">Duration: 3 Weeks</div>
+          <div class="training-fee">₹ 4,500 / batch</div>
+        </div>
+        <div class="training-card">
+          <span class="training-icon">💄</span>
+          <div class="training-name">Grooming & Personality</div>
+          <div class="training-desc">Complete grooming, etiquette, public speaking, and personality development for aspiring models.</div>
+          <div class="training-duration">Duration: 3 Weeks</div>
+          <div class="training-fee">₹ 4,000 / batch</div>
+        </div>
+        <div class="training-card">
+          <span class="training-icon">🎤</span>
+          <div class="training-name">Anchoring & Hosting</div>
+          <div class="training-desc">Learn professional event hosting, stage presence, diction, and anchoring skills for fashion shows and events.</div>
+          <div class="training-duration">Duration: 2 Weeks</div>
+          <div class="training-fee">₹ 3,500 / batch</div>
+        </div>
+        <div class="training-card">
+          <span class="training-icon">👑</span>
+          <div class="training-name">Pageant Preparation</div>
+          <div class="training-desc">Comprehensive training for beauty pageants — interview prep, Q&A practice, gown evening wear, and stage walk.</div>
+          <div class="training-duration">Duration: 6 Weeks</div>
+          <div class="training-fee">₹ 8,000 / batch</div>
+        </div>
+        <div class="training-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#1a1208;border:1px solid var(--border);">
+          <span class="training-icon">✨</span>
+          <div class="training-name">Custom Training</div>
+          <div class="training-desc" style="margin-bottom:24px;">Need a custom program? Contact us and we'll design one just for you.</div>
+          <a href="#" class="btn-primary" style="font-size:0.65rem;padding:10px 24px;" onclick="openSection('contact'); return false;">Enquire Now</a>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<section class="page-section" id="servicesPage">
+  <section class="section-shell">
+    <section>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our <em>Services</em></h2>
+
+      <div class="services-grid">
+        <div class="service-card"><span class="service-icon">👗</span><div class="service-name">Fashion Shows</div><div class="service-desc">Grand runway productions with curated talent, choreography, and stage design.</div></div>
+        <div class="service-card"><span class="service-icon">📸</span><div class="service-name">Portfolio Shoots</div><div class="service-desc">Professional photography and shoot management with top photographers.</div></div>
+        <div class="service-card"><span class="service-icon">🎪</span><div class="service-name">Event Management</div><div class="service-desc">Complete event planning, logistics, and execution for any scale.</div></div>
+        <div class="service-card"><span class="service-icon">📢</span><div class="service-name">Brand Promotion</div><div class="service-desc">Strategic brand activation campaigns with the right faces and formats.</div></div>
+        <div class="service-card"><span class="service-icon">💍</span><div class="service-name">Bridal & Wedding</div><div class="service-desc">Model hosting and bridal fashion shows for luxury weddings.</div></div>
+        <div class="service-card"><span class="service-icon">🏢</span><div class="service-name">Corporate Events</div><div class="service-desc">Professional anchoring and model appearances for corporate galas.</div></div>
+        <div class="service-card"><span class="service-icon">✨</span><div class="service-name">Talent Management</div><div class="service-desc">Career management, brand partnerships, and representation for models.</div></div>
+        <div class="service-card"><span class="service-icon">🎓</span><div class="service-name">Casting & Auditions</div><div class="service-desc">Organizing casting calls and auditions for brands and designers.</div></div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<section class="page-section" id="contactPage">
+  <section class="section-shell">
+    <section>
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Let's Create<br><em>Something Beautiful</em></h2>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Whether you're a brand looking for models, an aspiring model wanting to join our agency, or an event organizer — we'd love to hear from you.</p>
+          <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d2e252423252c3f2420222928213e0d2a202c2421632e2220">[email&#160;protected]</a></div></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon">📱</div><div><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-value">+91 92381 37071</div></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon">📷</div><div><div class="contact-detail-label">Instagram</div><div class="contact-detail-value">@chinharimodels</div></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Raipur, Chhattisgarh, India</div></div></div>
+        </div>
+
+        <div>
+          <div id="formSuccess" class="form-success">✓ &nbsp; Your message has been sent! We'll be in touch soon.</div>
+          <div id="formFields">
+            <div class="form-row">
+              <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="Full Name"/></div>
+              <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX"/></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="femail" placeholder="you@example.com"/></div>
+            <div class="form-group">
+              <label>Inquiry Type</label>
+              <select id="ftype">
+                <option value="">Select a Category</option>
+                <option>Book Models for Event</option>
+                <option>Join as a Model</option>
+                <option>Fashion Show / Ramp Walk</option>
+                <option>Brand Promotion</option>
+                <option>Event Management</option>
+                <option>Training Classes</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Message</label><textarea id="fmsg" placeholder="Tell us about your project, event, or inquiry..."></textarea></div>
+            <button class="form-submit" onclick="submitForm()">Send Inquiry →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
 <footer>
   <div class="footer-brand">
-    <a href="#" class="logo">Chinhari <span>Models</span></a>
+    <a href="#" class="logo" onclick="openSection('home'); return false;">Chinhari <span>Models</span></a>
     <p class="footer-tagline">Chhattisgarh's premier modeling & event management agency. We bring talent and vision together.</p>
   </div>
+
   <div class="footer-links">
     <h4>Quick Links</h4>
     <ul>
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#training">Training Classes</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#" onclick="openSection('about'); return false;">About Us</a></li>
+      <li><a href="#" onclick="openSection('events'); return false;">Events</a></li>
+      <li><a href="#" onclick="openSection('gallery'); return false;">Gallery</a></li>
+      <li><a href="#" onclick="openSection('training'); return false;">Training Classes</a></li>
+      <li><a href="#" onclick="openSection('services'); return false;">Services</a></li>
+      <li><a href="#" onclick="openSection('contact'); return false;">Contact Us</a></li>
     </ul>
   </div>
+
   <div class="footer-social">
     <h4>Follow Us</h4>
     <div class="social-links">
@@ -649,6 +1063,7 @@
     </div>
   </div>
 </footer>
+
 <div class="footer-bottom">
   <div class="footer-copy">© 2025 Chinhari Models. All Rights Reserved. Raipur, Chhattisgarh.</div>
   <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
@@ -669,6 +1084,35 @@
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('mobileMenu').classList.remove('open');
     document.body.style.overflow = '';
+  }
+
+  function openSection(sectionName, fromMobile) {
+    const pages = document.querySelectorAll('.page-section');
+    const navLinks = document.querySelectorAll('[data-section-link]');
+    const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+
+    pages.forEach(function(page) {
+      page.classList.remove('active');
+    });
+
+    const targetPage = document.getElementById(sectionName + 'Page');
+    if (targetPage) {
+      targetPage.classList.add('active');
+    }
+
+    navLinks.forEach(function(link) {
+      link.classList.toggle('active-link', link.getAttribute('data-section-link') === sectionName);
+    });
+
+    mobileLinks.forEach(function(link) {
+      link.classList.toggle('active-link', link.getAttribute('data-mobile-link') === sectionName);
+    });
+
+    if (fromMobile) {
+      closeMenu();
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   const cursor = document.getElementById('cursor');
@@ -701,6 +1145,7 @@
         ring.style.transform = 'translate(-50%,-50%) scale(1.4)';
       }
     });
+
     el.addEventListener('mouseleave', function() {
       if (cursor && ring) {
         cursor.style.transform = 'translate(-50%,-50%) scale(1)';
@@ -717,9 +1162,11 @@
     document.querySelectorAll('.events-tab').forEach(function(t) {
       t.classList.remove('active');
     });
+
     document.querySelectorAll('.events-panel').forEach(function(p) {
       p.classList.remove('active');
     });
+
     btn.classList.add('active');
     document.getElementById('panel-' + tab).classList.add('active');
   }
