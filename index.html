@@ -203,13 +203,8 @@
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-        radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 28%),
-        rgba(10,10,10,0.98);
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 28%), rgba(10,10,10,0.98);
       z-index: 99;
       flex-direction: column;
       align-items: center;
@@ -258,9 +253,7 @@
       animation: fadePage 0.55s ease;
     }
 
-    .page-section.active {
-      display: block;
-    }
+    .page-section.active { display: block; }
 
     .hero {
       min-height: 100vh;
@@ -269,7 +262,6 @@
       position: relative;
       overflow: hidden;
       padding: 0 60px;
-      padding-top: 0;
     }
 
     .hero-bg {
@@ -432,12 +424,6 @@
       animation: scrollLine 2s infinite;
     }
 
-    @keyframes scrollLine {
-      0% { width:10px; opacity:0.2; }
-      50% { width:40px; opacity:0.6; }
-      100% { width:10px; opacity:0.2; }
-    }
-
     section { padding: 100px 60px; }
 
     .section-shell {
@@ -474,108 +460,616 @@
     .section-title em { font-style: italic; color: var(--gold-light); }
 
     #aboutPage { background: var(--dark); }
-    .about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 70px; }
-    .about-text p { font-size: 0.9rem; line-height: 2.0; opacity: 0.7; margin-bottom: 18px; }
-    .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; }
-    .feature-item { border-left: 2px solid var(--gold); padding-left: 14px; }
-    .feature-title { font-size: 0.72rem; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 4px; color: var(--gold-light); }
-    .feature-desc { font-size: 0.72rem; opacity: 0.55; line-height: 1.6; }
-    .about-card { background: var(--dark2); border: 1px solid var(--border); padding: 48px; position: relative; }
-    .about-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 8rem; color: var(--gold); opacity: 0.15; position: absolute; top: 10px; left: 28px; line-height: 1; }
-    .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; line-height: 1.5; margin-bottom: 22px; }
-    .about-quote-author { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
-    .founder-section { border-top: 1px solid var(--border); padding-top: 60px; margin-bottom: 70px; }
-    .founder-grid { display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start; margin-top: 36px; }
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 70px;
+    }
+
+    .about-text p {
+      font-size: 0.9rem;
+      line-height: 2.0;
+      opacity: 0.7;
+      margin-bottom: 18px;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .feature-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 14px;
+    }
+
+    .feature-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--gold-light);
+    }
+
+    .feature-desc {
+      font-size: 0.72rem;
+      opacity: 0.55;
+      line-height: 1.6;
+    }
+
+    .about-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      padding: 48px;
+      position: relative;
+    }
+
+    .about-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: 0.15;
+      position: absolute;
+      top: 10px;
+      left: 28px;
+      line-height: 1;
+    }
+
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .about-quote-author {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .founder-section {
+      border-top: 1px solid var(--border);
+      padding-top: 60px;
+      margin-bottom: 70px;
+    }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 36px;
+    }
+
     .founder-img-wrap { position: relative; }
-    .founder-img-placeholder { width: 260px; height: 320px; background: linear-gradient(160deg, #1a1a1a, #1a1208); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    .founder-img-placeholder span { font-size: 3rem; opacity: 0.2; }
-    .founder-img-placeholder p { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.5; }
-    .founder-badge { position: absolute; bottom: -14px; left: 16px; background: var(--gold); color: var(--black); padding: 7px 16px; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
-    .founder-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; margin-bottom: 6px; }
-    .founder-role { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
-    .founder-bio p { font-size: 0.87rem; line-height: 2.0; opacity: 0.7; margin-bottom: 14px; }
-    .founder-socials { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
-    .founder-social-btn { border: 1px solid var(--border); padding: 8px 18px; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: border-color 0.3s, color 0.3s; }
-    .founder-social-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-    .team-section { border-top: 1px solid var(--border); padding-top: 56px; }
-    .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 36px; }
+    .founder-img,
+    .team-img {
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    .founder-img {
+      width: 260px;
+      height: 320px;
+      object-fit: cover;
+      object-position: center 12%;
+    }
+
+    .founder-badge {
+      position: absolute;
+      bottom: -14px;
+      left: 16px;
+      background: var(--gold);
+      color: var(--black);
+      padding: 7px 16px;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .founder-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 6px;
+    }
+
+    .founder-role {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .founder-bio p {
+      font-size: 0.87rem;
+      line-height: 2.0;
+      opacity: 0.7;
+      margin-bottom: 14px;
+    }
+
+    .founder-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .founder-social-btn {
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .founder-social-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .team-section {
+      border-top: 1px solid var(--border);
+      padding-top: 56px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
     .team-card { text-align: center; }
-    .team-img-placeholder { width: 100%; aspect-ratio: 1; background: linear-gradient(160deg,#1a1a1a,#1a1208); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; opacity: 0.2; margin-bottom: 12px; }
-    .team-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; margin-bottom: 4px; }
-    .team-post { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+
+    .team-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+
+    .team-crop.anupama { object-position: left 12%; }
+    .team-crop.rohan { object-position: right 14%; }
+    .team-crop.pooja { object-position: 24% 82%; }
+    .team-crop.shivlal { object-position: 86% 82%; }
+
+    .team-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(160deg,#1a1a1a,#1a1208);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      opacity: 0.5;
+      margin-bottom: 12px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 4px;
+    }
+
+    .team-post {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+    }
 
     #eventsPage { background: var(--black); }
-    .events-tabs { display: flex; border-bottom: 1px solid var(--border); margin-top: 40px; flex-wrap: wrap; }
-    .events-tab { padding: 12px 32px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; border: none; background: none; color: var(--white); opacity: 0.45; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: opacity 0.3s, color 0.3s, border-color 0.3s; cursor: pointer; font-family: 'Montserrat', sans-serif; }
-    .events-tab.active { opacity: 1; color: var(--gold); border-bottom-color: var(--gold); }
+
+    .events-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .events-tab {
+      padding: 12px 32px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      background: none;
+      color: var(--white);
+      opacity: 0.45;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: opacity 0.3s, color 0.3s, border-color 0.3s;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .events-tab.active {
+      opacity: 1;
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
     .events-panel { display: none; }
     .events-panel.active { display: block; }
-    .event-item { display: grid; grid-template-columns: 100px 1fr auto; gap: 36px; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--border); transition: padding-left 0.3s; }
+
+    .event-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 36px;
+      align-items: center;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.3s;
+    }
+
     .event-item:first-child { border-top: 1px solid var(--border); }
     .event-item:hover { padding-left: 12px; }
-    .event-date-day { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold); line-height: 1; }
-    .event-date-month { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-top: 4px; }
-    .event-type { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .event-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 6px; }
-    .event-location { font-size: 0.74rem; opacity: 0.5; }
-    .badge { display: inline-block; padding: 6px 16px; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid; }
+
+    .event-date-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .event-date-month {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-top: 4px;
+    }
+
+    .event-type {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .event-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 6px;
+    }
+
+    .event-location {
+      font-size: 0.74rem;
+      opacity: 0.5;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+
     .badge-open { border-color: #4caf50; color: #4caf50; }
     .badge-soon { border-color: var(--gold); color: var(--gold); }
     .badge-upcoming { border-color: var(--gray); color: var(--gray); }
     .badge-past { border-color: #444; color: #666; }
 
     #galleryPage { background: var(--dark); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 50px; }
-    .gallery-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--dark2); }
-    .gallery-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-top: 50px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--dark2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
     .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-overlay { position: absolute; inset: 0; background: rgba(10,10,10,0.45); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
     .gallery-item:hover .gallery-overlay { opacity: 1; }
     .gallery-overlay-icon { font-size: 1.8rem; }
 
     #trainingPage { background: var(--black); }
-    .training-intro { font-size: 0.88rem; opacity: 0.6; line-height: 1.9; max-width: 580px; margin-bottom: 50px; }
-    .training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .training-card { background: var(--dark2); padding: 38px 30px; position: relative; overflow: hidden; transition: background 0.3s, transform 0.3s; }
-    .training-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+
+    .training-intro {
+      font-size: 0.88rem;
+      opacity: 0.6;
+      line-height: 1.9;
+      max-width: 580px;
+      margin-bottom: 50px;
+    }
+
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .training-card {
+      background: var(--dark2);
+      padding: 38px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .training-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
     .training-card:hover::before { transform: scaleX(1); }
-    .training-card:hover { background: #1e1a0e; transform: translateY(-4px); }
-    .training-icon { font-size: 2.2rem; margin-bottom: 18px; display: block; }
-    .training-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 300; margin-bottom: 10px; }
-    .training-desc { font-size: 0.76rem; opacity: 0.55; line-height: 1.8; margin-bottom: 20px; }
-    .training-duration { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
-    .training-fee { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold-light); }
+
+    .training-card:hover {
+      background: #1e1a0e;
+      transform: translateY(-4px);
+    }
+
+    .training-icon {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .training-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .training-desc {
+      font-size: 0.76rem;
+      opacity: 0.55;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .training-duration {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .training-fee {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--gold-light);
+    }
 
     #servicesPage { background: var(--dark); }
-    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 50px; }
-    .service-card { background: var(--dark2); padding: 34px 26px; position: relative; overflow: hidden; transition: background 0.3s, transform 0.3s; }
-    .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 50px;
+    }
+
+    .service-card {
+      background: var(--dark2);
+      padding: 34px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
     .service-card:hover::before { transform: scaleX(1); }
-    .service-card:hover { background: #1e1a0e; transform: translateY(-4px); }
-    .service-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
-    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; margin-bottom: 10px; }
-    .service-desc { font-size: 0.74rem; opacity: 0.55; line-height: 1.8; }
+
+    .service-card:hover {
+      background: #1e1a0e;
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 0.74rem;
+      opacity: 0.55;
+      line-height: 1.8;
+    }
 
     #contactPage { background: var(--dark); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; margin-top: 60px; }
-    .contact-info p { font-size: 0.85rem; line-height: 1.9; opacity: 0.6; margin-bottom: 36px; }
-    .contact-detail { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
-    .contact-detail-icon { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: var(--gold); }
-    .contact-detail-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
-    .contact-detail-value { font-size: 0.84rem; opacity: 0.75; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      margin-top: 60px;
+    }
+
+    .contact-info p {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      opacity: 0.6;
+      margin-bottom: 36px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .contact-detail-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .contact-detail-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .contact-detail-value {
+      font-size: 0.84rem;
+      opacity: 0.75;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
     .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--dark2); border: 1px solid var(--border); color: var(--white); padding: 14px 18px; font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 300; outline: none; transition: border-color 0.3s; appearance: none; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+
+    .form-group label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 14px 18px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
     .form-group select option { background: var(--dark2); }
     .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-submit { width: 100%; background: var(--gold); color: var(--black); border: none; padding: 16px; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: none; transition: background 0.3s, transform 0.2s; margin-top: 8px; }
-    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .form-success { display: none; text-align: center; padding: 40px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.85rem; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
 
     footer {
       background: var(--black);
@@ -612,6 +1106,12 @@
     .footer-bottom-links { display: flex; gap: 24px; }
     .footer-bottom-links a { font-size: 0.65rem; opacity: 0.35; color: var(--white); text-decoration: none; }
 
+    @keyframes scrollLine {
+      0% { width:10px; opacity:0.2; }
+      50% { width:40px; opacity:0.6; }
+      100% { width:10px; opacity:0.2; }
+    }
+
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(30px); }
       to { opacity:1; transform:translateY(0); }
@@ -632,14 +1132,14 @@
       .hero-stats { right: 24px; bottom: 40px; gap: 24px; }
       .about-intro, .contact-grid, .founder-grid { grid-template-columns: 1fr; gap: 36px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item.wide { grid-column: span 2; }
       .training-grid, .services-grid { grid-template-columns: 1fr 1fr; }
-      .team-grid { grid-template-columns: repeat(3,1fr); }
+      .team-grid { grid-template-columns: repeat(2,1fr); }
       .event-item { grid-template-columns: 80px 1fr; }
       .event-item > div:last-child { display: none; }
       footer { grid-template-columns: 1fr; padding: 40px 24px; }
       .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 12px; }
       .form-row { grid-template-columns: 1fr; }
+      .founder-img { width: 100%; max-width: 260px; }
       * { cursor:auto !important; }
       .cursor, .cursor-ring { display:none; }
       .hamburger, .mobile-menu a { cursor:pointer !important; }
@@ -658,10 +1158,8 @@
       }
       .scroll-indicator { display: none; }
       .training-grid, .services-grid, .gallery-grid, .team-grid { grid-template-columns: 1fr; }
-      .gallery-item.wide { grid-column: span 1; aspect-ratio: 3/4; }
       .events-tabs { gap: 10px; border-bottom: none; }
       .events-tab { padding: 10px 0; }
-      .founder-img-placeholder { width: 100%; max-width: 260px; }
       .mobile-menu a { font-size: 1.7rem; }
     }
   </style>
@@ -753,23 +1251,22 @@
         <div class="section-label">Meet the Founder</div>
         <div class="founder-grid">
           <div class="founder-img-wrap">
-            <div class="founder-img-placeholder">
-              <span>👤</span>
-              <p>Add Founder Photo</p>
-            </div>
+            <img class="founder-img" src="team-poster.jpg" alt="Prem Sai Bhagat" />
             <div class="founder-badge">Founder & Director</div>
           </div>
+
           <div class="founder-info">
-            <div class="founder-name">Founder Name</div>
-            <div class="founder-role">Founder & Creative Director, Chinhari Models</div>
+            <div class="founder-name">Mr. Prem Sai Bhagat Sir</div>
+            <div class="founder-role">Founder & Director, Chinhari Models</div>
             <div class="founder-bio">
-              <p>With over a decade of experience in fashion, modeling, and event management, our founder established Chinhari Models with a singular vision — to create a platform where talent from Chhattisgarh could shine on the national stage.</p>
-              <p>Having trained hundreds of models and organized some of the region's most celebrated fashion events, she continues to mentor, inspire, and lead the agency towards new heights every year.</p>
-              <p>Her work has been featured across leading fashion publications and her models have graced ramps across India.</p>
+              <p>Prem Sai Bhagat is the Founder and Director of Chinhari Models and serves as Chhattisgarh's first State Pageant Director.</p>
+              <p>He began his journey at the state level within Chhattisgarh, where he won the title of Mister Fame of Chhattisgarh 2023. Notably, he is the first male model from the Raigarh district, a historic distinction.</p>
+              <p>He aspires to elevate Chhattisgarhi art and culture, as well as the state's pageant industry, to an entirely new level, thereby ensuring that Chhattisgarh's cultural heritage leaves a distinct and lasting impression on the global stage.</p>
+              <p>Furthermore, he aims to provide a superior pageant platform for future generations of models and contestants, with the ultimate goal of establishing Chhattisgarh's reputation in the pageant world at both national and international levels.</p>
             </div>
             <div class="founder-socials">
-              <a href="https://instagram.com/chinharimodels" target="_blank" class="founder-social-btn">📷 Instagram</a>
-              <a href="https://wa.me/919238137071" target="_blank" class="founder-social-btn">💬 WhatsApp</a>
+              <a href="https://instagram.com/chinharimodels" target="_blank" class="founder-social-btn">Instagram</a>
+              <a href="https://wa.me/919238137071" target="_blank" class="founder-social-btn">WhatsApp</a>
             </div>
           </div>
         </div>
@@ -779,29 +1276,33 @@
         <div class="section-label">Our Team</div>
         <div class="team-grid">
           <div class="team-card">
-            <div class="team-img-placeholder">👤</div>
-            <div class="team-name">Team Member 1</div>
-            <div class="team-post">Senior Model</div>
+            <img class="team-img team-crop anupama" src="team-poster.jpg" alt="Miss Anupama Ratnakar Mam" />
+            <div class="team-name">Miss Anupama Ratnakar Mam</div>
+            <div class="team-post">Head Manager & Co-Director</div>
           </div>
+
           <div class="team-card">
-            <div class="team-img-placeholder">👤</div>
-            <div class="team-name">Team Member 2</div>
-            <div class="team-post">Choreographer</div>
+            <img class="team-img team-crop rohan" src="team-poster.jpg" alt="Mr. Rohan Dhiwar Sir" />
+            <div class="team-name">Mr. Rohan Dhiwar Sir</div>
+            <div class="team-post">Agency Assistant</div>
           </div>
+
           <div class="team-card">
-            <div class="team-img-placeholder">👤</div>
-            <div class="team-name">Team Member 3</div>
-            <div class="team-post">Makeup Artist</div>
+            <img class="team-img team-crop pooja" src="team-poster.jpg" alt="Miss Pooja Tandekar Mam" />
+            <div class="team-name">Miss Pooja Tandekar Mam</div>
+            <div class="team-post">Agency Assistant</div>
           </div>
+
           <div class="team-card">
-            <div class="team-img-placeholder">👤</div>
-            <div class="team-name">Team Member 4</div>
-            <div class="team-post">Event Manager</div>
+            <img class="team-img team-crop shivlal" src="team-poster.jpg" alt="Mr. Shivlal Minj Sir" />
+            <div class="team-name">Mr. Shivlal Minj Sir</div>
+            <div class="team-post">Agency Assistant</div>
           </div>
+
           <div class="team-card">
-            <div class="team-img-placeholder">👤</div>
-            <div class="team-name">Team Member 5</div>
-            <div class="team-post">Photographer</div>
+            <div class="team-img-placeholder">DK</div>
+            <div class="team-name">Durgesh Kashyap</div>
+            <div class="team-post">Technical Manager</div>
           </div>
         </div>
       </div>
@@ -824,22 +1325,22 @@
         <div class="events-list">
           <div class="event-item">
             <div><div class="event-date-day">15</div><div class="event-date-month">Apr 2025</div></div>
-            <div><div class="event-type">Fashion Show</div><div class="event-name">Chhattisgarh Fashion Week 2025</div><div class="event-location">📍 Raipur Convention Centre, Raipur</div></div>
+            <div><div class="event-type">Fashion Show</div><div class="event-name">Chhattisgarh Fashion Week 2025</div><div class="event-location">Raipur Convention Centre, Raipur</div></div>
             <div><span class="badge badge-open">Open</span></div>
           </div>
           <div class="event-item">
             <div><div class="event-date-day">22</div><div class="event-date-month">Apr 2025</div></div>
-            <div><div class="event-type">Brand Campaign</div><div class="event-name">Summer Brand Photoshoot</div><div class="event-location">📍 Studio 7, Shankar Nagar, Raipur</div></div>
+            <div><div class="event-type">Brand Campaign</div><div class="event-name">Summer Brand Photoshoot</div><div class="event-location">Studio 7, Shankar Nagar, Raipur</div></div>
             <div><span class="badge badge-soon">Filling Fast</span></div>
           </div>
           <div class="event-item">
             <div><div class="event-date-day">10</div><div class="event-date-month">May 2025</div></div>
-            <div><div class="event-type">Corporate Event</div><div class="event-name">Annual Gala & Award Night</div><div class="event-location">📍 Marriott Hotel, Raipur</div></div>
+            <div><div class="event-type">Corporate Event</div><div class="event-name">Annual Gala & Award Night</div><div class="event-location">Marriott Hotel, Raipur</div></div>
             <div><span class="badge badge-upcoming">Upcoming</span></div>
           </div>
           <div class="event-item">
             <div><div class="event-date-day">28</div><div class="event-date-month">May 2025</div></div>
-            <div><div class="event-type">Model Audition</div><div class="event-name">Open Auditions — Batch 2025</div><div class="event-location">📍 Chinhari Studio, Raipur</div></div>
+            <div><div class="event-type">Model Audition</div><div class="event-name">Open Auditions — Batch 2025</div><div class="event-location">Chinhari Studio, Raipur</div></div>
             <div><span class="badge badge-open">Register</span></div>
           </div>
         </div>
@@ -849,22 +1350,22 @@
         <div class="events-list">
           <div class="event-item">
             <div><div class="event-date-day">18</div><div class="event-date-month">Jan 2025</div></div>
-            <div><div class="event-type">Fashion Show</div><div class="event-name">Winter Couture Night 2025</div><div class="event-location">📍 Hotel Babylon International, Raipur</div></div>
+            <div><div class="event-type">Fashion Show</div><div class="event-name">Winter Couture Night 2025</div><div class="event-location">Hotel Babylon International, Raipur</div></div>
             <div><span class="badge badge-past">Completed</span></div>
           </div>
           <div class="event-item">
             <div><div class="event-date-day">05</div><div class="event-date-month">Dec 2024</div></div>
-            <div><div class="event-type">Brand Promotion</div><div class="event-name">Festive Brand Campaign — Meesho</div><div class="event-location">📍 VR Raipur Mall, Raipur</div></div>
+            <div><div class="event-type">Brand Promotion</div><div class="event-name">Festive Brand Campaign — Meesho</div><div class="event-location">VR Raipur Mall, Raipur</div></div>
             <div><span class="badge badge-past">Completed</span></div>
           </div>
           <div class="event-item">
             <div><div class="event-date-day">14</div><div class="event-date-month">Oct 2024</div></div>
-            <div><div class="event-type">Ramp Walk</div><div class="event-name">Navratri Fashion Showcase</div><div class="event-location">📍 Science College Ground, Raipur</div></div>
+            <div><div class="event-type">Ramp Walk</div><div class="event-name">Navratri Fashion Showcase</div><div class="event-location">Science College Ground, Raipur</div></div>
             <div><span class="badge badge-past">Completed</span></div>
           </div>
           <div class="event-item">
             <div><div class="event-date-day">20</div><div class="event-date-month">Aug 2024</div></div>
-            <div><div class="event-type">Wedding Event</div><div class="event-name">Royal Bridal Show — Season 4</div><div class="event-location">📍 The Lalit, Raipur</div></div>
+            <div><div class="event-type">Wedding Event</div><div class="event-name">Royal Bridal Show — Season 4</div><div class="event-location">The Lalit, Raipur</div></div>
             <div><span class="badge badge-past">Completed</span></div>
           </div>
         </div>
@@ -880,36 +1381,32 @@
       <h2 class="section-title">Moments That <em>Define Us</em></h2>
 
       <div class="gallery-grid">
-        <div class="gallery-item wide">
-          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=450&fit=crop" alt="Fashion Show" loading="lazy"/>
+        <div class="gallery-item">
+          <img src="https://www.instagram.com/p/DSwThD9ESI-/media/?size=l" alt="Chinhari Models Gallery 1" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <img src="https://www.instagram.com/p/DSwQZr7EYgv/media/?size=l" alt="Chinhari Models Gallery 2" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <img src="https://www.instagram.com/p/DSsJC_tCEla/media/?size=l" alt="Chinhari Models Gallery 3" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <img src="https://www.instagram.com/p/DSpZjjYD0wA/media/?size=l" alt="Chinhari Models Gallery 4" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1604004555489-723a93d6ce74?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
-          <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
-        </div>
-        <div class="gallery-item wide">
-          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=450&fit=crop" alt="Ramp Walk" loading="lazy"/>
+          <img src="https://www.instagram.com/p/DReUKaqkYEv/media/?size=l" alt="Chinhari Models Gallery 5" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1591823616048-1204e2b2b93b?w=400&h=600&fit=crop&crop=face" alt="Model" loading="lazy"/>
+          <img src="https://www.instagram.com/p/DQfCH3HDfuL/media/?size=l" alt="Chinhari Models Gallery 6" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=600&fit=crop" alt="Fashion" loading="lazy"/>
+          <img src="https://www.instagram.com/p/DPCGq6ggfWE/media/?size=l" alt="Chinhari Models Gallery 7" loading="lazy"/>
           <div class="gallery-overlay"><div class="gallery-overlay-icon">✦</div></div>
         </div>
       </div>
@@ -1000,14 +1497,14 @@
       <div class="contact-grid">
         <div class="contact-info">
           <p>Whether you're a brand looking for models, an aspiring model wanting to join our agency, or an event organizer — we'd love to hear from you.</p>
-          <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d2e252423252c3f2420222928213e0d2a202c2421632e2220">[email&#160;protected]</a></div></div></div>
+          <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value"><a href="mailto:chinharimodels@gmail.com" style="color:inherit;text-decoration:none;">chinharimodels@gmail.com</a></div></div></div>
           <div class="contact-detail"><div class="contact-detail-icon">📱</div><div><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-value">+91 92381 37071</div></div></div>
           <div class="contact-detail"><div class="contact-detail-icon">📷</div><div><div class="contact-detail-label">Instagram</div><div class="contact-detail-value">@chinharimodels</div></div></div>
           <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Raipur, Chhattisgarh, India</div></div></div>
         </div>
 
         <div>
-          <div id="formSuccess" class="form-success">✓ &nbsp; Your message has been sent! We'll be in touch soon.</div>
+          <div id="formSuccess" class="form-success">Your message has been sent! We'll be in touch soon.</div>
           <div id="formFields">
             <div class="form-row">
               <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="Full Name"/></div>
@@ -1028,7 +1525,7 @@
               </select>
             </div>
             <div class="form-group"><label>Message</label><textarea id="fmsg" placeholder="Tell us about your project, event, or inquiry..."></textarea></div>
-            <button class="form-submit" onclick="submitForm()">Send Inquiry →</button>
+            <button class="form-submit" onclick="submitForm()">Send Inquiry</button>
           </div>
         </div>
       </div>
@@ -1059,7 +1556,7 @@
     <div class="social-links">
       <a href="https://instagram.com/chinharimodels" class="social-link" target="_blank"><div class="social-icon">📷</div>@chinharimodels</a>
       <a href="https://wa.me/919238137071" class="social-link" target="_blank"><div class="social-icon">💬</div>WhatsApp Us</a>
-      <a href="/cdn-cgi/l/email-protection#8be8e3e2e5e3eaf9e2e6e4efeee7f8cbece6eae2e7a5e8e4e6" class="social-link"><div class="social-icon">✉</div><span class="__cf_email__" data-cfemail="9cfff4f5f2f4fdeef5f1f3f8f9f0efdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a>
+      <a href="mailto:chinharimodels@gmail.com" class="social-link"><div class="social-icon">✉</div>chinharimodels@gmail.com</a>
     </div>
   </div>
 </footer>
@@ -1069,12 +1566,10 @@
   <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
   function toggleMenu() {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
     document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
@@ -1096,9 +1591,7 @@
     });
 
     const targetPage = document.getElementById(sectionName + 'Page');
-    if (targetPage) {
-      targetPage.classList.add('active');
-    }
+    if (targetPage) targetPage.classList.add('active');
 
     navLinks.forEach(function(link) {
       link.classList.toggle('active-link', link.getAttribute('data-section-link') === sectionName);
@@ -1108,10 +1601,7 @@
       link.classList.toggle('active-link', link.getAttribute('data-mobile-link') === sectionName);
     });
 
-    if (fromMobile) {
-      closeMenu();
-    }
-
+    if (fromMobile) closeMenu();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
