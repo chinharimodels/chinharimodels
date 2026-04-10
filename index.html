@@ -89,62 +89,53 @@
     .nav-cta::after{display:none!important}
     .nav-cta:hover,.nav-cta.active-link{background:var(--gold);color:var(--black)!important}
 
-   .hamburger{
-  display:none;
-  width:42px;
-  height:42px;
-  background:transparent;
-  border:none;
-  padding:0;
-  position:relative;
-  z-index:111;
-  cursor:pointer;
-}
+    .hamburger{
+      display:none;
+      width:42px;
+      height:42px;
+      background:transparent;
+      border:none;
+      padding:0;
+      position:relative;
+      z-index:111;
+      cursor:pointer;
+    }
 
-.hamburger-lines{
-  width:26px;
-  height:18px;
-  position:relative;
-  display:block;
-  margin:auto;
-}
+    .hamburger-lines{
+      width:26px;
+      height:18px;
+      position:relative;
+      display:block;
+      margin:auto;
+    }
 
-.hamburger-lines span{
-  position:absolute;
-  left:0;
-  width:100%;
-  height:2px;
-  background:#fff;
-  border-radius:2px;
-  transition:all 0.3s ease;
-}
+    .hamburger-lines span{
+      position:absolute;
+      left:0;
+      width:100%;
+      height:2px;
+      background:#fff;
+      border-radius:2px;
+      transition:all 0.3s ease;
+    }
 
-.hamburger-lines span:nth-child(1){
-  top:0;
-}
+    .hamburger-lines span:nth-child(1){top:0}
+    .hamburger-lines span:nth-child(2){top:8px}
+    .hamburger-lines span:nth-child(3){top:16px}
 
-.hamburger-lines span:nth-child(2){
-  top:8px;
-}
+    .hamburger.open .hamburger-lines span:nth-child(1){
+      top:8px;
+      transform:rotate(45deg);
+    }
 
-.hamburger-lines span:nth-child(3){
-  top:16px;
-}
+    .hamburger.open .hamburger-lines span:nth-child(2){
+      opacity:0;
+    }
 
-.hamburger.open .hamburger-lines span:nth-child(1){
-  top:8px;
-  transform:rotate(45deg);
-}
-
-.hamburger.open .hamburger-lines span:nth-child(2){
-  opacity:0;
-}
-
-.hamburger.open .hamburger-lines span:nth-child(3){
-  top:8px;
-  transform:rotate(-45deg);
-}
-
+    .hamburger.open .hamburger-lines span:nth-child(3){
+      top:8px;
+      transform:rotate(-45deg);
+    }
 
     .mobile-menu{
       position:fixed;top:0;right:0;width:min(340px,88vw);height:100vh;
@@ -394,6 +385,33 @@
     .training-desc{font-size:.76rem;opacity:.55;line-height:1.8;margin-bottom:20px}
     .training-duration{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
     .training-fee{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light)}
+    .training-cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+      margin:36px 0 28px;
+    }
+    .training-note{
+      font-size:.78rem;
+      opacity:.6;
+      line-height:1.8;
+      max-width:760px;
+      margin-bottom:30px;
+    }
+    .training-embed-wrap{
+      margin-top:28px;
+      border:1px solid var(--border);
+      background:var(--dark2);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .training-embed-frame{
+      width:100%;
+      min-height:1180px;
+      border:none;
+      background:#fff;
+    }
 
     #servicesPage{background:var(--dark)}
     .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:50px}
@@ -498,6 +516,7 @@
       .brand-text{font-size:1rem;letter-spacing:.12em}
       .hero-logo{width:64px;height:64px}
       .footer-brand-logo{width:56px;height:56px}
+      .training-embed-frame{min-height:1300px}
       *{cursor:auto!important}
       .cursor,.cursor-ring{display:none}
       .hamburger,.mobile-menu a{cursor:pointer!important}
@@ -512,6 +531,9 @@
       .mobile-menu a{font-size:1.55rem}
       .hero-theme-line{font-size:.76rem;width:100%;text-align:center;border-radius:18px}
       .slider-frame{height:220px}
+      .training-cta-row{flex-direction:column;align-items:flex-start}
+      .training-embed-wrap{padding:10px}
+      .training-embed-frame{min-height:1450px}
     }
   </style>
 </head>
@@ -602,6 +624,7 @@
       <div class="hero-buttons">
         <a href="#" class="btn-primary" onclick="openSection('about'); return false;">About Us</a>
         <a href="#" class="btn-outline" onclick="openSection('gallery'); return false;">View Gallery</a>
+        <a href="#" class="btn-outline" onclick="openSection('training'); return false;">Join Our Training Academy</a>
       </div>
     </div>
 
@@ -785,9 +808,11 @@
 <section class="page-section" id="trainingPage">
   <section class="section-shell" style="background:var(--black);">
     <section>
-      <div class="section-label">Training Classes</div>
-      <h2 class="section-title">Shape Your <em>Career</em></h2>
-      <p class="training-intro">Our professional training programs are designed to help aspiring models build confidence, master the runway, and launch successful careers in the fashion industry.</p>
+      <div class="section-label">Training Academy</div>
+      <h2 class="section-title">Join Our <em>Training Academy</em></h2>
+      <p class="training-intro">
+        Chinhari Models Training Academy aspiring models aur performers ke liye ek professional platform hai jahan confidence, grooming, runway skills, personality development aur stage presence par focused training di jaati hai.
+      </p>
 
       <div class="training-grid">
         <div class="training-card">
@@ -811,6 +836,25 @@
           <div class="training-duration">Duration: 3 Weeks</div>
           <div class="training-fee">₹ 4,000 / batch</div>
         </div>
+      </div>
+
+      <div class="training-cta-row">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform" target="_blank" class="btn-primary">Open Form In New Tab</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform" target="_blank" class="btn-outline">Apply Now</a>
+      </div>
+
+      <p class="training-note">
+        Fill the registration form below to join Chinhari Training Academy. Your responses will go directly to Google Forms and Google Sheets for easy management.
+      </p>
+
+      <div class="training-embed-wrap">
+        <iframe
+          class="training-embed-frame"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform?embedded=true"
+          marginheight="0"
+          marginwidth="0">
+          Loading…
+        </iframe>
       </div>
     </section>
   </section>
