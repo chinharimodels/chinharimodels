@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Training - Chinhari Models</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --gold:#c9a84c;
+      --gold-light:#e8cc80;
+      --black:#0a0a0a;
+      --dark:#111111;
+      --dark2:#1a1a1a;
+      --white:#f5f0e8;
+      --border:rgba(201,168,76,0.25);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:var(--black);
+      color:var(--white);
+      font-family:'Montserrat',sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 44px;
+      background:rgba(10,10,10,0.96);
+      border-bottom:1px solid var(--border);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-logo{
+      width:50px;
+      height:50px;
+      object-fit:contain;
+      background:#000;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:5px;
+    }
+
+    .brand-text{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.3rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .brand-text span{
+      color:var(--gold);
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap:24px;
+    }
+
+    .nav-links a{
+      font-size:.68rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      opacity:.76;
+      transition:.3s;
+      position:relative;
+    }
+
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-5px;
+      height:1px;
+      background:var(--gold);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--gold-light);
+      opacity:1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after{
+      transform:scaleX(1);
+    }
+
+    .page-header{
+      padding:90px 48px 40px;
+      background:
+        radial-gradient(circle at top center, rgba(201,168,76,0.16), transparent 30%),
+        linear-gradient(135deg,#0a0a0a 0%,#181107 45%,#0a0a0a 100%);
+    }
+
+    .section-label{
+      font-size:.65rem;
+      letter-spacing:.35em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:16px;
+    }
+
+    .page-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.8rem, 6vw, 4.8rem);
+      font-weight:300;
+      line-height:1.05;
+      margin-bottom:18px;
+    }
+
+    .page-title em{
+      font-style:italic;
+      color:var(--gold-light);
+    }
+
+    .page-subtext{
+      max-width:760px;
+      font-size:.92rem;
+      line-height:2;
+      opacity:.72;
+    }
+
+    .content{
+      padding:70px 48px 90px;
+      background:var(--black);
+    }
+
+    .training-intro{
+      font-size:.88rem;
+      opacity:.65;
+      line-height:1.9;
+      max-width:680px;
+      margin-bottom:44px;
+    }
+
+    .training-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2px;
+    }
+
+    .training-card{
+      background:var(--dark2);
+      padding:38px 30px;
+      position:relative;
+      overflow:hidden;
+      transition:.3s;
+    }
+
+    .training-card::before{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:var(--gold);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:.4s;
+    }
+
+    .training-card:hover::before{
+      transform:scaleX(1);
+    }
+
+    .training-card:hover{
+      background:#1e1a0e;
+      transform:translateY(-4px);
+    }
+
+    .training-icon{
+      font-size:2.2rem;
+      margin-bottom:18px;
+      display:block;
+    }
+
+    .training-name{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.35rem;
+      font-weight:300;
+      margin-bottom:10px;
+    }
+
+    .training-desc{
+      font-size:.76rem;
+      opacity:.55;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .training-duration{
+      font-size:.58rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:5px;
+    }
+
+    .training-fee{
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.2rem;
+      color:var(--gold-light);
+    }
+
+    .training-cta{
+      margin-top:42px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+    }
+
+    .btn-primary,
+    .btn-outline{
+      display:inline-block;
+      padding:15px 30px;
+      font-size:.7rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      transition:.3s;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#000;
+      font-weight:600;
+    }
+
+    .btn-primary:hover{
+      background:var(--gold-light);
+      transform:translateY(-2px);
+    }
+
+    .btn-outline{
+      border:1px solid rgba(245,240,232,0.32);
+      color:var(--white);
+    }
+
+    .btn-outline:hover{
+      border-color:var(--gold);
+      color:var(--gold);
+      transform:translateY(-2px);
+    }
+
+    .training-note{
+      margin-top:22px;
+      font-size:.82rem;
+      line-height:1.9;
+      opacity:.65;
+      max-width:760px;
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      background:#080808;
+      padding:24px;
+      text-align:center;
+    }
+
+    .footer-copy{
+      font-size:.68rem;
+      letter-spacing:.12em;
+      opacity:.45;
+      text-transform:uppercase;
+    }
+
+    @media(max-width:900px){
+      nav{
+        padding:16px 18px;
+        flex-direction:column;
+        gap:14px;
+      }
+
+      .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .page-header,
+      .content{
+        padding-left:22px;
+        padding-right:22px;
+      }
+
+      .training-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:640px){
+      .brand-text{
+        font-size:1rem;
+        letter-spacing:.12em;
+      }
+
+      .training-grid{
+        grid-template-columns:1fr;
+      }
+
+      .training-cta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .btn-primary,
+      .btn-outline{
+        width:100%;
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="brand">
+      <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="brand-logo">
+      <div class="brand-text">Chinhari <span>Models</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="training.html" class="active">Training</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-header">
+    <div class="section-label">Training Academy</div>
+    <h1 class="page-title">Join Our <em>Training Academy</em></h1>
+    <p class="page-subtext">
+      Chinhari Models Training Academy aspiring models aur performers ke liye ek focused platform hai jahan confidence, grooming, runway skills aur personality development par professional guidance di jaati hai.
+    </p>
+  </section>
+
+  <section class="content">
+    <p class="training-intro">
+      Hamare training modules beginners aur aspiring contestants dono ke liye design kiye gaye hain, taaki woh stage, fashion, camera aur presentation world me strong foundation bana saken.
+    </p>
+
+    <div class="training-grid">
+      <div class="training-card">
+        <span class="training-icon">👗</span>
+        <div class="training-name">Ramp Walk & Runway</div>
+        <div class="training-desc">Master the art of ramp walking with perfect posture, turns, and expressions.</div>
+        <div class="training-duration">Duration: 4 Weeks</div>
+        <div class="training-fee">₹ 5,000 / batch</div>
+      </div>
+
+      <div class="training-card">
+        <span class="training-icon">📸</span>
+        <div class="training-name">Portfolio & Shoot Prep</div>
+        <div class="training-desc">Learn camera angles, expressions, poses, and styling for professional shoots.</div>
+        <div class="training-duration">Duration: 3 Weeks</div>
+        <div class="training-fee">₹ 4,500 / batch</div>
+      </div>
+
+      <div class="training-card">
+        <span class="training-icon">💄</span>
+        <div class="training-name">Grooming & Personality</div>
+        <div class="training-desc">Complete grooming, etiquette, public speaking, and personality development.</div>
+        <div class="training-duration">Duration: 3 Weeks</div>
+        <div class="training-fee">₹ 4,000 / batch</div>
+      </div>
+    </div>
+
+    <div class="training-cta">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform" target="_blank" class="btn-primary">Join Chinhari Training Academy</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform" target="_blank" class="btn-outline">Open Registration Form</a>
+    </div>
+
+    <p class="training-note">
+      Registration Google Form me open hoga aur saara data direct Google Sheet me save hoga. Photo aur payment screenshot bhi wahi submit kiya ja sakta hai.
+    </p>
+  </section>
+
+  <footer>
+    <div class="footer-copy">© 2026 Chinhari Models. All Rights Reserved.</div>
+  </footer>
+
+</body>
+</html>
