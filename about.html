@@ -4,411 +4,227 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us - Chinhari Models</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/jpeg" href="images/chinhari-logo.jpg">
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root{
-      --gold:#c9a84c;
-      --gold-light:#e8cc80;
-      --black:#0a0a0a;
-      --dark:#111111;
-      --dark2:#1a1a1a;
-      --white:#f5f0e8;
-      --border:rgba(201,168,76,0.25);
+    /* Page Specific Styles */
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 70px;
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 20px;
     }
 
-    body{
-      background:var(--black);
-      color:var(--white);
-      font-family:'Montserrat',sans-serif;
-      overflow-x:hidden;
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
     }
 
-    a{
-      text-decoration:none;
-      color:inherit;
+    .feature-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+      transition: transform var(--transition);
     }
 
-    nav{
-      position:sticky;
-      top:0;
-      z-index:100;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:18px 44px;
-      background:rgba(10,10,10,0.96);
-      border-bottom:1px solid var(--border);
+    .feature-item:hover {
+      transform: translateX(10px);
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
+    .feature-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--gold-light);
+      text-transform: uppercase;
     }
 
-    .brand-logo{
-      width:50px;
-      height:50px;
-      object-fit:contain;
-      background:#000;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:5px;
+    .feature-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    .brand-text{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.3rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
+    .about-card {
+      background: rgba(25, 25, 25, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 60px 50px;
+      position: relative;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .brand-text span{
-      color:var(--gold);
+    .about-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: 0.15;
+      position: absolute;
+      top: 10px;
+      left: 30px;
+      line-height: 1;
     }
 
-    .nav-links{
-      display:flex;
-      list-style:none;
-      gap:24px;
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: var(--gold-light);
     }
 
-    .nav-links a{
-      font-size:.68rem;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      opacity:.76;
-      transition:.3s;
-      position:relative;
+    .about-quote-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-5px;
-      height:1px;
-      background:var(--gold);
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:.3s;
+    .founder-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 80px;
+      margin-bottom: 80px;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active{
-      color:var(--gold-light);
-      opacity:1;
+    .founder-badge {
+      position: absolute;
+      bottom: -15px;
+      left: 20px;
+      background: var(--gold);
+      color: var(--black);
+      padding: 10px 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+      z-index: 2;
     }
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after{
-      transform:scaleX(1);
+    .founder-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+      color: var(--gold-light);
     }
 
-    .page-header{
-      padding:90px 48px 40px;
-      background:
-        radial-gradient(circle at top center, rgba(201,168,76,0.16), transparent 30%),
-        linear-gradient(135deg,#0a0a0a 0%,#181107 45%,#0a0a0a 100%);
+    .founder-role {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
     }
 
-    .section-label{
-      font-size:.65rem;
-      letter-spacing:.35em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:16px;
+    .founder-socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
     }
 
-    .page-title{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.8rem, 6vw, 4.8rem);
-      font-weight:300;
-      line-height:1.05;
-      margin-bottom:18px;
+    .founder-social-btn {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 25px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      border-radius: 2px;
     }
 
-    .page-title em{
-      font-style:italic;
-      color:var(--gold-light);
+    .founder-social-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.05);
+      transform: translateY(-2px);
     }
 
-    .page-subtext{
-      max-width:760px;
-      font-size:.92rem;
-      line-height:2;
-      opacity:.72;
+    .team-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 80px;
     }
 
-    .content{
-      padding:70px 48px 90px;
-      background:var(--dark);
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
     }
 
-    .about-intro{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:60px;
-      align-items:center;
-      margin-bottom:70px;
+    .team-card {
+      text-align: center;
+      background: var(--dark2);
+      padding: 30px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: all var(--transition);
     }
 
-    .about-text p{
-      font-size:.9rem;
-      line-height:2;
-      opacity:.72;
-      margin-bottom:18px;
+    .team-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--border);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .about-features{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      margin-top:30px;
+    .team-img-wrap {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      padding: 5px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
 
-    .feature-item{
-      border-left:2px solid var(--gold);
-      padding-left:14px;
+    .team-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(20%);
+      transition: filter var(--transition);
     }
 
-    .feature-title{
-      font-size:.72rem;
-      letter-spacing:.1em;
-      font-weight:600;
-      margin-bottom:4px;
-      color:var(--gold-light);
+    .team-card:hover .team-img {
+      filter: grayscale(0%);
     }
 
-    .feature-desc{
-      font-size:.72rem;
-      opacity:.58;
-      line-height:1.6;
+    .team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--white);
     }
 
-    .about-card{
-      background:var(--dark2);
-      border:1px solid var(--border);
-      padding:48px;
-      position:relative;
+    .team-post {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
-    .about-card::before{
-      content:'"';
-      font-family:'Cormorant Garamond',serif;
-      font-size:8rem;
-      color:var(--gold);
-      opacity:.15;
-      position:absolute;
-      top:8px;
-      left:24px;
-      line-height:1;
-    }
-
-    .about-quote{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.45rem;
-      font-style:italic;
-      line-height:1.5;
-      margin-bottom:20px;
-    }
-
-    .about-quote-author{
-      font-size:.65rem;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      color:var(--gold);
-    }
-
-    .founder-section{
-      border-top:1px solid var(--border);
-      padding-top:60px;
-      margin-bottom:70px;
-    }
-
-    .founder-grid{
-      display:grid;
-      grid-template-columns:260px 1fr;
-      gap:56px;
-      align-items:start;
-      margin-top:34px;
-    }
-
-    .founder-img-wrap{
-      position:relative;
-    }
-
-    .founder-img{
-      width:260px;
-      height:320px;
-      object-fit:cover;
-      object-position:center;
-      display:block;
-      border:1px solid var(--border);
-    }
-
-    .founder-badge{
-      position:absolute;
-      bottom:-14px;
-      left:16px;
-      background:var(--gold);
-      color:#000;
-      padding:7px 16px;
-      font-size:.6rem;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      font-weight:600;
-    }
-
-    .founder-name{
-      font-family:'Cormorant Garamond',serif;
-      font-size:2.2rem;
-      font-weight:300;
-      margin-bottom:6px;
-    }
-
-    .founder-role{
-      font-size:.65rem;
-      letter-spacing:.25em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:24px;
-    }
-
-    .founder-bio p{
-      font-size:.87rem;
-      line-height:2;
-      opacity:.72;
-      margin-bottom:14px;
-    }
-
-    .founder-socials{
-      display:flex;
-      gap:12px;
-      margin-top:24px;
-      flex-wrap:wrap;
-    }
-
-    .founder-social-btn{
-      border:1px solid var(--border);
-      padding:8px 18px;
-      font-size:.6rem;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      transition:.3s;
-    }
-
-    .founder-social-btn:hover{
-      border-color:var(--gold);
-      color:var(--gold);
-    }
-
-    .team-section{
-      border-top:1px solid var(--border);
-      padding-top:56px;
-    }
-
-    .team-grid{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:18px;
-      margin-top:34px;
-    }
-
-    .team-card{
-      text-align:center;
-    }
-
-    .team-img{
-      width:100%;
-      aspect-ratio:1;
-      object-fit:cover;
-      object-position:center;
-      display:block;
-      border:1px solid var(--border);
-      margin-bottom:12px;
-    }
-
-    .team-name{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1rem;
-      font-weight:300;
-      margin-bottom:4px;
-    }
-
-    .team-post{
-      font-size:.58rem;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      color:var(--gold);
-      opacity:.85;
-    }
-
-    footer{
-      border-top:1px solid var(--border);
-      background:#080808;
-      padding:24px;
-      text-align:center;
-    }
-
-    .footer-copy{
-      font-size:.68rem;
-      letter-spacing:.12em;
-      opacity:.45;
-      text-transform:uppercase;
-    }
-
-    @media(max-width:900px){
-      nav{
-        padding:16px 18px;
-        flex-direction:column;
-        gap:14px;
-      }
-
-      .nav-links{
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-
-      .page-header,
-      .content{
-        padding-left:22px;
-        padding-right:22px;
-      }
-
-      .about-intro,
-      .founder-grid{
-        grid-template-columns:1fr;
-        gap:34px;
-      }
-
-      .team-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .founder-img{
-        width:100%;
-        max-width:260px;
-      }
-    }
-
-    @media(max-width:640px){
-      .about-features,
-      .team-grid{
-        grid-template-columns:1fr;
-      }
-
-      .brand-text{
-        font-size:1rem;
-        letter-spacing:.12em;
-      }
+    @media(max-width: 900px) {
+      .about-intro { grid-template-columns: 1fr; gap: 40px; }
+      .about-features { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -430,64 +246,65 @@
   </nav>
 
   <section class="page-header">
-    <div class="section-label">Our Story</div>
-    <h1 class="page-title">Redefining <em>Elegance</em><br>in Chhattisgarh</h1>
-    <p class="page-subtext">
-      Chinhari Models Chhattisgarh ki talent, style aur cultural identity ko ek strong platform dene ke mission ke saath aage badh raha hai.
-    </p>
+    <div class="animate-up">
+      <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="hero-logo" style="width: 80px; height: 80px; margin-bottom: 20px;">
+      <div class="section-label" style="justify-content: center;">Chinhari Models</div>
+      <h1 class="page-title">Redefining <em>Elegance</em><br>in Chhattisgarh</h1>
+      <p class="section-text" style="margin: 0 auto;">
+        Chinhari Models Chhattisgarh ki talent, style aur cultural identity ko ek strong platform dene ke mission ke saath aage badh raha hai.
+      </p>
+    </div>
   </section>
 
-  <section class="content">
+  <section class="section section-dark">
     <div class="about-intro">
-      <div class="about-text">
+      <div class="about-text animate-up">
         <p>Chinhari Models is Chhattisgarh's trusted modeling and event management agency. We have become a launchpad for talent and a creative force behind fashion events, campaigns, and pageant-driven experiences across the state.</p>
         <p>From intimate brand activations to grand fashion showcases, we bring together talent, presentation, grooming, and execution with a vision rooted in Chhattisgarhi pride and modern professionalism.</p>
 
         <div class="about-features">
-          <div class="feature-item">
+          <div class="feature-item animate-up delay-1">
             <div class="feature-title">Talent Management</div>
             <div class="feature-desc">Curating and promoting emerging and professional models</div>
           </div>
-          <div class="feature-item">
+          <div class="feature-item animate-up delay-2">
             <div class="feature-title">Event Production</div>
             <div class="feature-desc">End-to-end event planning, coordination and execution</div>
           </div>
-          <div class="feature-item">
+          <div class="feature-item animate-up delay-3">
             <div class="feature-title">Brand Campaigns</div>
             <div class="feature-desc">Connecting brands with the right talent and presentation</div>
           </div>
-          <div class="feature-item">
+          <div class="feature-item animate-up delay-1">
             <div class="feature-title">Model Training</div>
             <div class="feature-desc">Professional grooming, confidence and pageant coaching</div>
           </div>
         </div>
       </div>
 
-      <div class="about-card">
+      <div class="about-card animate-up delay-2">
         <p class="about-quote">We don't just represent models. We shape identity, confidence, and a cultural legacy that carries Chhattisgarh forward.</p>
         <div class="about-quote-author">— Chinhari Models</div>
       </div>
     </div>
 
     <div class="founder-section">
-      <div class="section-label">Meet the Founder</div>
+      <div class="section-label animate-up">Meet the Founder</div>
 
       <div class="founder-grid">
-        <div class="founder-img-wrap">
-          <img class="founder-img" src="images/founder.jpeg" alt="Prem Sai Bhagat">
+        <div class="founder-img-wrapper animate-up delay-1">
+          <img src="images/founder.jpeg" alt="Prem Sai Bhagat">
           <div class="founder-badge">Founder & Director</div>
         </div>
 
-        <div class="founder-info">
+        <div class="founder-content animate-up delay-2">
           <div class="founder-name">Mr. Prem Sai Bhagat Sir</div>
           <div class="founder-role">Founder & Director, Chinhari Models</div>
 
-          <div class="founder-bio">
-            <p>Prem Sai Bhagat is the Founder and Director of Chinhari Models and serves as Chhattisgarh's first State Pageant Director.</p>
-            <p>He began his journey at the state level within Chhattisgarh, where he won the title of Mister Fame of Chhattisgarh 2023. Notably, he is the first male model from the Raigarh district, a historic distinction.</p>
-            <p>He aspires to elevate Chhattisgarhi art and culture, as well as the state's pageant industry, to an entirely new level, thereby ensuring that Chhattisgarh's cultural heritage leaves a distinct and lasting impression on the global stage.</p>
-            <p>Furthermore, he aims to provide a superior pageant platform for future generations of models and contestants, with the ultimate goal of establishing Chhattisgarh's reputation in the pageant world at both national and international levels.</p>
-          </div>
+          <p>Prem Sai Bhagat is the Founder and Director of Chinhari Models and serves as Chhattisgarh's first State Pageant Director.</p>
+          <p>He began his journey at the state level within Chhattisgarh, where he won the title of Mister Fame of Chhattisgarh 2023. Notably, he is the first male model from the Raigarh district, a historic distinction.</p>
+          <p>He aspires to elevate Chhattisgarhi art and culture, as well as the state's pageant industry, to an entirely new level, thereby ensuring that Chhattisgarh's cultural heritage leaves a distinct and lasting impression on the global stage.</p>
+          <p>Furthermore, he aims to provide a superior pageant platform for future generations of models and contestants, with the ultimate goal of establishing Chhattisgarh's reputation in the pageant world at both national and international levels.</p>
 
           <div class="founder-socials">
             <a href="https://instagram.com/chinharimodels" target="_blank" class="founder-social-btn">Instagram</a>
@@ -498,36 +315,37 @@
     </div>
 
     <div class="team-section">
-      <div class="section-label">Our Team</div>
+      <div class="section-label animate-up">Our Team</div>
+      <h2 class="section-title animate-up delay-1">The Creative <em>Minds</em></h2>
 
       <div class="team-grid">
-        <div class="team-card">
-          <img class="team-img" src="images/anupama.jpeg" alt="Miss Anupama Ratnakar Mam">
-          <div class="team-name">Miss Anupama Ratnakar Mam</div>
+        <div class="team-card animate-up delay-1">
+          <div class="team-img-wrap"><img class="team-img" src="images/anupama.jpeg" alt="Miss Anupama Ratnakar Mam"></div>
+          <div class="team-name">Miss Anupama Ratnakar</div>
           <div class="team-post">Head Manager & Co-Director</div>
         </div>
 
-        <div class="team-card">
-          <img class="team-img" src="images/rohan.jpeg" alt="Mr. Rohan Dhiwar Sir">
-          <div class="team-name">Mr. Rohan Dhiwar Sir</div>
+        <div class="team-card animate-up delay-2">
+          <div class="team-img-wrap"><img class="team-img" src="images/rohan.jpeg" alt="Mr. Rohan Dhiwar Sir"></div>
+          <div class="team-name">Mr. Rohan Dhiwar</div>
           <div class="team-post">Agency Assistant</div>
         </div>
 
-        <div class="team-card">
-          <img class="team-img" src="images/pooja.jpeg" alt="Miss Pooja Tandekar Mam">
-          <div class="team-name">Miss Pooja Tandekar Mam</div>
+        <div class="team-card animate-up delay-3">
+          <div class="team-img-wrap"><img class="team-img" src="images/pooja.jpeg" alt="Miss Pooja Tandekar Mam"></div>
+          <div class="team-name">Miss Pooja Tandekar</div>
           <div class="team-post">Agency Assistant</div>
         </div>
 
-        <div class="team-card">
-          <img class="team-img" src="images/shivlal.jpeg" alt="Mr. Shivlal Minj Sir">
-          <div class="team-name">Mr. Shivlal Minj Sir</div>
+        <div class="team-card animate-up delay-1">
+          <div class="team-img-wrap"><img class="team-img" src="images/shivlal.jpeg" alt="Mr. Shivlal Minj Sir"></div>
+          <div class="team-name">Mr. Shivlal Minj</div>
           <div class="team-post">Agency Assistant</div>
         </div>
 
-        <div class="team-card">
-          <img class="team-img" src="images/durgesh.jpeg" alt="Mr. Durgesh Kashyap Sir">
-          <div class="team-name">Mr. Durgesh Kashyap Sir</div>
+        <div class="team-card animate-up delay-2">
+          <div class="team-img-wrap"><img class="team-img" src="images/durgesh.jpeg" alt="Mr. Durgesh Kashyap Sir"></div>
+          <div class="team-name">Mr. Durgesh Kashyap</div>
           <div class="team-post">Technical Manager</div>
         </div>
       </div>
@@ -535,8 +353,60 @@
   </section>
 
   <footer>
-    <div class="footer-copy">© 2026 Chinhari Models. All Rights Reserved.</div>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">
+          <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="footer-brand-logo">
+          <div class="footer-brand-text">Chinhari <span>Models</span></div>
+        </a>
+        <p class="footer-tagline">Chhattisgarh ki talent, identity aur premium presentation ko ek strong platform dene wala modeling and event brand.</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="training.html">Training Academy</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Connect</div>
+        <div class="footer-social">
+          <a href="https://instagram.com/chinharimodels" target="_blank">Instagram</a>
+          <a href="https://wa.me/919238137071" target="_blank">WhatsApp</a>
+          <a href="mailto:chinharimodels@gmail.com">Email Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Chinhari Models. All Rights Reserved.
+    </div>
   </footer>
 
+  <script>
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-up').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>

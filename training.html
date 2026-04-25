@@ -4,337 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Training - Chinhari Models</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/jpeg" href="images/chinhari-logo.jpg">
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root{
-      --gold:#c9a84c;
-      --gold-light:#e8cc80;
-      --black:#0a0a0a;
-      --dark:#111111;
-      --dark2:#1a1a1a;
-      --white:#f5f0e8;
-      --border:rgba(201,168,76,0.25);
+    /* Page Specific Styles */
+    .training-intro {
+      font-size: 1rem;
+      opacity: 0.8;
+      line-height: 1.9;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      text-align: center;
+      color: var(--muted);
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    .training-cta {
+      margin-top: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
     }
 
-    body{
-      background:var(--black);
-      color:var(--white);
-      font-family:'Montserrat',sans-serif;
-      overflow-x:hidden;
+    .training-note {
+      margin-top: 40px;
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 760px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 20px;
+      border: 1px dashed rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
     }
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
-
-    nav{
-      position:sticky;
-      top:0;
-      z-index:100;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:18px 44px;
-      background:rgba(10,10,10,0.96);
-      border-bottom:1px solid var(--border);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .brand-logo{
-      width:50px;
-      height:50px;
-      object-fit:contain;
-      background:#000;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:5px;
-    }
-
-    .brand-text{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.3rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-    }
-
-    .brand-text span{
-      color:var(--gold);
-    }
-
-    .nav-links{
-      display:flex;
-      list-style:none;
-      gap:24px;
-    }
-
-    .nav-links a{
-      font-size:.68rem;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      opacity:.76;
-      transition:.3s;
-      position:relative;
-    }
-
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-5px;
-      height:1px;
-      background:var(--gold);
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active{
-      color:var(--gold-light);
-      opacity:1;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after{
-      transform:scaleX(1);
-    }
-
-    .page-header{
-      padding:90px 48px 40px;
-      background:
-        radial-gradient(circle at top center, rgba(201,168,76,0.16), transparent 30%),
-        linear-gradient(135deg,#0a0a0a 0%,#181107 45%,#0a0a0a 100%);
-    }
-
-    .section-label{
-      font-size:.65rem;
-      letter-spacing:.35em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:16px;
-    }
-
-    .page-title{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(2.8rem, 6vw, 4.8rem);
-      font-weight:300;
-      line-height:1.05;
-      margin-bottom:18px;
-    }
-
-    .page-title em{
-      font-style:italic;
-      color:var(--gold-light);
-    }
-
-    .page-subtext{
-      max-width:760px;
-      font-size:.92rem;
-      line-height:2;
-      opacity:.72;
-    }
-
-    .content{
-      padding:70px 48px 90px;
-      background:var(--black);
-    }
-
-    .training-intro{
-      font-size:.88rem;
-      opacity:.65;
-      line-height:1.9;
-      max-width:680px;
-      margin-bottom:44px;
-    }
-
-    .training-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:2px;
-    }
-
-    .training-card{
-      background:var(--dark2);
-      padding:38px 30px;
-      position:relative;
-      overflow:hidden;
-      transition:.3s;
-    }
-
-    .training-card::before{
-      content:"";
-      position:absolute;
-      bottom:0;
-      left:0;
-      right:0;
-      height:2px;
-      background:var(--gold);
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:.4s;
-    }
-
-    .training-card:hover::before{
-      transform:scaleX(1);
-    }
-
-    .training-card:hover{
-      background:#1e1a0e;
-      transform:translateY(-4px);
-    }
-
-    .training-icon{
-      font-size:2.2rem;
-      margin-bottom:18px;
-      display:block;
-    }
-
-    .training-name{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.35rem;
-      font-weight:300;
-      margin-bottom:10px;
-    }
-
-    .training-desc{
-      font-size:.76rem;
-      opacity:.55;
-      line-height:1.8;
-      margin-bottom:20px;
-    }
-
-    .training-duration{
-      font-size:.58rem;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:5px;
-    }
-
-    .training-fee{
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.2rem;
-      color:var(--gold-light);
-    }
-
-    .training-cta{
-      margin-top:42px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:18px;
-      align-items:center;
-    }
-
-    .btn-primary,
-    .btn-outline{
-      display:inline-block;
-      padding:15px 30px;
-      font-size:.7rem;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      transition:.3s;
-    }
-
-    .btn-primary{
-      background:var(--gold);
-      color:#000;
-      font-weight:600;
-    }
-
-    .btn-primary:hover{
-      background:var(--gold-light);
-      transform:translateY(-2px);
-    }
-
-    .btn-outline{
-      border:1px solid rgba(245,240,232,0.32);
-      color:var(--white);
-    }
-
-    .btn-outline:hover{
-      border-color:var(--gold);
-      color:var(--gold);
-      transform:translateY(-2px);
-    }
-
-    .training-note{
-      margin-top:22px;
-      font-size:.82rem;
-      line-height:1.9;
-      opacity:.65;
-      max-width:760px;
-    }
-
-    footer{
-      border-top:1px solid var(--border);
-      background:#080808;
-      padding:24px;
-      text-align:center;
-    }
-
-    .footer-copy{
-      font-size:.68rem;
-      letter-spacing:.12em;
-      opacity:.45;
-      text-transform:uppercase;
-    }
-
-    @media(max-width:900px){
-      nav{
-        padding:16px 18px;
-        flex-direction:column;
-        gap:14px;
-      }
-
-      .nav-links{
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-
-      .page-header,
-      .content{
-        padding-left:22px;
-        padding-right:22px;
-      }
-
-      .training-grid{
-        grid-template-columns:1fr 1fr;
-      }
-    }
-
-    @media(max-width:640px){
-      .brand-text{
-        font-size:1rem;
-        letter-spacing:.12em;
-      }
-
-      .training-grid{
-        grid-template-columns:1fr;
-      }
-
-      .training-cta{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .btn-primary,
-      .btn-outline{
-        width:100%;
-        text-align:center;
-      }
+    /* Override training grid for this page specifically to make it larger */
+    .training-grid {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
     }
   </style>
 </head>
@@ -356,57 +68,215 @@
   </nav>
 
   <section class="page-header">
-    <div class="section-label">Training Academy</div>
-    <h1 class="page-title">Join Our <em>Training Academy</em></h1>
-    <p class="page-subtext">
-      Chinhari Models Training Academy aspiring models aur performers ke liye ek focused platform hai jahan confidence, grooming, runway skills aur personality development par professional guidance di jaati hai.
-    </p>
+    <div class="animate-up">
+      <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="hero-logo" style="width: 80px; height: 80px; margin-bottom: 20px;">
+      <div class="section-label" style="justify-content: center;">Chinhari Models</div>
+      <h1 class="page-title">Join Our <em>Training Academy</em></h1>
+      <p class="section-text" style="margin: 0 auto;">
+        Chinhari Models Training Academy aspiring models aur performers ke liye ek focused platform hai jahan confidence, grooming, runway skills aur personality development par professional guidance di jaati hai.
+      </p>
+    </div>
   </section>
 
-  <section class="content">
-    <p class="training-intro">
+  <section class="section section-dark">
+    <p class="training-intro animate-up">
       Hamare training modules beginners aur aspiring contestants dono ke liye design kiye gaye hain, taaki woh stage, fashion, camera aur presentation world me strong foundation bana saken.
     </p>
 
     <div class="training-grid">
-      <div class="training-card">
-        <span class="training-icon">👗</span>
-        <div class="training-name">Ramp Walk & Runway</div>
-        <div class="training-desc">Master the art of ramp walking with perfect posture, turns, and expressions.</div>
-        <div class="training-duration">Duration: 4 Weeks</div>
+      <div class="training-card animate-up delay-1">
+        <h3 style="font-size: 3rem; margin-bottom: 20px;">👗</h3>
+        <h3>Ramp Walk & Runway</h3>
+        <p>Master the art of ramp walking with perfect posture, turns, and expressions.</p>
+        <div class="training-meta">Duration: 4 Weeks</div>
         <div class="training-fee">₹ 5,000 / batch</div>
       </div>
 
-      <div class="training-card">
-        <span class="training-icon">📸</span>
-        <div class="training-name">Portfolio & Shoot Prep</div>
-        <div class="training-desc">Learn camera angles, expressions, poses, and styling for professional shoots.</div>
-        <div class="training-duration">Duration: 3 Weeks</div>
+      <div class="training-card animate-up delay-2">
+        <h3 style="font-size: 3rem; margin-bottom: 20px;">📸</h3>
+        <h3>Portfolio & Shoot Prep</h3>
+        <p>Learn camera angles, expressions, poses, and styling for professional shoots.</p>
+        <div class="training-meta">Duration: 3 Weeks</div>
         <div class="training-fee">₹ 4,500 / batch</div>
       </div>
 
-      <div class="training-card">
-        <span class="training-icon">💄</span>
-        <div class="training-name">Grooming & Personality</div>
-        <div class="training-desc">Complete grooming, etiquette, public speaking, and personality development.</div>
-        <div class="training-duration">Duration: 3 Weeks</div>
+      <div class="training-card animate-up delay-3">
+        <h3 style="font-size: 3rem; margin-bottom: 20px;">💄</h3>
+        <h3>Grooming & Personality</h3>
+        <p>Complete grooming, etiquette, public speaking, and personality development.</p>
+        <div class="training-meta">Duration: 3 Weeks</div>
         <div class="training-fee">₹ 4,000 / batch</div>
       </div>
     </div>
 
-    <div class="training-cta">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform" target="_blank" class="btn-primary">Join Chinhari Training Academy</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc31NLc2hlOHgemZdve4onCdiqF7i0ww35V8sSW3qlImOiuKg/viewform" target="_blank" class="btn-outline">Open Registration Form</a>
+    <div class="registration-form animate-up delay-2">
+      <div class="form-header">
+        <h2>Registration Form</h2>
+        <p>Fill out the details below to join the academy</p>
+      </div>
+      <form id="academyForm" onsubmit="sendToWhatsApp(event)">
+        <div class="form-row">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="waName" placeholder="Your full name" required>
+          </div>
+          <div class="input-group">
+            <label>Age / Date of Birth</label>
+            <input type="text" id="waAge" placeholder="e.g. 22 / DD-MM-YYYY" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Gender</label>
+            <select id="waGender" required>
+              <option value="" disabled selected>Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Contact Number</label>
+            <input type="tel" id="waContact" placeholder="WhatsApp / Calling No." required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>Height (in cm or ft)</label>
+            <input type="text" id="waHeight" placeholder="e.g. 5'8&quot; or 172cm" required>
+          </div>
+          <div class="input-group">
+            <label>Weight (kg)</label>
+            <input type="text" id="waWeight" placeholder="e.g. 65kg" required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>City & Address</label>
+          <input type="text" id="waCity" placeholder="Current city & full address" required>
+        </div>
+        <div class="input-group">
+          <label>Interested In (Multiple Selection Allowed)</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="waInterest" value="Ramp Walk"> Ramp Walk & Runway</label>
+            <label><input type="checkbox" name="waInterest" value="Photoshoot"> Portfolio Photoshoot</label>
+            <label><input type="checkbox" name="waInterest" value="Pageant"> Pageant Grooming</label>
+            <label><input type="checkbox" name="waInterest" value="Acting"> Acting & Promotion</label>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Experience Level</label>
+          <select id="waExp" required>
+            <option value="" disabled selected>Select Experience</option>
+            <option>Fresher / Beginner</option>
+            <option>Intermediate (Done some shows/shoots)</option>
+            <option>Professional</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Upload Recent Photo / Portfolio (Optional)</label>
+          <input type="file" id="waFile" accept="image/*" class="file-input">
+          <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach them manually after the chat opens.</div>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px; border: none; font-size: 0.8rem;">Submit via WhatsApp</button>
+      </form>
     </div>
-
-    <p class="training-note">
-      Registration Google Form me open hoga aur saara data direct Google Sheet me save hoga. Photo aur payment screenshot bhi wahi submit kiya ja sakta hai.
-    </p>
   </section>
 
   <footer>
-    <div class="footer-copy">© 2026 Chinhari Models. All Rights Reserved.</div>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">
+          <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="footer-brand-logo">
+          <div class="footer-brand-text">Chinhari <span>Models</span></div>
+        </a>
+        <p class="footer-tagline">Chhattisgarh ki talent, identity aur premium presentation ko ek strong platform dene wala modeling and event brand.</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="training.html">Training Academy</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Connect</div>
+        <div class="footer-social">
+          <a href="https://instagram.com/chinharimodels" target="_blank">Instagram</a>
+          <a href="https://wa.me/919238137071" target="_blank">WhatsApp</a>
+          <a href="mailto:chinharimodels@gmail.com">Email Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Chinhari Models. All Rights Reserved.
+    </div>
   </footer>
 
+  <script>
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-up').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+
+    // WhatsApp API Redirect Function
+    function sendToWhatsApp(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('waName').value;
+      const age = document.getElementById('waAge').value;
+      const gender = document.getElementById('waGender').value;
+      const contact = document.getElementById('waContact').value;
+      const height = document.getElementById('waHeight').value;
+      const weight = document.getElementById('waWeight').value;
+      const city = document.getElementById('waCity').value;
+      
+      // Get all checked interests
+      const checkboxes = document.querySelectorAll('input[name="waInterest"]:checked');
+      let interests = [];
+      checkboxes.forEach((cb) => interests.push(cb.value));
+      const interestStr = interests.length > 0 ? interests.join(", ") : "None Selected";
+      
+      const exp = document.getElementById('waExp').value;
+      
+      // Chinhari Models official WhatsApp number
+      const phone = "919238137071";
+      
+      let message = `*New Academy Registration*\n\n`;
+      message += `*Name:* ${name}\n`;
+      message += `*Age/DOB:* ${age}\n`;
+      message += `*Gender:* ${gender}\n`;
+      message += `*Contact:* ${contact}\n`;
+      message += `*Height:* ${height}\n`;
+      message += `*Weight:* ${weight}\n`;
+      message += `*City/Address:* ${city}\n`;
+      message += `*Interested In:* ${interestStr}\n`;
+      message += `*Experience Level:* ${exp}\n`;
+      message += `\n_Please review my application. I will attach my photos here._`;
+      
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Redirect to WhatsApp
+      window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+    }
+  </script>
 </body>
 </html>
