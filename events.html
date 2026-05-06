@@ -198,7 +198,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="events.html" class="active">Events</a></li>
       <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="training.html">Training</a></li>
+      <li><a href="training.html">Chinhari Academy</a></li>
     </ul>
   </nav>
 
@@ -220,62 +220,70 @@
     </div>
 
     <div class="events-panel active" id="panel-upcoming">
-      <div class="event-item animate-up delay-1">
+      <div class="event-item animate-up delay-1 event-clickable" onclick="openEventModal('images/bsp.jpeg')">
         <div>
-          <div class="event-date-day">15</div>
-          <div class="event-date-month">Apr 2025</div>
+          <div class="event-date-day">10</div>
+          <div class="event-date-month">May 2026</div>
         </div>
         <div>
-          <div class="event-type">Fashion Show</div>
-          <div class="event-name">Chhattisgarh Fashion Week 2025</div>
-          <div class="event-location">Bilaspur Convention Centre, Bilaspur</div>
+          <div class="event-type">Pageant & Showcase</div>
+          <div class="event-name" style="margin-bottom: 5px;">Model Face of Bilaspur 2026</div>
+          <div class="event-location" style="color: var(--gold-light);">City 36 Mall, Bilaspur | Time: 3:00 PM</div>
+          
+          <div style="margin-top: 15px; font-size: 0.9rem; color: var(--muted); line-height: 1.8;">
+            A golden opportunity to showcase your talent, style, and confidence! Participate in the biggest fashion pageant of the city, walk the grand runway, and become the new face of Bilaspur's fashion industry. Grand prizes, media coverage, and professional grooming sessions included.
+          </div>
+          
+          <div style="margin-top: 20px;">
+            <a href="training.html" class="btn-outline" style="padding: 12px 25px; font-size: 0.7rem; border-color: var(--gold); color: var(--gold);" onclick="event.stopPropagation();">Register via Chinhari Academy</a>
+          </div>
         </div>
         <div>
-          <span class="badge badge-open">Open</span>
-        </div>
-      </div>
-
-      <div class="event-item animate-up delay-2">
-        <div>
-          <div class="event-date-day">22</div>
-          <div class="event-date-month">Apr 2025</div>
-        </div>
-        <div>
-          <div class="event-type">Brand Campaign</div>
-          <div class="event-name">Summer Brand Photoshoot</div>
-          <div class="event-location">Studio 7, Bilaspur</div>
-        </div>
-        <div>
-          <span class="badge badge-soon">Filling Fast</span>
+          <span class="badge badge-soon">View Poster</span>
         </div>
       </div>
     </div>
 
     <div class="events-panel" id="panel-past">
-      <div class="event-item">
+      <div class="event-item animate-up delay-1">
         <div>
-          <div class="event-date-day">18</div>
-          <div class="event-date-month">Jan 2025</div>
+          <div class="event-date-day">01</div>
+          <div class="event-date-month">Mar 2024</div>
         </div>
         <div>
-          <div class="event-type">Fashion Show</div>
-          <div class="event-name">Winter Couture Night 2025</div>
-          <div class="event-location">City Palace, Bilaspur</div>
+          <div class="event-type">Fashion Showcase</div>
+          <div class="event-name">Swadesi Mela Raipur</div>
+          <div class="event-location">Raipur, Chhattisgarh</div>
         </div>
         <div>
           <span class="badge badge-past">Completed</span>
         </div>
       </div>
 
-      <div class="event-item">
+      <div class="event-item animate-up delay-2">
         <div>
-          <div class="event-date-day">05</div>
-          <div class="event-date-month">Dec 2024</div>
+          <div class="event-date-day">15</div>
+          <div class="event-date-month">Feb 2024</div>
         </div>
         <div>
-          <div class="event-type">Brand Promotion</div>
-          <div class="event-name">Festive Brand Campaign</div>
-          <div class="event-location">VR Mall, Bilaspur</div>
+          <div class="event-type">Fashion Showcase</div>
+          <div class="event-name">Swadesi Mela Bilaspur</div>
+          <div class="event-location">Bilaspur, Chhattisgarh</div>
+        </div>
+        <div>
+          <span class="badge badge-past">Completed</span>
+        </div>
+      </div>
+
+      <div class="event-item animate-up delay-3">
+        <div>
+          <div class="event-date-day">10</div>
+          <div class="event-date-month">Nov 2023</div>
+        </div>
+        <div>
+          <div class="event-type">Pageant</div>
+          <div class="event-name">Mr. & Miss Chhattisgarh</div>
+          <div class="event-location">Chhattisgarh</div>
         </div>
         <div>
           <span class="badge badge-past">Completed</span>
@@ -301,7 +309,7 @@
           <a href="about.html">About Us</a>
           <a href="events.html">Events</a>
           <a href="gallery.html">Gallery</a>
-          <a href="training.html">Training Academy</a>
+          <a href="training.html">Chinhari Academy</a>
         </div>
       </div>
 
@@ -352,6 +360,24 @@
       el.style.animationPlayState = 'paused';
       observer.observe(el);
     });
+
+    // Modal Logic
+    function openEventModal(imageSrc) {
+      document.getElementById('eventModalImg').src = imageSrc;
+      document.getElementById('eventModal').classList.add('active');
+    }
+
+    function closeEventModal() {
+      document.getElementById('eventModal').classList.remove('active');
+    }
   </script>
+
+  <!-- Image Popup Modal -->
+  <div class="modal-overlay" id="eventModal" onclick="if(event.target === this) closeEventModal()">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closeEventModal()">&times;</div>
+      <img src="" id="eventModalImg" class="modal-image" alt="Event Poster" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23111\'/><text x=\'50%25\' y=\'50%25\' fill=\'%23d4af37\' font-family=\'Arial\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Please upload bsp.jpeg</text></svg>';">
+    </div>
+  </div>
 </body>
 </html>

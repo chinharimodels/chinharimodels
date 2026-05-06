@@ -1,77 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Maintenance</title>
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chinhari Models - Premium Talent & Event Agency</title>
+  <link rel="icon" type="image/jpeg" href="images/chinhari-logo.jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Home Page Specific Styles */
+    .event-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 40px;
+      align-items: center;
+      padding: 35px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all var(--transition);
+      border-radius: 8px;
+    }
+    .event-item:hover {
+      background: rgba(255, 255, 255, 0.02);
+      transform: translateX(10px);
+      box-shadow: -5px 0 0 var(--gold);
+    }
+    .event-date-day { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; text-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+    .event-date-month { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.6; margin-top: 5px; color: var(--white); }
+    .event-type { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 600; }
+    .event-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 10px; color: var(--white); }
+    .event-location { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+    .badge { display: inline-block; padding: 8px 20px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid; border-radius: 2px; font-weight: 600; }
+    .badge-open { border-color: #4caf50; color: #4caf50; background: rgba(76, 175, 80, 0.05); }
 
-        .container {
-            background: rgba(0,0,0,0.4);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .gallery-item { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--dark2); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 6px; transition: all var(--transition); cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), filter var(--transition); filter: grayscale(20%) brightness(0.85); }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); opacity: 0; transition: opacity var(--transition); pointer-events: none; }
+    .gallery-item:hover { transform: translateY(-8px); border-color: var(--border); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); z-index: 2; }
+    .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0%) brightness(1.1); }
+    .gallery-item:hover::after { opacity: 1; }
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .loader {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #fff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-    </style>
+    @media(max-width: 900px) {
+      .event-item { grid-template-columns: 100px 1fr; gap: 20px; }
+      .event-item > div:last-child { grid-column: 1 / -1; margin-top: 10px; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    }
+    @media(max-width: 640px) {
+      .event-item { grid-template-columns: 1fr; text-align: center; gap: 15px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>🚧 Website Under Maintenance</h1>
-    <p>We’re currently working on improvements.<br>
-    Please check back soon!</p>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="brand">
+      <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="brand-logo">
+      <div class="brand-text">Chinhari <span>Models</span></div>
+    </a>
 
-    <div class="loader"></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="training.html">Chinhari Academy</a></li>
+    </ul>
+  </nav>
 
-    <div class="footer">
-        &copy; 2026 Your Website Name
+  <!-- Hero Slider -->
+  <section class="slider">
+    <div class="slide active" style="background: url('images/swadesi1.jpeg') center/cover;">
+      <div style="position: absolute; inset: 0; backdrop-filter: blur(25px); background: rgba(0,0,0,0.6);"></div>
+      <img src="images/swadesi1.jpeg" alt="Chinhari Models Showcase" style="position: relative; z-index: 2;">
     </div>
-</div>
+    <div class="slide" style="background: url('images/swadesi2.jpeg') center/cover;">
+      <div style="position: absolute; inset: 0; backdrop-filter: blur(25px); background: rgba(0,0,0,0.6);"></div>
+      <img src="images/swadesi2.jpeg" alt="Chinhari Models Fashion" style="position: relative; z-index: 2;">
+    </div>
+    <div class="slide" style="background: url('images/award1.jpeg') center/cover;">
+      <div style="position: absolute; inset: 0; backdrop-filter: blur(25px); background: rgba(0,0,0,0.6);"></div>
+      <img src="images/award1.jpeg" alt="Chinhari Models Event" style="position: relative; z-index: 2;">
+    </div>
 
+    <div class="slider-dots">
+      <div class="dot active" onclick="currentSlide(0)"></div>
+      <div class="dot" onclick="currentSlide(1)"></div>
+      <div class="dot" onclick="currentSlide(2)"></div>
+    </div>
+  </section>
+
+  <!-- Hero Copy -->
+  <section class="hero-copy">
+    <div class="hero-head animate-up">
+      <div class="hero-topline">Welcome to Chhattisgarh's Finest</div>
+      <div class="hero-subline">Premium Agency</div>
+      <h1 class="hero-main-title">Redefining <em>Elegance</em><br>and Talent</h1>
+      <div class="slogan" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); font-style: italic; margin-bottom: 20px;">एक प्रयास अपन माटी के नाम</div>
+      <p class="hero-text">We don't just represent models. We shape identity, confidence, and a cultural legacy that carries Chhattisgarh forward to national and international stages.</p>
+      
+      <div class="button-row">
+        <a href="about.html" class="btn-primary">Discover Our Story</a>
+        <a href="training.html" class="btn-outline">Join Chinhari Academy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="section section-dark">
+    <div class="section-label animate-up">Our Vision</div>
+    <h2 class="section-title animate-up delay-1">Empowering <em>Talent</em></h2>
+    
+    <div class="intro-grid">
+      <div class="vision-box animate-up delay-1">
+        <h3>A Launchpad for Dreams</h3>
+        <p>Founded by Mr. Prem Sai Bhagat, Chinhari Models is Chhattisgarh's trusted modeling and event management agency. We have become a launchpad for talent and a creative force behind fashion events, campaigns, and pageant-driven experiences across the state.</p>
+        <p>Our vision is rooted in Chhattisgarhi pride and modern professionalism, ensuring that our cultural heritage leaves a distinct impression on the global stage.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate-up delay-2">
+          <h3>Talent Management</h3>
+          <p>Curating and promoting emerging and professional models with high-end presentation.</p>
+        </div>
+        <div class="feature-card animate-up delay-3">
+          <h3>Event Production</h3>
+          <p>End-to-end event planning, coordination and flawless execution.</p>
+        </div>
+        <div class="feature-card animate-up delay-1">
+          <h3>Brand Campaigns</h3>
+          <p>Connecting top brands with the perfect talent and visual presentation.</p>
+        </div>
+        <div class="feature-card animate-up delay-2">
+          <h3>Chinhari Academy</h3>
+          <p>Professional grooming, confidence building and pageant coaching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section class="section section-darker">
+    <div class="founder-section" style="margin-bottom: 0;">
+      <div class="section-label animate-up">Meet the Founder</div>
+      <div class="founder-grid">
+        <div class="founder-img-wrapper animate-up delay-1">
+          <img src="images/founder.jpeg" alt="Prem Sai Bhagat">
+          <div class="founder-badge">Founder & Director</div>
+        </div>
+
+        <div class="founder-content animate-up delay-2">
+          <div class="founder-name">Mr. Prem Sai Bhagat Sir</div>
+          <div class="founder-role">Founder & Director, Chinhari Models</div>
+          <p>Prem Sai Bhagat is the Founder and Director of Chinhari Models and serves as Chhattisgarh's first State Pageant Director. He aspires to elevate Chhattisgarhi art and culture to an entirely new level.</p>
+          <a href="about.html" class="btn-outline" style="margin-top: 15px;">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Highlight Section -->
+  <section class="section section-dark">
+    <div class="section-label animate-up">Upcoming Action</div>
+    <h2 class="section-title animate-up delay-1">Featured <em>Events</em></h2>
+    
+    <div class="event-item animate-up delay-1 event-clickable" onclick="openEventModal('images/bsp.jpeg')">
+      <div>
+        <div class="event-date-day">10</div>
+        <div class="event-date-month">May 2026</div>
+      </div>
+      <div>
+        <div class="event-type">Pageant & Showcase</div>
+        <div class="event-name">Model Face of Bilaspur 2026</div>
+        <div class="event-location">City 36 Mall, Bilaspur | Time: 3:00 PM</div>
+      </div>
+      <div>
+        <span class="badge badge-soon">View Poster</span>
+      </div>
+    </div>
+
+    <div class="event-item animate-up delay-2">
+      <div>
+        <div class="event-date-day">22</div>
+        <div class="event-date-month">Apr 2025</div>
+      </div>
+      <div>
+        <div class="event-type">Brand Campaign</div>
+        <div class="event-name">Summer Brand Photoshoot</div>
+        <div class="event-location">Studio 7, Bilaspur</div>
+      </div>
+      <div>
+        <a href="events.html" class="btn-outline">View All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Highlights Section -->
+  <section class="section section-darker">
+    <div class="section-label animate-up">Captured Moments</div>
+    <h2 class="section-title animate-up delay-1">Our <em>Gallery</em></h2>
+    
+    <div class="gallery-grid">
+      <div class="gallery-item animate-up delay-1"><img src="images/swadesi1.jpeg" alt="Swadesi 1"></div>
+      <div class="gallery-item animate-up delay-2"><img src="images/swadesi2.jpeg" alt="Swadesi 2"></div>
+      <div class="gallery-item animate-up delay-3"><img src="images/swadesi3.jpeg" alt="Swadesi 3"></div>
+      <div class="gallery-item animate-up delay-1"><img src="images/other1.jpeg" alt="Other 1"></div>
+    </div>
+    
+    <div class="button-row" style="margin-top: 50px;">
+      <a href="gallery.html" class="btn-primary">Explore Full Gallery</a>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section section-dark" style="text-align: center;">
+    <div class="animate-up">
+      <h2 class="section-title">Ready to <em>Shine?</em></h2>
+      <p class="section-text" style="margin: 0 auto 30px;">Join Chinhari Academy and start your professional journey with Chhattisgarh's finest talent agency.</p>
+      <a href="training.html" class="btn-primary">Register Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-brand">
+          <img src="images/chinhari-logo.jpg" alt="Chinhari Models Logo" class="footer-brand-logo" style="width:50px; height:50px; border-radius:12px;">
+          <div class="footer-brand-text" style="font-family:'Cormorant Garamond', serif; font-size:1.6rem; color:#fff; font-weight:600; letter-spacing:0.15em; text-transform:uppercase;">Chinhari <span style="color:#d4af37; font-style:italic;">Models</span></div>
+        </a>
+        <p class="footer-tagline" style="color:#a8a8a8; font-size:0.85rem; margin-top:20px; line-height:1.8;">Chhattisgarh ki talent, identity aur premium presentation ko ek strong platform dene wala modeling and event brand.</p>
+      </div>
+
+      <div>
+        <div class="footer-title" style="color:#d4af37; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:20px;">Quick Links</div>
+        <div class="footer-links" style="display:flex; flex-direction:column; gap:10px;">
+          <a href="index.html" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">Home</a>
+          <a href="about.html" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">About Us</a>
+          <a href="events.html" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">Events</a>
+          <a href="gallery.html" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">Gallery</a>
+          <a href="training.html" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">Chinhari Academy</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title" style="color:#d4af37; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:20px;">Connect</div>
+        <div class="footer-social" style="display:flex; flex-direction:column; gap:10px;">
+          <a href="https://instagram.com/chinharimodels" target="_blank" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">Instagram</a>
+          <a href="https://wa.me/919238137071" target="_blank" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">WhatsApp</a>
+          <a href="mailto:chinharimodels@gmail.com" style="color:#a8a8a8; font-size:0.9rem; text-decoration:none;">Email Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.05); padding-top:20px; color:#a8a8a8; font-size:0.8rem; text-align:center;">
+      &copy; 2026 Chinhari Models. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-up').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+
+    // Slider Logic
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      currentSlideIndex = index;
+    }
+
+    function currentSlide(index) {
+      showSlide(index);
+    }
+
+    setInterval(() => {
+      if(slides.length > 0) {
+        let nextIndex = (currentSlideIndex + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+    }, 5000);
+
+    // Modal Logic
+    function openEventModal(imageSrc) {
+      document.getElementById('eventModalImg').src = imageSrc;
+      document.getElementById('eventModal').classList.add('active');
+    }
+
+    function closeEventModal() {
+      document.getElementById('eventModal').classList.remove('active');
+    }
+
+    // Auto-show popup on home page load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        openEventModal('images/bsp.jpeg');
+      }, 500); // Slight delay for smooth loading
+    });
+  </script>
+
+  <!-- Image Popup Modal -->
+  <div class="modal-overlay" id="eventModal" onclick="if(event.target === this) closeEventModal()">
+    <div class="modal-content">
+      <div class="modal-close" onclick="closeEventModal()">&times;</div>
+      <a href="events.html"><img src="" id="eventModalImg" class="modal-image" alt="Event Poster" style="cursor: pointer;" title="Click to view event details" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23111\'/><text x=\'50%25\' y=\'50%25\' fill=\'%23d4af37\' font-family=\'Arial\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Please upload bsp.jpeg</text></svg>';"></a>
+    </div>
+  </div>
 </body>
 </html>
