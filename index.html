@@ -160,8 +160,8 @@
 
   <!-- Events Highlight Section -->
   <section class="section section-dark">
-    <div class="section-label animate-up">Upcoming Action</div>
-    <h2 class="section-title animate-up delay-1">Featured <em>Events</em></h2>
+    <div class="section-label animate-up">Recent Highlights</div>
+    <h2 class="section-title animate-up delay-1">Event <em>Success</em></h2>
     
     <div class="event-item animate-up delay-1 event-clickable" onclick="openEventModal('images/bsp.jpeg')">
       <div>
@@ -171,10 +171,10 @@
       <div>
         <div class="event-type">Pageant & Showcase</div>
         <div class="event-name">Model Face of Bilaspur 2026</div>
-        <div class="event-location">City 36 Mall, Bilaspur | Time: 3:00 PM</div>
+        <div class="event-location">City 36 Mall, Bilaspur</div>
       </div>
       <div>
-        <span class="badge badge-soon">View Poster</span>
+        <span class="badge badge-past">Completed</span>
       </div>
     </div>
 
@@ -312,12 +312,12 @@
       document.getElementById('eventModal').classList.remove('active');
     }
 
-    // Auto-show popup on home page load
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        openEventModal('images/bsp.jpeg');
-      }, 500); // Slight delay for smooth loading
-    });
+    // Auto-show popup disabled as the event is now in the past.
+    // window.addEventListener('load', () => {
+    //   setTimeout(() => {
+    //     openEventModal('images/bsp.jpeg');
+    //   }, 500); // Slight delay for smooth loading
+    // });
   </script>
 
   <!-- Image Popup Modal -->
