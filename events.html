@@ -200,6 +200,12 @@
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="training.html">Chinhari Academy</a></li>
     </ul>
+
+    <div class="menu-toggle" id="mobile-menu" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('active');">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
   </nav>
 
   <section class="page-header">
@@ -220,10 +226,61 @@
     </div>
 
     <div class="events-panel active" id="panel-upcoming">
-      <div class="no-events animate-up" style="text-align: center; padding: 60px 20px; border: 1px dashed rgba(255, 255, 255, 0.1); border-radius: 8px; background: rgba(255, 255, 255, 0.01);">
-        <div style="font-size: 3rem; margin-bottom: 20px; color: var(--gold);">✨</div>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 10px; color: var(--white);">New Events Coming Soon</h3>
-        <p style="font-size: 0.85rem; color: var(--muted); max-width: 400px; margin: 0 auto; line-height: 1.6;">We are currently planning our next grand pageants and fashion shows. Stay tuned to our social media channels for updates!</p>
+      <!-- Event 1: Chinhari Models Fashion Week -->
+      <div class="event-item animate-up delay-1 event-clickable" onclick="openEventModal('images/fashionweek.jpeg')">
+        <div>
+          <div class="event-date-day">20</div>
+          <div class="event-date-month">Jun 2026</div>
+        </div>
+        <div>
+          <div class="event-type">Runway Fashion Week</div>
+          <div class="event-name" style="margin-bottom: 5px;">Chinhari Models Fashion Week</div>
+          <div class="event-location" style="color: var(--gold-light);">Hotel Grand Amba, Bilaspur</div>
+          <div style="margin-top: 15px; font-size: 0.9rem; color: var(--muted); line-height: 1.8;">
+            Chhattisgarh's most premium fashion runway event showcasing top designers and professional models. Click to view the event poster.
+          </div>
+        </div>
+        <div>
+          <span class="badge badge-open">Register Now</span>
+        </div>
+      </div>
+
+      <!-- Event 2: Model Face of Raipur -->
+      <div class="event-item animate-up delay-2 event-clickable" onclick="openEventModal('images/faceraipur.jpeg')">
+        <div>
+          <div class="event-date-day">26</div>
+          <div class="event-date-month">Jul 2026</div>
+        </div>
+        <div>
+          <div class="event-type">Pageant & Showcase</div>
+          <div class="event-name" style="margin-bottom: 5px;">Model Face of Raipur</div>
+          <div class="event-location" style="color: var(--gold-light);">Magneto Mall, Raipur</div>
+          <div style="margin-top: 15px; font-size: 0.9rem; color: var(--muted); line-height: 1.8;">
+            The grand search for the next top faces and modeling talent in the capital city of Raipur. Click to view the event poster.
+          </div>
+        </div>
+        <div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
+      </div>
+
+      <!-- Event 3: Mister & Miss Chhattisgarh 2026 -->
+      <div class="event-item animate-up delay-3 event-clickable" onclick="openEventModal('images/mrmiss.jpeg')">
+        <div>
+          <div class="event-date-day">30</div>
+          <div class="event-date-month">Aug 2026</div>
+        </div>
+        <div>
+          <div class="event-type">Pageant Show</div>
+          <div class="event-name" style="margin-bottom: 5px;">Mister & Miss Chhattisgarh 2026</div>
+          <div class="event-location" style="color: var(--gold-light);">Hotel Grand Amba, Bilaspur</div>
+          <div style="margin-top: 15px; font-size: 0.9rem; color: var(--muted); line-height: 1.8;">
+            The ultimate state pageant discovering Chhattisgarh's finest beauty, intelligence, and talent. Click to view the event poster.
+          </div>
+        </div>
+        <div>
+          <span class="badge badge-soon">Coming Soon</span>
+        </div>
       </div>
     </div>
 
@@ -378,7 +435,7 @@
   <div class="modal-overlay" id="eventModal" onclick="if(event.target === this) closeEventModal()">
     <div class="modal-content">
       <div class="modal-close" onclick="closeEventModal()">&times;</div>
-      <img src="" id="eventModalImg" class="modal-image" alt="Event Poster" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23111\'/><text x=\'50%25\' y=\'50%25\' fill=\'%23d4af37\' font-family=\'Arial\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Please upload bsp.jpeg</text></svg>';">
+      <img src="" id="eventModalImg" class="modal-image" alt="Event Poster" onerror="this.onerror=null; const parts = this.src.split('/'); const name = parts[parts.length-1] || 'image'; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'550\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23111\'/><text x=\'50%25\' y=\'50%25\' fill=\'%23d4af37\' font-family=\'Arial\' font-size=\'16\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Please upload ' + name + '</text></svg>';">
     </div>
   </div>
 </body>
