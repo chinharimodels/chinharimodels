@@ -25,6 +25,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -32,6 +34,7 @@ body {
   background: var(--black);
   color: var(--white);
   overflow-x: hidden;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -942,6 +945,18 @@ footer {
     align-items: center;
   }
   
+  .brand-text {
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+    padding: 3px;
+    border-radius: 8px;
+  }
+  
   .menu-toggle {
     display: flex;
   }
@@ -983,9 +998,41 @@ footer {
   .footer-grid { grid-template-columns: 1fr; gap: 40px; }
   .gallery-preview { grid-template-columns: repeat(2, 1fr); }
   .hero-copy { padding: 60px 20px; margin-top: -50px; }
+
+  /* Founder section border translation fix for mobile */
+  .founder-img-wrapper::before {
+    transform: translate(8px, 8px);
+  }
+
+  /* Prevent card sliding from overflowing on hover */
+  .event-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15) !important;
+  }
+
+  /* Form Responsiveness */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  .registration-form {
+    padding: 25px 20px;
+    margin-top: 40px;
+  }
 }
 
 @media(max-width: 480px) {
+  nav {
+    padding: 12px 15px;
+  }
+  .brand-text {
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+  }
+  .section {
+    padding: 60px 15px;
+  }
   .hero-topline { width: 100%; border-radius: 8px; }
   .button-row { flex-direction: column; }
   .btn-primary, .btn-outline { width: 100%; }
