@@ -8,6 +8,136 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* Home Page Specific Styles */
+
+    /* Marquee Registration Banner */
+    .reg-marquee-bar {
+      background: linear-gradient(90deg, #1a0a00, #2d1500, #1a0a00);
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding: 12px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 99;
+    }
+    .reg-marquee-inner {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: marqueeScroll 20s linear infinite;
+      gap: 60px;
+    }
+    .reg-marquee-bar:hover .reg-marquee-inner {
+      animation-play-state: paused;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 500;
+    }
+    .marquee-crown { font-size: 1.1rem; }
+    .marquee-badge {
+      background: var(--gold);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      padding: 4px 12px;
+      border-radius: 2px;
+      animation: pulseBadge 1.5s ease-in-out infinite;
+    }
+    @keyframes pulseBadge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(212,175,55,0); }
+    }
+    .marquee-dot { color: var(--gold); font-size: 1rem; }
+
+    /* Mr & Miss CG Slide Overlay */
+    .slide-overlay-content {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+    }
+    .slide-overlay-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeSlideIn 0.8s 0.3s forwards;
+    }
+    .slide-overlay-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+      opacity: 0;
+      animation: fadeSlideIn 0.8s 0.5s forwards;
+    }
+    .slide-overlay-title em { color: var(--gold); font-style: italic; }
+    .slide-overlay-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeSlideIn 0.8s 0.7s forwards;
+    }
+    .slide-reg-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(212,175,55,0.4);
+      opacity: 0;
+      animation: fadeSlideIn 0.8s 0.9s forwards;
+    }
+    .slide-reg-btn:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 50px rgba(212,175,55,0.7);
+      transform: scale(1.05);
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* Only animate content of active slide */
+    .slide:not(.active) .slide-overlay-content * {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+    .slide.active .slide-overlay-content * {
+      animation-play-state: running;
+    }
+
     .event-item {
       display: grid;
       grid-template-columns: 120px 1fr auto;
@@ -76,25 +206,62 @@
 
   <!-- Hero Slider -->
   <section class="slider">
+    <!-- Slide 1 -->
     <div class="slide active" style="background: url('images/swadesi1.jpeg') center/cover;">
       <div style="position: absolute; inset: 0; backdrop-filter: blur(25px); background: rgba(0,0,0,0.6);"></div>
       <img src="images/swadesi1.jpeg" alt="Chinhari Models Showcase" style="position: relative; z-index: 2;">
     </div>
+
+    <!-- Slide 2 -->
     <div class="slide" style="background: url('images/swadesi2.jpeg') center/cover;">
       <div style="position: absolute; inset: 0; backdrop-filter: blur(25px); background: rgba(0,0,0,0.6);"></div>
       <img src="images/swadesi2.jpeg" alt="Chinhari Models Fashion" style="position: relative; z-index: 2;">
     </div>
+
+    <!-- Slide 3 -->
     <div class="slide" style="background: url('images/award1.jpeg') center/cover;">
       <div style="position: absolute; inset: 0; backdrop-filter: blur(25px); background: rgba(0,0,0,0.6);"></div>
       <img src="images/award1.jpeg" alt="Chinhari Models Event" style="position: relative; z-index: 2;">
+    </div>
+
+    <!-- Slide 4: Mr & Miss Chhattisgarh Registration Open -->
+    <div class="slide" style="background: url('images/mrmiss.jpeg') center/cover;">
+      <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.45);"></div>
+      <img src="images/mrmiss.jpeg" alt="Mr & Miss Chhattisgarh" style="position: relative; z-index: 2;">
+      <div class="slide-overlay-content">
+        <div class="slide-overlay-tag">✦ Chinhari Models Presents ✦</div>
+        <div class="slide-overlay-title">Mr &amp; Miss <em>Chhattisgarh</em></div>
+        <div class="slide-overlay-sub">State Pageant &nbsp;|&nbsp; Chhattisgarh's Premier Talent Platform</div>
+        <a href="#register" class="slide-reg-btn">🏆 Registration Open — Apply Now</a>
+      </div>
     </div>
 
     <div class="slider-dots">
       <div class="dot active" onclick="currentSlide(0)"></div>
       <div class="dot" onclick="currentSlide(1)"></div>
       <div class="dot" onclick="currentSlide(2)"></div>
+      <div class="dot" onclick="currentSlide(3)"></div>
     </div>
   </section>
+
+  <!-- Registration Marquee Banner -->
+  <div class="reg-marquee-bar">
+    <div class="reg-marquee-inner">
+      <!-- Repeated for seamless loop -->
+      <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
+      <span class="marquee-dot">◆</span>
+    </div>
+  </div>
 
   <!-- Hero Copy -->
   <section class="hero-copy">
@@ -214,6 +381,36 @@
     
     <div class="button-row" style="margin-top: 50px;">
       <a href="gallery.html" class="btn-primary">Explore Full Gallery</a>
+    </div>
+  </section>
+
+  <!-- Mr & Miss Chhattisgarh Registration Section -->
+  <section class="section section-darker" id="register" style="text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(212,175,55,0.08) 0%, transparent 70%); pointer-events: none;"></div>
+    <div class="animate-up">
+      <div class="section-label">✦ Now Accepting Applications ✦</div>
+      <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem);">Mr &amp; Miss <em>Chhattisgarh</em></h2>
+      <p class="section-text" style="margin: 0 auto 20px; max-width: 650px; line-height: 1.9;">Chinhari Models invites talented individuals from across Chhattisgarh to compete in the state's most prestigious pageant. Showcase your confidence, beauty, and cultural pride on the grandest stage.</p>
+
+      <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 30px 0 40px;">
+        <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); border-radius: 8px; padding: 20px 30px; min-width: 140px;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); font-weight: 700;">18+</div>
+          <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 5px;">Age Group</div>
+        </div>
+        <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); border-radius: 8px; padding: 20px 30px; min-width: 140px;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); font-weight: 700;">CG</div>
+          <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 5px;">State Level</div>
+        </div>
+        <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); border-radius: 8px; padding: 20px 30px; min-width: 140px;">
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); font-weight: 700;">👑</div>
+          <div style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 5px;">Crown &amp; Title</div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="https://wa.me/919238137071?text=I%20want%20to%20register%20for%20Mr%20%26%20Miss%20Chhattisgarh" target="_blank" class="btn-primary" style="font-size: 0.8rem; letter-spacing: 0.2em;">📲 Register via WhatsApp</a>
+        <a href="training.html" class="btn-outline" style="font-size: 0.8rem; letter-spacing: 0.2em;">Join Chinhari Academy</a>
+      </div>
     </div>
   </section>
 
