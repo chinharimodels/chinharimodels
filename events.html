@@ -351,6 +351,124 @@
     </div>
   </section>
 
+  <!-- Detailed Pageant Section with Registration Form -->
+  <section class="section section-darker" id="mrmiss-detail" style="border-top: 1px solid var(--border);">
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+      <div class="animate-up" style="text-align: center; margin-bottom: 50px;">
+        <span class="section-label" style="justify-content: center;">✦ Now Accepting Applications ✦</span>
+        <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem);">Mister &amp; Miss <em>Chhattisgarh 2026</em></h2>
+        <p class="section-text" style="margin: 0 auto; max-width: 800px; line-height: 1.9;">
+          Chinhari Models invites emerging and professional talent from all across Chhattisgarh to participate in the state's premier fashion pageant. Show your style, heritage, and elegance. Selected contestants will go through intensive runway training, personal grooming, professional photography, and brand endorsements. (Full details will be updated here soon).
+        </p>
+      </div>
+
+      <!-- Registration Form for Mr & Miss Chhattisgarh -->
+      <div class="registration-form" style="text-align: left; margin: 50px auto 0; background: rgba(15, 15, 15, 0.95); border: 1px solid rgba(212, 175, 55, 0.2);">
+        <div class="form-header">
+          <h2>Pageant Registration</h2>
+          <p>Fill out the details below to register for Mr & Miss Chhattisgarh</p>
+        </div>
+
+        <!-- Registration Fee Banner -->
+        <div style="margin-bottom: 25px; padding: 18px; background: rgba(212,175,55,0.08); border: 1px solid var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px; text-align: left;">
+            <strong style="color: var(--gold-light); font-size: 1.2rem; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">👑 Pageant Registration Fee: ₹999</strong>
+            <span style="color: #fff; font-size: 0.95rem; display: block; margin-bottom: 6px; font-weight: 500;">₹2,999 Payable After Selection</span>
+            <small style="color: #ff9999; font-size: 0.82rem; display: block; font-weight: 600;">⚠️ Registration fee once paid is non-refundable under any circumstances.</small>
+          </div>
+          <div style="text-align: center; flex-shrink: 0; margin: 0 auto;">
+            <img src="images/paymentqr.jpeg" alt="Payment QR Code" style="width: 100px; height: 100px; object-fit: contain; border: 2px solid var(--gold); border-radius: 4px; background: #fff; padding: 4px;" onerror="this.src='paymentqr.jpeg'; this.onerror=function(){ this.style.display='none'; }">
+            <span style="display: block; font-size: 0.65rem; color: var(--gold-light); margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase;">Scan to Pay</span>
+          </div>
+        </div>
+
+        <form id="pageantForm" onsubmit="handlePageantSubmit(event)">
+          <div class="form-row">
+            <div class="input-group">
+              <label>Full Name</label>
+              <input type="text" id="pagName" placeholder="Your full name" required>
+            </div>
+            <div class="input-group">
+              <label>Age / Date of Birth</label>
+              <input type="text" id="pagAge" placeholder="e.g. 22 / DD-MM-YYYY" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label>Height (in cm or ft)</label>
+              <input type="text" id="pagHeight" placeholder="e.g. 5'8&quot; or 172cm" required>
+            </div>
+            <div class="input-group">
+              <label>Weight (kg)</label>
+              <input type="text" id="pagWeight" placeholder="e.g. 65kg" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label>Hometown</label>
+              <input type="text" id="pagHometown" placeholder="Your hometown" required>
+            </div>
+            <div class="input-group">
+              <label>Current City</label>
+              <input type="text" id="pagCity" placeholder="City you currently live in" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label>Hobbies</label>
+              <input type="text" id="pagHobbies" placeholder="Your hobbies" required>
+            </div>
+            <div class="input-group">
+              <label>Educational Qualification</label>
+              <input type="text" id="pagEdu" placeholder="e.g. Graduate, 12th Pass" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label>Current Profession</label>
+              <input type="text" id="pagProf" placeholder="e.g. Student, Model, Job" required>
+            </div>
+            <div class="input-group">
+              <label>Future Goal</label>
+              <input type="text" id="pagGoal" placeholder="Your future goal/aim" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label>Instagram ID</label>
+              <input type="text" id="pagInsta" placeholder="e.g. @username" required>
+            </div>
+            <div class="input-group">
+              <label>Mobile Number</label>
+              <input type="tel" id="pagMobile" placeholder="Calling mobile no." required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label>WhatsApp Number</label>
+              <input type="tel" id="pagWhatsapp" placeholder="WhatsApp no." required>
+            </div>
+            <div class="input-group">
+              <label>Upload Recent Photo / Portfolio (Optional)</label>
+              <input type="file" id="pagFile" accept="image/*" class="file-input">
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach manually in chat.</div>
+            </div>
+          </div>
+          
+          <!-- Terms & Conditions -->
+          <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px;">
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.82rem; color: var(--white); line-height: 1.6;">
+              <input type="checkbox" id="pagTcCheck" required style="margin-top: 3px; accent-color: var(--gold); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer;">
+              <span>I have read all conditions and agree to the Terms &amp; Conditions of Chinhari Models.</span>
+            </label>
+          </div>
+          
+          <button type="submit" id="pagSubmitBtn" class="btn-primary" style="width: 100%; margin-top: 15px; border: none; font-size: 0.8rem;">Submit Details & Register</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-grid">
       <div>
@@ -428,6 +546,136 @@
 
     function closeEventModal() {
       document.getElementById('eventModal').classList.remove('active');
+    }
+    // Google Sheets Web App URL config (Replace with your deployed Web App URL)
+    const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwkzc8NNTLqMwMBmU-xNzc8wd9ahmHvPbWTJR4lis5QwWZUAeG0Q_TLdnnGiMKnGMlm/exec";
+
+    function handlePageantSubmit(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('pagName').value;
+      const age = document.getElementById('pagAge').value;
+      const height = document.getElementById('pagHeight').value;
+      const weight = document.getElementById('pagWeight').value;
+      const hometown = document.getElementById('pagHometown').value;
+      const city = document.getElementById('pagCity').value;
+      const hobbies = document.getElementById('pagHobbies').value;
+      const edu = document.getElementById('pagEdu').value;
+      const prof = document.getElementById('pagProf').value;
+      const goal = document.getElementById('pagGoal').value;
+      const insta = document.getElementById('pagInsta').value;
+      const mobile = document.getElementById('pagMobile').value;
+      const whatsapp = document.getElementById('pagWhatsapp').value;
+      const fileInput = document.getElementById('pagFile');
+      const submitBtn = document.getElementById('pagSubmitBtn');
+      const originalBtnText = submitBtn.textContent;
+      
+      const payload = {
+        branch: "Mr & Miss CG Pageant",
+        name: name,
+        age: age,
+        height: height,
+        weight: weight,
+        hometown: hometown,
+        city: city,
+        hobbies: hobbies,
+        education: edu,
+        profession: prof,
+        goal: goal,
+        instagram: insta,
+        mobile: mobile,
+        whatsapp: whatsapp
+      };
+      
+      function sendPayload(data) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Saving to Google Sheet...";
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
+        
+        if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes("YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE")) {
+          console.warn("Google Sheet Script URL is not configured. Redirecting to WhatsApp directly.");
+          clearTimeout(timeoutId);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+          openPageantWhatsApp(data);
+          return;
+        }
+
+        fetch(GOOGLE_SHEET_URL, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          mode: 'no-cors',
+          signal: controller.signal
+        })
+        .then(() => {
+          console.log('Data successfully sent to Google Sheets (no-cors)');
+        })
+        .catch(err => {
+          console.error('Error saving to Google Sheet:', err);
+        })
+        .finally(() => {
+          clearTimeout(timeoutId);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+          openPageantWhatsApp(data);
+        });
+      }
+      
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        
+        if (file.size > 10 * 1024 * 1024) {
+          alert("Photo size is too large (Max 10MB allowed). Proceeding without saving photo to drive.");
+          sendPayload(payload);
+          return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Processing Photo...";
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          payload.fileData = event.target.result;
+          payload.fileName = file.name;
+          payload.fileType = file.type;
+          sendPayload(payload);
+        };
+        reader.onerror = function() {
+          console.error("File reading failed. Sending without photo.");
+          sendPayload(payload);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        sendPayload(payload);
+      }
+    }
+    
+    function openPageantWhatsApp(data) {
+      const phone = "919238137071";
+      
+      let message = `*New Mr & Miss Chhattisgarh Pageant Registration*\n\n`;
+      message += `*Name:* ${data.name}\n`;
+      message += `*Age:* ${data.age}\n`;
+      message += `*Height:* ${data.height}\n`;
+      message += `*Weight:* ${data.weight}\n`;
+      message += `*Hometown:* ${data.hometown}\n`;
+      message += `*Current City:* ${data.city}\n`;
+      message += `*Hobbies:* ${data.hobbies}\n`;
+      message += `*Education:* ${data.education}\n`;
+      message += `*Profession:* ${data.profession}\n`;
+      message += `*Future Goal:* ${data.goal}\n`;
+      message += `*Instagram ID:* ${data.instagram}\n`;
+      message += `*Mobile No:* ${data.mobile}\n`;
+      message += `*WhatsApp No:* ${data.whatsapp}\n`;
+      message += `\n_Please review my application for Mr & Miss Chhattisgarh. I will attach my photos here._`;
+      
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
     }
   </script>
 

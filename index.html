@@ -18,6 +18,13 @@
       overflow: hidden;
       position: relative;
       z-index: 99;
+      cursor: pointer;
+      display: block;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .reg-marquee-bar:hover {
+      background: linear-gradient(90deg, #2d1500, #401f00, #2d1500);
+      border-color: var(--gold-light);
     }
     .reg-marquee-inner {
       display: flex;
@@ -232,7 +239,7 @@
         <div class="slide-overlay-tag">✦ Chinhari Models Presents ✦</div>
         <div class="slide-overlay-title">Mr &amp; Miss <em>Chhattisgarh</em></div>
         <div class="slide-overlay-sub">State Pageant &nbsp;|&nbsp; Chhattisgarh's Premier Talent Platform</div>
-        <a href="#register" class="slide-reg-btn">🏆 Registration Open — Apply Now</a>
+        <a href="events.html#mrmiss-detail" class="slide-reg-btn">🏆 Registration Open — Apply Now</a>
       </div>
     </div>
 
@@ -245,7 +252,7 @@
   </section>
 
   <!-- Registration Marquee Banner -->
-  <div class="reg-marquee-bar">
+  <a href="#register" class="reg-marquee-bar">
     <div class="reg-marquee-inner">
       <!-- Repeated for seamless loop -->
       <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
@@ -261,7 +268,7 @@
       <span class="marquee-item"><span class="marquee-crown">👑</span> <span class="marquee-badge">Registration Open</span> Mr &amp; Miss Chhattisgarh</span>
       <span class="marquee-dot">◆</span>
     </div>
-  </div>
+  </a>
 
   <!-- Hero Copy -->
   <section class="hero-copy">
@@ -408,7 +415,7 @@
       </div>
 
       <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="https://wa.me/919238137071?text=I%20want%20to%20register%20for%20Mr%20%26%20Miss%20Chhattisgarh" target="_blank" class="btn-primary" style="font-size: 0.8rem; letter-spacing: 0.2em;">📲 Register via WhatsApp</a>
+        <a href="events.html#mrmiss-detail" class="btn-primary" style="font-size: 0.8rem; letter-spacing: 0.2em;">🏆 View Details & Register</a>
         <a href="training.html" class="btn-outline" style="font-size: 0.8rem; letter-spacing: 0.2em;">Join Chinhari Academy</a>
       </div>
     </div>
@@ -504,6 +511,8 @@
         showSlide(nextIndex);
       }
     }, 5000);
+
+
 
     // Modal Logic
     function openEventModal(imageSrc) {
