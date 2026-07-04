@@ -429,6 +429,15 @@
           <p>Elite grooming workshops, portfolio shoots, personality development, and acting classes.</p>
           <span class="btn-primary select-card-btn">Select Raipur</span>
         </div>
+
+        <!-- Raigarh Card -->
+        <div class="branch-select-card" onclick="showBranch('raigarh')">
+          <div class="select-card-badge">New Branch</div>
+          <div class="select-card-icon">💃</div>
+          <h3>Raigarh Branch</h3>
+          <p>Runway preparation, posture correction, specialized dance-walk styling, and pageantry workshops.</p>
+          <span class="btn-primary select-card-btn">Select Raigarh</span>
+        </div>
       </div>
     </div>
 
@@ -587,7 +596,7 @@
           <div class="branch-info" style="margin-top: 30px;">
             <div class="info-item">
               <span class="info-icon">📍</span>
-              <span><strong>Address:</strong> Shankar Nagar Road, Raipur, CG</span>
+              <span><strong>Address:</strong> Fitness Factory Gym, Raipur, CG</span>
             </div>
             <div class="info-item">
               <span class="info-icon">📞</span>
@@ -684,6 +693,129 @@
         </div>
       </div>
     </div>
+
+    <!-- Raigarh Branch Content (Hidden by default) -->
+    <div id="branchContentRaigarh" class="branch-detail-content" style="display: none;">
+      <div class="branch-nav-back">
+        <button onclick="goBackToSelection()" class="btn-back">← Change Branch</button>
+      </div>
+
+      <div class="branch-header-info">
+        <span class="branch-badge">New Center</span>
+        <h2>Chinhari Academy, Raigarh</h2>
+        <p class="branch-desc">Raigarh training center runway preparation, posture correction, specialized dance-walk styling aur pageantry workshops ke liye design kiya gaya hai.</p>
+      </div>
+
+      <div class="branch-details-grid">
+        <div class="branch-perks">
+          <h3>What You'll Learn</h3>
+          <ul class="branch-features">
+            <li><span>✦</span> Posture Correction & Runway Walk</li>
+            <li><span>✦</span> Pageant Prep & Confidence Building</li>
+            <li><span>✦</span> Camera Facing & Posing Techniques</li>
+            <li><span>✦</span> Specialized Dance-Walk Styling</li>
+          </ul>
+          
+          <div class="branch-info" style="margin-top: 30px;">
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <span><strong>Address:</strong> Frik Dance Studio Raigarh (Grand Mall, Third Floor), CG</span>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📞</span>
+              <span><strong>Call/WhatsApp:</strong> +91 92381 37071</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registration Form inside Raigarh -->
+        <div class="registration-form no-margin-top">
+          <div class="form-header">
+            <h2>Raigarh Branch Registration</h2>
+            <p>Fill out the details below to join the Raigarh Academy</p>
+          </div>
+          <form id="academyFormRgh" onsubmit="sendToWhatsAppBranch(event, 'Raigarh')">
+            <div class="form-row">
+              <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" class="waName" placeholder="Your full name" required>
+              </div>
+              <div class="input-group">
+                <label>Age / Date of Birth</label>
+                <input type="text" class="waAge" placeholder="e.g. 22 / DD-MM-YYYY" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label>Gender</label>
+                <select class="waGender" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Contact Number</label>
+                <input type="tel" class="waContact" placeholder="WhatsApp / Calling No." required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label>Height (in cm or ft)</label>
+                <input type="text" class="waHeight" placeholder="e.g. 5'8&quot; or 172cm" required>
+              </div>
+              <div class="input-group">
+                <label>Weight (kg)</label>
+                <input type="text" class="waWeight" placeholder="e.g. 65kg" required>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>City & Address</label>
+              <input type="text" class="waCity" placeholder="Current city & full address" required>
+            </div>
+            <div class="input-group">
+              <label>Interested In (Multiple Selection Allowed)</label>
+              <div class="checkbox-group">
+                <label><input type="checkbox" name="waInterestRgh" value="Ramp Walk"> Ramp Walk & Runway</label>
+                <label><input type="checkbox" name="waInterestRgh" value="Photoshoot"> Portfolio Photoshoot</label>
+                <label><input type="checkbox" name="waInterestRgh" value="Pageant"> Pageant Grooming</label>
+                <label><input type="checkbox" name="waInterestRgh" value="Acting"> Acting & Promotion</label>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Experience Level</label>
+              <select class="waExp" required>
+                <option value="" disabled selected>Select Experience</option>
+                <option>Fresher / Beginner</option>
+                <option>Intermediate (Done some shows/shoots)</option>
+                <option>Professional</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Upload Recent Photo / Portfolio (Optional)</label>
+              <input type="file" class="waFile" accept="image/*" class="file-input">
+              <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach them manually after the chat opens.</div>
+            </div>
+            <!-- Terms & Conditions -->
+            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px;">
+              <div style="margin-bottom: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
+                📄 Please read our Terms &amp; Conditions before registering:
+                <a href="images/termcondition.jpeg" target="_blank" style="color: var(--gold); font-weight: 600; text-decoration: underline; margin-left: 6px;">View Terms &amp; Conditions ↗</a>
+              </div>
+              <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.82rem; color: var(--white); line-height: 1.6;">
+                <input type="checkbox" id="tcCheckRgh" required style="margin-top: 3px; accent-color: var(--gold); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer;">
+                <span>I have read and agree to the <a href="images/termcondition.jpeg" target="_blank" style="color: var(--gold); text-decoration: underline;">Terms &amp; Conditions</a> of Chinhari Academy.</span>
+              </label>
+            </div>
+
+            <div style="margin-top: 14px; padding: 14px 18px; background: rgba(255,80,80,0.06); border: 1px solid rgba(255,80,80,0.25); border-radius: 6px; font-size: 0.8rem; color: #ff9999; line-height: 1.7;">
+              ⚠️ <strong style="color: #ffaaaa;">Note:</strong> Registration fee once paid is <strong style="color: #ffaaaa;">non-refundable</strong> under any circumstances.
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px; border: none; font-size: 0.8rem;">Submit for Raigarh via WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -751,21 +883,31 @@
       const selectionDiv = document.getElementById('branchSelection');
       const bspDiv = document.getElementById('branchContentBilaspur');
       const rprDiv = document.getElementById('branchContentRaipur');
+      const rghDiv = document.getElementById('branchContentRaigarh');
 
       selectionDiv.style.display = 'none';
 
       if (branch === 'bilaspur') {
         bspDiv.style.display = 'block';
         rprDiv.style.display = 'none';
+        rghDiv.style.display = 'none';
         bspDiv.classList.remove('animate-up');
         void bspDiv.offsetWidth; // Trigger reflow for animation
         bspDiv.classList.add('animate-up');
-      } else {
+      } else if (branch === 'raipur') {
         rprDiv.style.display = 'block';
         bspDiv.style.display = 'none';
+        rghDiv.style.display = 'none';
         rprDiv.classList.remove('animate-up');
         void rprDiv.offsetWidth; // Trigger reflow for animation
         rprDiv.classList.add('animate-up');
+      } else {
+        rghDiv.style.display = 'block';
+        bspDiv.style.display = 'none';
+        rprDiv.style.display = 'none';
+        rghDiv.classList.remove('animate-up');
+        void rghDiv.offsetWidth; // Trigger reflow for animation
+        rghDiv.classList.add('animate-up');
       }
       
       // Scroll to the content block smoothly
@@ -779,9 +921,11 @@
       const selectionDiv = document.getElementById('branchSelection');
       const bspDiv = document.getElementById('branchContentBilaspur');
       const rprDiv = document.getElementById('branchContentRaipur');
+      const rghDiv = document.getElementById('branchContentRaigarh');
 
       bspDiv.style.display = 'none';
       rprDiv.style.display = 'none';
+      rghDiv.style.display = 'none';
       
       selectionDiv.style.display = 'block';
       selectionDiv.classList.remove('animate-up');
@@ -808,7 +952,12 @@
       const city = form.querySelector('.waCity').value;
       
       // Get all checked interests for this specific branch form
-      const checkboxName = branchName === 'Bilaspur' ? 'waInterestBsp' : 'waInterestRpr';
+      let checkboxName = 'waInterestBsp';
+      if (branchName === 'Raipur') {
+        checkboxName = 'waInterestRpr';
+      } else if (branchName === 'Raigarh') {
+        checkboxName = 'waInterestRgh';
+      }
       const checkboxes = form.querySelectorAll(`input[name="${checkboxName}"]:checked`);
       let interests = [];
       checkboxes.forEach((cb) => interests.push(cb.value));

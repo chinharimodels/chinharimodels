@@ -246,7 +246,7 @@
       </div>
 
       <!-- Event 2: Mister & Miss Chhattisgarh 2026 -->
-      <div class="event-item animate-up delay-2 event-clickable" onclick="openEventModal('images/mrmiss.jpeg')">
+      <div class="event-item animate-up delay-2 event-clickable" onclick="document.getElementById('mrmiss-detail').scrollIntoView({ behavior: 'smooth' })">
         <div>
           <div class="event-date-day">30</div>
           <div class="event-date-month">Aug 2026</div>
@@ -256,7 +256,7 @@
           <div class="event-name" style="margin-bottom: 5px;">Mister & Miss Chhattisgarh 2026</div>
           <div class="event-location" style="color: var(--gold-light);">Hotel Grand Amba, Bilaspur</div>
           <div style="margin-top: 15px; font-size: 0.9rem; color: var(--muted); line-height: 1.8;">
-            The ultimate state pageant discovering Chhattisgarh's finest beauty, intelligence, and talent. Click to view the event poster.
+            The ultimate state pageant discovering Chhattisgarh's finest beauty, intelligence, and talent. Click to view registration details and apply.
           </div>
         </div>
         <div>
@@ -358,8 +358,127 @@
         <span class="section-label" style="justify-content: center;">✦ Now Accepting Applications ✦</span>
         <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem);">Mister &amp; Miss <em>Chhattisgarh 2026</em></h2>
         <p class="section-text" style="margin: 0 auto; max-width: 800px; line-height: 1.9;">
-          Chinhari Models invites emerging and professional talent from all across Chhattisgarh to participate in the state's premier fashion pageant. Show your style, heritage, and elegance. Selected contestants will go through intensive runway training, personal grooming, professional photography, and brand endorsements. (Full details will be updated here soon).
+          Chinhari Models invites emerging and professional talent from all across Chhattisgarh to participate in the state's premier fashion pageant. Below are the complete round structures, timeline, and rules. Fill out the application form at the bottom to register.
         </p>
+      </div>
+
+      <style>
+        .pageant-info-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+          gap: 25px;
+          margin: 40px auto 20px;
+          max-width: 1000px;
+          text-align: left;
+        }
+        .pageant-info-card {
+          background: rgba(20, 20, 20, 0.7);
+          border: 1px solid rgba(212, 175, 55, 0.15);
+          border-radius: 12px;
+          padding: 30px;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .pageant-info-card h3 {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.7rem;
+          color: var(--gold);
+          margin-bottom: 20px;
+          border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+          padding-bottom: 10px;
+        }
+        .pageant-info-card-double {
+          grid-column: span 2;
+        }
+        @media (max-width: 900px) {
+          .pageant-info-card-double {
+            grid-column: span 1;
+          }
+        }
+      </style>
+
+      <!-- Written Pageant Details Grid -->
+      <div class="pageant-info-grid">
+        
+        <!-- Card 1: Timeline & Fees -->
+        <div class="pageant-info-card">
+          <h3>📅 Timeline &amp; Fees</h3>
+          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px; font-size: 0.92rem; line-height: 1.7;">
+            <li><strong>Online Registration:</strong> <span style="color: var(--white);">1 July – 31 July 2026</span></li>
+            <li><strong>Registration Fees:</strong> <span style="color: var(--gold-light); font-weight: bold;">₹999/-</span> (Non-Refundable)</li>
+            <li><strong>Final Audition &amp; Selection:</strong> <span style="color: var(--white);">9 August 2026</span></li>
+            <li><strong>Show/Finalist Fee:</strong> <span style="color: var(--gold-light); font-weight: bold;">₹2,500/-</span> (Payable only after selection as a finalist)</li>
+            <li><strong>Grooming Sessions:</strong> <span style="color: var(--white);">29 August 2026</span> (Expert motivational guidance)</li>
+            <li><strong>Grand Finale:</strong> <span style="color: var(--gold-light); font-weight: bold;">30 August 2026</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Crowning & Titles -->
+        <div class="pageant-info-card">
+          <h3>👑 Crowning &amp; Titles</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.88rem; line-height: 1.6;">
+            <div>
+              <h4 style="color: var(--white); margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; font-weight: 600;">Mister CG</h4>
+              <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--muted);">
+                <li>🏆 1 Winner</li>
+                <li>🥈 2 Runner-Ups</li>
+                <li>⭐ 5 Division Titles</li>
+                <li>📍 33 District Titles</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--white); margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; font-weight: 600;">Miss CG</h4>
+              <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--muted);">
+                <li>🏆 1 Winner</li>
+                <li>🥈 2 Runner-Ups</li>
+                <li>⭐ 5 Division Titles</li>
+                <li>📍 33 District Titles</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 20px; font-size: 0.82rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; text-align: center;">
+            📞 <strong>Helpdesk / Inquiry:</strong> <a href="tel:+919238137071" style="color: var(--gold-light); font-weight: 600;">+91 92381 37071</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Selection Rounds (Double Width) -->
+        <div class="pageant-info-card pageant-info-card-double">
+          <h3>🌟 Pageant Selection Rounds &amp; Finale</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; font-size: 0.9rem; line-height: 1.7;">
+            <div>
+              <p style="margin-bottom: 15px;"><strong style="color: var(--gold-light);">Round 1: Screening</strong><br>
+              • Registration Form Fillup &amp; Verification<br>
+              • Document verification &amp; Q/A session</p>
+              
+              <p style="margin-bottom: 15px;"><strong style="color: var(--gold-light);">Round 2: Audition Video</strong><br>
+              • Short Video Rampwalk &amp; Introduction<br>
+              • Submission of 3 recent photographs</p>
+              
+              <p style="margin-bottom: 15px;"><strong style="color: var(--gold-light);">Round 3: Talent &amp; Sash Ceremony</strong><br>
+              • Finalist Selection and sash ceremony<br>
+              • <span style="text-decoration: underline;">Dress Code:</span><br>
+              &nbsp;&nbsp;- <strong>Boys:</strong> White Shirt &amp; Blue Jeans<br>
+              &nbsp;&nbsp;- <strong>Girls:</strong> White Top &amp; Blue Shorts/Jeans</p>
+            </div>
+            <div>
+              <p style="margin-bottom: 15px;"><strong style="color: var(--gold-light);">Round 4: Instagram &amp; Media</strong><br>
+              • Evaluate Instagram prominence &amp; reach<br>
+              • Highest post/reels engagement analysis<br>
+              • Feature on the official finalist poster</p>
+              
+              <p style="margin-bottom: 15px;"><strong style="color: var(--gold-light);">Round 5: Popularity Fast-Track</strong><br>
+              • Popularity and deposit evaluation<br>
+              • Highest earner/depositor in 24 hrs directly qualifies for the Top 7</p>
+              
+              <p style="margin-bottom: 15px;"><strong style="color: var(--gold-light);">Grand Finale Show Format:</strong><br>
+              • <strong>Round 6:</strong> Traditional Wear Round<br>
+              • <strong>Round 7:</strong> Creative Wear Round<br>
+              • <strong>Round 8:</strong> Western Wear Round (Walk &amp; Intro)<br>
+              • <strong>Round 9:</strong> Top 7 (Walk &amp; Final Q/A)<br>
+              • <strong>Round 10:</strong> Top 3 (Verdict Q/A &amp; Crowning)</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Registration Form for Mr & Miss Chhattisgarh -->
@@ -373,12 +492,13 @@
         <div style="margin-bottom: 25px; padding: 18px; background: rgba(212,175,55,0.08); border: 1px solid var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 250px; text-align: left;">
             <strong style="color: var(--gold-light); font-size: 1.2rem; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">👑 Pageant Registration Fee: ₹999</strong>
-            <span style="color: #fff; font-size: 0.95rem; display: block; margin-bottom: 6px; font-weight: 500;">₹2,999 Payable After Selection</span>
+            <span style="color: #fff; font-size: 0.95rem; display: block; margin-bottom: 6px; font-weight: 500;">₹2,500 Payable After Selection</span>
             <small style="color: #ff9999; font-size: 0.82rem; display: block; font-weight: 600;">⚠️ Registration fee once paid is non-refundable under any circumstances.</small>
           </div>
           <div style="text-align: center; flex-shrink: 0; margin: 0 auto;">
             <img src="images/paymentqr.jpeg" alt="Payment QR Code" style="width: 100px; height: 100px; object-fit: contain; border: 2px solid var(--gold); border-radius: 4px; background: #fff; padding: 4px;" onerror="this.src='paymentqr.jpeg'; this.onerror=function(){ this.style.display='none'; }">
             <span style="display: block; font-size: 0.65rem; color: var(--gold-light); margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase;">Scan to Pay</span>
+            <span style="display: block; font-size: 0.72rem; color: var(--white); margin-top: 5px; font-weight: 600; letter-spacing: 0.05em;">UPI No: 9238137071</span>
           </div>
         </div>
 
@@ -452,6 +572,13 @@
               <label>Upload Recent Photo / Portfolio (Optional)</label>
               <input type="file" id="pagFile" accept="image/*" class="file-input">
               <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach manually in chat.</div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="input-group">
+              <label>Payment UTR Number / Transaction ID (₹999 Payment Proof)</label>
+              <input type="text" id="pagUtr" placeholder="Enter 12-digit UTR No. or UPI Transaction ID" required>
             </div>
           </div>
           
@@ -566,6 +693,7 @@
       const insta = document.getElementById('pagInsta').value;
       const mobile = document.getElementById('pagMobile').value;
       const whatsapp = document.getElementById('pagWhatsapp').value;
+      const utr = document.getElementById('pagUtr').value;
       const fileInput = document.getElementById('pagFile');
       const submitBtn = document.getElementById('pagSubmitBtn');
       const originalBtnText = submitBtn.textContent;
@@ -584,7 +712,8 @@
         goal: goal,
         instagram: insta,
         mobile: mobile,
-        whatsapp: whatsapp
+        whatsapp: whatsapp,
+        utr: utr
       };
       
       function sendPayload(data) {
@@ -672,6 +801,7 @@
       message += `*Instagram ID:* ${data.instagram}\n`;
       message += `*Mobile No:* ${data.mobile}\n`;
       message += `*WhatsApp No:* ${data.whatsapp}\n`;
+      message += `*Payment UTR/Txn ID:* ${data.utr}\n`;
       message += `\n_Please review my application for Mr & Miss Chhattisgarh. I will attach my photos here._`;
       
       const encodedMessage = encodeURIComponent(message);
