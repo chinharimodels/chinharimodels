@@ -39,7 +39,7 @@
       margin-right: auto;
       background: rgba(255, 255, 255, 0.02);
       padding: 20px;
-      border: 1px dashed rgba(212, 175, 55, 0.3);
+      border: 1px dashed rgba(212, 160, 23, 0.3);
       border-radius: 8px;
     }
 
@@ -74,15 +74,15 @@
 
     .branches-select-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 35px;
     }
 
     .branch-select-card {
-      background: linear-gradient(145deg, var(--dark2), var(--dark));
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: var(--bg-card-light);
+      border: 1px solid var(--border-light);
       border-radius: 16px;
-      padding: 50px 40px;
+      padding: 50px 35px;
       cursor: pointer;
       transition: all var(--transition);
       position: relative;
@@ -90,7 +90,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      box-shadow: var(--shadow-light);
     }
 
     .branch-select-card::before {
@@ -101,22 +101,22 @@
       width: 100%;
       height: 4px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      opacity: 0.7;
+      opacity: 0.9;
     }
 
     .branch-select-card:hover {
-      transform: translateY(-12px);
+      transform: translateY(-10px);
       border-color: var(--border);
-      box-shadow: 0 20px 45px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 20px 45px rgba(212, 160, 23, 0.2);
     }
 
     .select-card-badge {
-      padding: 6px 14px;
-      background: rgba(212, 175, 55, 0.1);
+      padding: 6px 16px;
+      background: rgba(212, 160, 23, 0.1);
       border: 1px solid var(--border);
-      color: var(--gold-light);
+      color: var(--gold-dark);
       font-size: 0.65rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       border-radius: 20px;
@@ -132,8 +132,8 @@
     .branch-select-card h3 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem;
-      font-weight: 400;
-      color: var(--white);
+      font-weight: 600;
+      color: var(--text-dark);
       margin-bottom: 15px;
       letter-spacing: 0.05em;
     }
@@ -178,7 +178,7 @@
     }
 
     .btn-back:hover {
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(212, 160, 23, 0.1);
       color: var(--white);
       border-color: var(--gold);
     }
@@ -240,7 +240,7 @@
     .branch-badge {
       display: inline-block;
       padding: 6px 14px;
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(212, 160, 23, 0.1);
       border: 1px solid var(--border);
       color: var(--gold-light);
       font-size: 0.7rem;
@@ -307,7 +307,7 @@
       gap: 8px;
       margin-top: 10px;
       padding: 10px 18px;
-      background: rgba(212, 175, 55, 0.05);
+      background: rgba(212, 160, 23, 0.05);
       border: 1px solid var(--border);
       color: var(--gold-light);
       border-radius: 4px;
@@ -323,7 +323,7 @@
       color: var(--black);
       border-color: var(--gold);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+      box-shadow: 0 5px 15px rgba(212, 160, 23, 0.2);
     }
 
     .registration-form.no-margin-top {
@@ -468,17 +468,26 @@
               <span class="info-icon">📍</span>
               <span>
                 <strong>Address:</strong><br>
-                <span style="font-size: 0.95rem; color: var(--gold-light); display: block; margin-top: 5px; font-weight: 500;">Chinhari Models Training Academy, Bilaspur</span>
-                <span style="font-size: 0.85rem; color: var(--white); opacity: 0.9; display: block; margin-top: 3px;">Near Mangla Chowk, Below Education Hub, Bilaspur, CG</span>
+                <span style="font-size: 0.95rem; color: var(--gold-light); display: block; margin-top: 5px; font-weight: 500;">Chinhari Model's Training Academy, Bilaspur</span>
+                <span style="font-size: 0.85rem; color: var(--white); opacity: 0.9; display: block; margin-top: 3px;">Nrityadhra Dance Academy, Sarkanda, Bilaspur, CG</span>
                 <a href="https://www.google.com/maps/place/Chinhari+Models+Training+Academy/@22.069364,82.175888,17z/data=!3m1!4b1!4m6!3m5!1s0x3a280b0051fa7e43:0x2278f6897efd787b!8m2!3d22.069364!4d82.175888!16s%2Fg%2F11npy_wm0y?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-link-btn">
                   🗺️ View on Google Maps
                 </a>
               </span>
             </div>
             <div class="info-item">
+              <span class="info-icon">🕐</span>
+              <span><strong>New Batch:</strong> 1 September 2026 &nbsp;|&nbsp; <strong>Time:</strong> 11:00 AM to 01:00 PM</span>
+            </div>
+            <div class="info-item">
               <span class="info-icon">📞</span>
               <span><strong>Call/WhatsApp:</strong> +91 92381 37071</span>
             </div>
+          </div>
+
+          <!-- Branch Poster -->
+          <div style="margin-top: 30px; text-align: center;">
+            <img src="images/bilaspur-batch.jpeg" alt="Bilaspur New Batch Poster" style="max-width: 100%; border-radius: 12px; border: 1px solid rgba(212,160,23,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
           </div>
         </div>
 
@@ -551,7 +560,7 @@
               <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach them manually after the chat opens.</div>
             </div>
             <!-- Terms & Conditions -->
-            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px;">
+            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,160,23,0.04); border: 1px solid rgba(212,160,23,0.2); border-radius: 6px;">
               <div style="margin-bottom: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
                 📄 Please read our Terms &amp; Conditions before registering:
                 <a href="images/termcondition.jpeg" target="_blank" style="color: var(--gold); font-weight: 600; text-decoration: underline; margin-left: 6px;">View Terms &amp; Conditions ↗</a>
@@ -596,12 +605,25 @@
           <div class="branch-info" style="margin-top: 30px;">
             <div class="info-item">
               <span class="info-icon">📍</span>
-              <span><strong>Address:</strong> Fitness Factory Gym, Raipur, CG</span>
+              <span>
+                <strong>Address:</strong><br>
+                <span style="font-size: 0.95rem; color: var(--gold-light); display: block; margin-top: 5px; font-weight: 500;">Chinhari Model's Training Academy, Raipur Branch</span>
+                <span style="font-size: 0.85rem; color: var(--white); opacity: 0.9; display: block; margin-top: 3px;">Beats & Dance Academy, Central Plaza 2nd Floor, Near Gurudwara, Katora Talab, Raipur, CG</span>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">🕐</span>
+              <span><strong>New Batch:</strong> 15 September 2026 &nbsp;|&nbsp; <strong>Time:</strong> 4:00 PM to 6:00 PM</span>
             </div>
             <div class="info-item">
               <span class="info-icon">📞</span>
               <span><strong>Call/WhatsApp:</strong> +91 92381 37071</span>
             </div>
+          </div>
+
+          <!-- Branch Poster -->
+          <div style="margin-top: 30px; text-align: center;">
+            <img src="images/raipur-batch.jpeg" alt="Raipur New Batch Poster" style="max-width: 100%; border-radius: 12px; border: 1px solid rgba(212,160,23,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
           </div>
         </div>
 
@@ -674,7 +696,7 @@
               <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach them manually after the chat opens.</div>
             </div>
             <!-- Terms & Conditions -->
-            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px;">
+            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,160,23,0.04); border: 1px solid rgba(212,160,23,0.2); border-radius: 6px;">
               <div style="margin-bottom: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
                 📄 Please read our Terms &amp; Conditions before registering:
                 <a href="images/termcondition.jpeg" target="_blank" style="color: var(--gold); font-weight: 600; text-decoration: underline; margin-left: 6px;">View Terms &amp; Conditions ↗</a>
@@ -797,7 +819,7 @@
               <div style="font-size: 0.75rem; color: var(--muted); margin-top: 5px;">Note: Images cannot be auto-attached to WhatsApp. Please attach them manually after the chat opens.</div>
             </div>
             <!-- Terms & Conditions -->
-            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px;">
+            <div style="margin-top: 20px; padding: 16px 18px; background: rgba(212,160,23,0.04); border: 1px solid rgba(212,160,23,0.2); border-radius: 6px;">
               <div style="margin-bottom: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.7;">
                 📄 Please read our Terms &amp; Conditions before registering:
                 <a href="images/termcondition.jpeg" target="_blank" style="color: var(--gold); font-weight: 600; text-decoration: underline; margin-left: 6px;">View Terms &amp; Conditions ↗</a>
