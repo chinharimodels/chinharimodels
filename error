@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>404 | Page Not Found</title>
+
+<style>
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(circle at 50% 40%,
+        #12345a 0%,
+        #07172b 45%,
+        #020711 100%);
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* BACKGROUND GRID */
+
+body::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+
+    background-size: 45px 45px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black,
+        transparent
+    );
+}
+
+/* MAIN CONTAINER */
+
+.container {
+    position: relative;
+
+    width: 90%;
+    max-width: 700px;
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 0 60px rgba(0,100,255,0.08),
+        inset 0 0 30px rgba(255,255,255,0.02);
+
+    animation: fadeIn 1s ease;
+}
+
+/* LOGO */
+
+.logo {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    color: #d9eaff;
+
+    margin-bottom: 30px;
+}
+
+.logo span {
+    color: #00aaff;
+}
+
+/* 404 */
+
+.error-code {
+    font-size: clamp(100px, 22vw, 190px);
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    letter-spacing: 10px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #8bbcff 45%,
+        #2478ff 100%
+    );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    filter: drop-shadow(0 0 25px rgba(0,110,255,0.45));
+
+    animation: glow 3s infinite alternate;
+}
+
+/* ERROR TITLE */
+
+.title {
+    font-size: 28px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-top: 25px;
+
+    text-transform: uppercase;
+}
+
+/* DESCRIPTION */
+
+.description {
+    margin-top: 15px;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: #aabbd2;
+}
+
+/* STATUS */
+
+.status {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 8px 18px;
+
+    border: 1px solid rgba(0,170,255,0.3);
+
+    border-radius: 30px;
+
+    color: #65caff;
+
+    background: rgba(0,100,255,0.08);
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+/* BUTTON */
+
+.home-btn {
+    display: inline-block;
+
+    margin-top: 35px;
+
+    padding: 15px 35px;
+
+    background: linear-gradient(
+        135deg,
+        #0066ff,
+        #00aaff
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+
+    box-shadow: 0 5px 25px rgba(0,100,255,0.25);
+}
+
+.home-btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 35px rgba(0,100,255,0.45);
+
+    background: linear-gradient(
+        135deg,
+        #0088ff,
+        #00ccff
+    );
+}
+
+/* FOOTER */
+
+.footer {
+    margin-top: 40px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #64758b;
+}
+
+/* ANIMATION */
+
+@keyframes glow {
+
+    from {
+        filter: drop-shadow(0 0 15px rgba(0,110,255,0.2));
+    }
+
+    to {
+        filter: drop-shadow(0 0 35px rgba(0,110,255,0.65));
+    }
+
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .container {
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 21px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .error-code {
+        letter-spacing: 4px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        CHINHARI <span>MODELS</span>
+    </div>
+
+    <div class="error-code">
+        404
+    </div>
+
+    <div class="title">
+        Page Not Found
+    </div>
+
+    <p class="description">
+        The page you are looking for may have been removed,
+        renamed, or is temporarily unavailable.
+        <br>
+        Please check the URL or return to the homepage.
+    </p>
+
+    <div class="status">
+        SYSTEM STATUS : PAGE NOT FOUND
+    </div>
+
+    <br>
+
+    <a href="/" class="home-btn">
+        ← BACK TO HOME
+    </a>
+
+    <div class="footer">
+        CHINHARI MODELS © 2026
+    </div>
+
+</div>
+
+</body>
+</html>
